@@ -14,30 +14,30 @@ public class Producto implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @Column(name ="nombre",nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name="descripcion")
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name="precio_venta")
+    @Column(name = "precio_venta")
     private String precioVenta;
 
-    @Column(name="precio_compra")
+    @Column(name = "precio_compra")
     private String precioCompra;
 
-    @Column(name="unidades_disponibles")
+    @Column(name = "unidades_disponibles")
     private String unidadesDisponibles;
 
-    @OneToMany( mappedBy = "productoInventario")
+    @OneToMany(mappedBy = "productoInventario")
     private List<Inventario> inventarios;
 
-    @OneToMany( mappedBy = "productoDetalle")
+    @OneToMany(mappedBy = "productoDetalle")
     private List<DetalleCompra> detalleCompras;
 
     @ManyToOne
     private TipoProducto tipoProducto;
 
-    @OneToMany( mappedBy = "productoPedido")
+    @OneToMany(mappedBy = "productoPedido")
     private List<DetallePedido> pedidos;
 }

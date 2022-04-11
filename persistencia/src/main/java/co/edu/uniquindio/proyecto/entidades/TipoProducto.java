@@ -12,15 +12,15 @@ public class TipoProducto implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @Column(name="descripcion")
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name="unidad_medida")
+    @Column(name = "unidad_medida")
     private String unidadMedida;
 
-    @Column(name="medida")
+    @Column(name = "medida")
     private double medida;
 
-    @OneToMany( mappedBy = "tipoProducto")
+    @OneToMany(mappedBy = "tipoProducto")
     private List<Producto> productos;
 }

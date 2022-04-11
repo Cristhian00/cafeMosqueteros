@@ -7,7 +7,7 @@ import java.io.Serializable;
 @IdClass(LlaveInventario.class)
 public class Inventario implements Serializable {
 
-    @Column(name ="cantidad")
+    @Column(name = "cantidad")
     private int cantidad;
 
     @Id

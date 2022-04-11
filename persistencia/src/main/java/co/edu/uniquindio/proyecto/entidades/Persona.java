@@ -1,36 +1,42 @@
 package co.edu.uniquindio.proyecto.entidades;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class Persona implements Serializable {
 
     @Id
-    @Column(name="cedula",nullable = false,length = 12,unique = true)
+    @Column(name = "cedula", nullable = false, length = 12, unique = true)
     @NotBlank(message = "La cedula es obligatoria")
-    @Size(min = 6, max = 12,message = "El número de la cédula solo puede tener entre 6 y 12 números")
+    @Size(min = 6, max = 12, message = "El número de la cédula solo puede tener entre 6 y 12 números")
     private String cedula;
-    @Column(name="primer_nombre",nullable = false)
+
+    @Column(name = "primer_nombre", nullable = false)
     private String primerNombre;
-    @Column(name="segundo_nombre")
+
+    @Column(name = "segundo_nombre")
     private String segundoNombre;
-    @Column(name="primer_apellido",nullable = false)
+
+    @Column(name = "primer_apellido", nullable = false)
     private String primerApellido;
-    @Column(name="segundo_apellido")
+
+    @Column(name = "segundo_apellido")
     private String segundoApellido;
-    @Column(name="correo",unique = true)
+
+    @Column(name = "correo", unique = true)
     private String correo;
-    @Column(name="celular",length = 10)
+
+    @Column(name = "celular", length = 10)
     private String celular;
-    @Column(name="contrasenia",nullable = false)
+
+    @Column(name = "contrasenia", nullable = false)
     private String contrasenia;
 
-    public Persona (){
+    public Persona() {
         super();
     }
 

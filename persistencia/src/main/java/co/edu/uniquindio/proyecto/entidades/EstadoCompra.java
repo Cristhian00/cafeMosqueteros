@@ -12,9 +12,9 @@ public class EstadoCompra implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @Column(name="descripcion", length = 100)
+    @Column(name = "descripcion", length = 100)
     private String descripcion;
 
-    @OneToMany( mappedBy = "estadoDetalle")
+    @OneToMany(mappedBy = "estadoDetalle")
     private List<DetalleEstado> estados;
 }

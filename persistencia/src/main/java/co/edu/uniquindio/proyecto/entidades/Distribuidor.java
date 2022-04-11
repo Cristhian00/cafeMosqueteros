@@ -20,6 +20,6 @@ public class Distribuidor implements Serializable {
     @Column(name = "ciudad", length = 30, nullable = false, unique = true)
     private String ciudad;
 
-    @OneToMany( mappedBy = "distribuidorPedido")
+    @OneToMany(mappedBy = "distribuidorPedido")
     private List<Pedido> pedidos;
 }

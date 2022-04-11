@@ -8,7 +8,7 @@ import java.sql.Date;
 @IdClass(LlaveDetalleEstado.class)
 public class DetalleEstado implements Serializable {
 
-    @Column(name ="fecha")
+    @Column(name = "fecha")
     private Date fecha;
 
     @Id

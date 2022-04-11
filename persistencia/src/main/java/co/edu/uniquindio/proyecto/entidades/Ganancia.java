@@ -15,7 +15,7 @@ public class Ganancia implements Serializable {
     @Column(name = "ganancias")
     private double ganancias;
 
-    @Column(name="anio")
+    @Column(name = "anio")
     private int anio;
 
     @Column(name = "mes")

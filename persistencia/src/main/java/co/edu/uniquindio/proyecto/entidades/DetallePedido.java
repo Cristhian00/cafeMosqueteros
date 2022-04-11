@@ -10,12 +10,14 @@ public class DetallePedido implements Serializable {
     @Column(name = "cantidad")
     private int cantidad;
 
-    @Column(name="precio_unitario")
+    @Column(name = "precio_unitario")
     private double precioUnitario;
 
+    @Id
     @ManyToOne
     private Producto productoPedido;
 
+    @Id
     @ManyToOne
     private Pedido pedidoDetalle;
 }

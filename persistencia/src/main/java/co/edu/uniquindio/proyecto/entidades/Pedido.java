@@ -13,7 +13,7 @@ public class Pedido implements Serializable {
     @Column(name = "idPedido")
     private int idPedido;
 
-    @Column(name ="fecha")
+    @Column(name = "fecha")
     private Date fecha;
 
     @Column(name="total")

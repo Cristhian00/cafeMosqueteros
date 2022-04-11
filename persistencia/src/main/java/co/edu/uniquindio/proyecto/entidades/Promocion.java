@@ -12,12 +12,12 @@ public class Promocion implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @Column(name="descripcion")
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name="decuento")
+    @Column(name = "decuento")
     private double descuento;
 
-    @OneToMany ( mappedBy = "promocionJerarquia")
+    @OneToMany(mappedBy = "promocionJerarquia")
     private List<Jerarquia> jerarquias;
 }

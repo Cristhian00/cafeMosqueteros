@@ -15,16 +15,16 @@ public class Jerarquia implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name="cantidad_hijos")
+    @Column(name = "cantidad_hijos")
     private int cantidadHijos;
 
-    @Column(name="totalcentas")
+    @Column(name = "totalcentas")
     private int totalventas;
 
-    @OneToMany( mappedBy = "jerarquia")
+    @OneToMany(mappedBy = "jerarquia")
     private List<Socio> socios;
 
-    @OneToMany( mappedBy = "jerarquiahistorial")
+    @OneToMany(mappedBy = "jerarquiahistorial")
     private List<HistorialJerarquia> historiales;
 
     @ManyToOne

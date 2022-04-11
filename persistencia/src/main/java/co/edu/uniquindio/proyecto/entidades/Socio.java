@@ -20,21 +20,21 @@ public class Socio extends Persona implements Serializable {
     @ManyToOne
     private Socio padre;
 
-    @OneToMany( mappedBy = "padre")
+    @OneToMany(mappedBy = "padre")
     private List<Socio> hijos;
 
     @ManyToOne
     private Jerarquia jerarquia;
 
-    @OneToMany( mappedBy = "socioInventario")
+    @OneToMany(mappedBy = "socioInventario")
     private List<Inventario> inventarios;
 
-    @OneToMany( mappedBy = "socioHistorial")
+    @OneToMany(mappedBy = "socioHistorial")
     private List<HistorialJerarquia> historiales;
 
-    @OneToMany( mappedBy = "socioGanancia")
+    @OneToMany(mappedBy = "socioGanancia")
     private List<Ganancia> ganancias;
 
-    @OneToMany( mappedBy = "socioCompra")
+    @OneToMany(mappedBy = "socioCompra")
     private List<Compra> compras;
 }

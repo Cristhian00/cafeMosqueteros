@@ -13,7 +13,7 @@ public class Compra implements Serializable {
     @Column(name = "idCompra")
     private int idCompra;
 
-    @Column(name= "fecha")
+    @Column(name = "fecha")
     private Date fecha;
 
     @Column(name = "total")
@@ -22,10 +22,10 @@ public class Compra implements Serializable {
     @ManyToOne
     private Socio socioCompra;
 
-    @OneToMany( mappedBy = "compraDetalle")
+    @OneToMany(mappedBy = "compraDetalle")
     private List<DetalleCompra> detalleCompras;
 
-    @OneToMany( mappedBy = "compraEstado")
+    @OneToMany(mappedBy = "compraEstado")
     private List<DetalleEstado> estados;
 
     public Compra() {
