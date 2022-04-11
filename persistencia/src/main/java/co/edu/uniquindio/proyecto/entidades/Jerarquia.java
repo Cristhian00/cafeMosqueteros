@@ -10,10 +10,10 @@ public class Jerarquia implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    @Column(name = "nombre")
     private String nombre;
-
+    @Column(name="cantidad_hijos")
     private int cantidadHijos;
-
+    @Column(name="totalcentas")
     private int totalventas;
 }

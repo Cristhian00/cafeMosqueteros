@@ -11,6 +11,6 @@ public class DetalleEstado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    @Column(name ="fecha")
     private Date fecha;
 }

@@ -11,8 +11,8 @@ public class HistorialJerarquia implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    @Column(name="fecha_inicio")
     private Date fechaInicio;
-
+    @Column(name= "fecha_fin")
     private Date fechaFin;
 }

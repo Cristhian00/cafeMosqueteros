@@ -10,8 +10,8 @@ public class DetalleCompra implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    @Column(name = "cantidad")
     private int cantidad;
-
+    @Column(name = "precio_unitario")
     private double precioUnitario;
 }

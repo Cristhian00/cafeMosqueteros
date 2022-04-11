@@ -1,25 +1,33 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
 public abstract class Persona implements Serializable {
 
     @Id
+    @Column(name="cedula",nullable = false,length = 12,unique = true)
+    @NotBlank(message = "La cedula es obligatoria")
+    @Size(min = 6, max = 12,message = "El número de la cédula solo puede tener entre 6 y 12 números")
     private String cedula;
-
+    @Column(name="primer_nombre",nullable = false)
     private String primerNombre;
+    @Column(name="segundo_nombre")
     private String segundoNombre;
-
+    @Column(name="primer_apellido",nullable = false)
     private String primerApellido;
+    @Column(name="segundo_apellido")
     private String segundoApellido;
-
+    @Column(name="correo",unique = true)
     private String correo;
-
+    @Column(name="celular",length = 10)
     private String celular;
-
+    @Column(name="contrasenia",nullable = false)
     private String contrasenia;
 
     public Persona (){

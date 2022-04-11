@@ -10,6 +10,6 @@ public class EstadoCompra implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    @Column(name="descripcion", length = 100)
     private String descripcion;
 }

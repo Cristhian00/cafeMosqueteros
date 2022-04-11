@@ -1,5 +1,7 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import org.hibernate.annotations.CollectionId;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,8 +12,8 @@ public class Promociones implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    @Column(name="descripcion")
     private String descripcion;
-
+    @Column(name="decuento")
     private double descuento;
 }

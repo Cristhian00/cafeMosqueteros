@@ -10,10 +10,10 @@ public class Ganancias implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    @Column(name = "ganancias")
     private double ganancias;
-
+    @Column(name="anio")
     private int anio;
-
+    @Column(name = "mes")
     private String mes;
 }
