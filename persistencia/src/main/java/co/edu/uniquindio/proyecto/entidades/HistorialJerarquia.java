@@ -5,14 +5,20 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
+@IdClass(LlaveHistorial.class)
 public class HistorialJerarquia implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
     @Column(name="fecha_inicio")
     private Date fechaInicio;
+
     @Column(name= "fecha_fin")
     private Date fechaFin;
+
+    @Id
+    @ManyToOne
+    private Socio socioHistorial;
+
+    @Id
+    @ManyToOne
+    private Jerarquia jerarquiahistorial;
 }

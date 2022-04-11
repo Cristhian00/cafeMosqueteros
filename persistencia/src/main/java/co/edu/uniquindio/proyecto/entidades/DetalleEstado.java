@@ -5,12 +5,17 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
+@IdClass(LlaveDetalleEstado.class)
 public class DetalleEstado implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
     @Column(name ="fecha")
     private Date fecha;
+
+    @Id
+    @ManyToOne
+    private EstadoCompra estadoDetalle;
+
+    @Id
+    @ManyToOne
+    private Compra compraEstado;
 }
