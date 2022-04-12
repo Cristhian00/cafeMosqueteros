@@ -29,4 +29,10 @@ public class DetalleEstado implements Serializable {
     @ManyToOne
     @EqualsAndHashCode.Include
     private Compra compraEstado;
+
+    public DetalleEstado(Date fecha, EstadoCompra estadoDetalle, Compra compraEstado) {
+        this.fecha = fecha;
+        this.estadoDetalle = estadoDetalle;
+        this.compraEstado = compraEstado;
+    }
 }

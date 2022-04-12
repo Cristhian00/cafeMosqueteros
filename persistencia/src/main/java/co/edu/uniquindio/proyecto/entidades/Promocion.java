@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,4 +32,10 @@ public class Promocion implements Serializable {
 
     @OneToMany(mappedBy = "promocionJerarquia")
     private List<Jerarquia> jerarquias;
+
+    public Promocion(String descripcion,@Positive double descuento) {
+        this.descripcion = descripcion;
+        this.descuento = descuento;
+        this.jerarquias = new ArrayList<>();
+    }
 }

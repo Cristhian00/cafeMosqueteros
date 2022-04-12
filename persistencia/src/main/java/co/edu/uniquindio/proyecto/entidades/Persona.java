@@ -25,7 +25,7 @@ public abstract class Persona implements Serializable {
     @EqualsAndHashCode.Include
     private String cedula;
 
-    @Column(name = "primer_nombre", nullable = false)
+    @Column(name = "primer_nombre")
     private String primerNombre;
 
     @Column(name = "segundo_nombre")
@@ -40,11 +40,23 @@ public abstract class Persona implements Serializable {
     @Column(name = "correo", unique = true)
     private String correo;
 
-    @Column(name = "celular", length = 10)
+    @Column(name = "celular", length = 10, unique = true)
     private String celular;
 
     @Column(name = "contrasenia", nullable = false)
     private String contrasenia;
+
+    public Persona(String cedula, String primerNombre, String primerApellido,
+                   String correo, String celular, String contrasenia) {
+        this.cedula = cedula;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = "";
+        this.primerApellido = primerApellido;
+        this.segundoApellido = "";
+        this.correo = correo;
+        this.celular = celular;
+        this.contrasenia = contrasenia;
+    }
 
     public String getCedula() {
         return cedula;

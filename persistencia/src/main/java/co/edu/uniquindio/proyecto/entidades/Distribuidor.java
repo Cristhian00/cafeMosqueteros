@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,4 +33,11 @@ public class Distribuidor implements Serializable {
 
     @OneToMany(mappedBy = "distribuidorPedido")
     private List<Pedido> pedidos;
+
+    public Distribuidor(String nitDistribuidor, String nombre, String ciudad) {
+        this.nitDistribuidor = nitDistribuidor;
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.pedidos = new ArrayList<>();
+    }
 }

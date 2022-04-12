@@ -32,4 +32,11 @@ public class HistorialJerarquia implements Serializable {
     @ManyToOne
     @EqualsAndHashCode.Include
     private Jerarquia jerarquiahistorial;
+
+    public HistorialJerarquia(Date fechaInicio, Date fechaFin, Socio socioHistorial, Jerarquia jerarquiahistorial) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.socioHistorial = socioHistorial;
+        this.jerarquiahistorial = jerarquiahistorial;
+    }
 }

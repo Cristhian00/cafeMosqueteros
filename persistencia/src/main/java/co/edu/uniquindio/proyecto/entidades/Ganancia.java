@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 
 @Entity
@@ -35,4 +36,11 @@ public class Ganancia implements Serializable {
     @ManyToOne
     @EqualsAndHashCode.Include
     private Socio socioGanancia;
+
+    public Ganancia(@Positive double ganancias,@Positive int anio, String mes, Socio socioGanancia) {
+        this.ganancias = ganancias;
+        this.anio = anio;
+        this.mes = mes;
+        this.socioGanancia = socioGanancia;
+    }
 }

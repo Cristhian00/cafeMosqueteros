@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,4 +28,9 @@ public class EstadoCompra implements Serializable {
 
     @OneToMany(mappedBy = "estadoDetalle")
     private List<DetalleEstado> estados;
+
+    public EstadoCompra(String descripcion) {
+        this.descripcion = descripcion;
+        this.estados = new ArrayList<>();
+    }
 }

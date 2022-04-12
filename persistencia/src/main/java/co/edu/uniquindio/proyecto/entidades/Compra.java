@@ -6,8 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -38,4 +40,11 @@ public class Compra implements Serializable {
     @OneToMany(mappedBy = "compraEstado")
     private List<DetalleEstado> estados;
 
+    public Compra(Date fecha, @Positive double total, Socio socioCompra) {
+        this.fecha = fecha;
+        this.total = total;
+        this.socioCompra = socioCompra;
+        this.detalleCompras = new ArrayList<>();
+        this.estados = new ArrayList<>();
+    }
 }

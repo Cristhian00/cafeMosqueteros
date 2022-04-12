@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,4 +35,11 @@ public class TipoProducto implements Serializable {
 
     @OneToMany(mappedBy = "tipoProducto")
     private List<Producto> productos;
+
+    public TipoProducto(String descripcion, String unidadMedida,@Positive double medida) {
+        this.descripcion = descripcion;
+        this.unidadMedida = unidadMedida;
+        this.medida = medida;
+        this.productos = new ArrayList<>();
+    }
 }

@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,9 +20,9 @@ public class Jerarquia implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "idJerarquia")
     @EqualsAndHashCode.Include
-    private int id;
+    private int idJerarquia;
 
     @Column(name = "nombre")
     private String nombre;
@@ -39,4 +41,14 @@ public class Jerarquia implements Serializable {
 
     @ManyToOne
     private Promocion promocionJerarquia;
+
+    public Jerarquia(String nombre,@Positive int cantidadHijos,@Positive int totalventas,
+                     Promocion promocionJerarquia) {
+        this.nombre = nombre;
+        this.cantidadHijos = cantidadHijos;
+        this.totalventas = totalventas;
+        this.socios = new ArrayList<>();
+        this.historiales = new ArrayList<>();
+        this.promocionJerarquia = promocionJerarquia;
+    }
 }
