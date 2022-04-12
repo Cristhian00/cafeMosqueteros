@@ -1,0 +1,31 @@
+package co.edu.uniquindio.proyecto.test;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+public class TipoProductoTest {
+
+    @Autowired
+    private TipoProductoRepo tipoProductoRepo;
+    @Test
+    public void registrarTipoProductoTest(){
+
+    }
+    @Test
+    public void eliminarTipoProductoTest(){
+
+
+    }
+    @Test
+    public void actualizarTipoProductoTest(){
+
+    }
+    @Test
+    public void listarTipoProductoTest(){
+
+    }
+}
