@@ -10,7 +10,7 @@ import java.io.Serializable;
 public abstract class Persona implements Serializable {
 
     @Id
-    @Column(name = "cedula", nullable = false, length = 12, unique = true)
+    @Column(name = "cedula", nullable = false, length = 13, unique = true)
     @NotBlank(message = "La cedula es obligatoria")
     @Size(min = 6, max = 12, message = "El número de la cédula solo puede tener entre 6 y 12 números")
     private String cedula;
