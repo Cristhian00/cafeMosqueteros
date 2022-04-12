@@ -18,9 +18,9 @@ public class TipoProducto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "idTipo")
     @EqualsAndHashCode.Include
-    private int id;
+    private int idTipo;
 
     @Column(name = "descripcion")
     private String descripcion;

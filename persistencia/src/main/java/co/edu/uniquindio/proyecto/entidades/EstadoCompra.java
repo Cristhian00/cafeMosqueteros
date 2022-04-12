@@ -18,9 +18,9 @@ public class EstadoCompra implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "idEstado")
     @EqualsAndHashCode.Include
-    private int id;
+    private int idEstado;
 
     @Column(name = "descripcion", length = 100)
     private String descripcion;

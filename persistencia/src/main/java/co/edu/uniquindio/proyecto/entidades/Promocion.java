@@ -18,9 +18,9 @@ public class Promocion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "idPromocion")
     @EqualsAndHashCode.Include
-    private int id;
+    private int idPromocion;
 
     @Column(name = "descripcion")
     private String descripcion;
