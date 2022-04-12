@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class LlaveDetallePedido implements Serializable {
 
-    private Pedido pedido;
-    private Producto producto;
+    private Producto productoPedido;
+
+    private Pedido pedidoDetalle;
 }

@@ -1,5 +1,10 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -7,12 +12,17 @@ import java.io.Serializable;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public abstract class Persona implements Serializable {
 
     @Id
     @Column(name = "cedula", nullable = false, length = 13, unique = true)
     @NotBlank(message = "La cedula es obligatoria")
     @Size(min = 6, max = 12, message = "El número de la cédula solo puede tener entre 6 y 12 números")
+    @EqualsAndHashCode.Include
     private String cedula;
 
     @Column(name = "primer_nombre", nullable = false)
@@ -35,10 +45,6 @@ public abstract class Persona implements Serializable {
 
     @Column(name = "contrasenia", nullable = false)
     private String contrasenia;
-
-    public Persona() {
-        super();
-    }
 
     public String getCedula() {
         return cedula;

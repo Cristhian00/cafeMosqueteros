@@ -1,16 +1,26 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Compra implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCompra")
+    @EqualsAndHashCode.Include
     private int idCompra;
 
     @Column(name = "fecha")
@@ -28,7 +38,4 @@ public class Compra implements Serializable {
     @OneToMany(mappedBy = "compraEstado")
     private List<DetalleEstado> estados;
 
-    public Compra() {
-        super();
-    }
 }

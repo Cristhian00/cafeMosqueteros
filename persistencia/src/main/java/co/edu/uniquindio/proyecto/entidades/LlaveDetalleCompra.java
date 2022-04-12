@@ -1,9 +1,11 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 
 public class LlaveDetalleCompra implements Serializable {
 
-    private Producto producto;
-    private Compra compra;
+    private Producto productoDetalle;
+
+    private Compra compraDetalle;
 }

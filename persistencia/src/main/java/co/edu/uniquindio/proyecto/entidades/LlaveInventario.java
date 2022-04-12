@@ -4,6 +4,6 @@ import java.io.Serializable;
 
 public class LlaveInventario implements Serializable {
 
-    private Socio socio;
-    private Producto producto;
+    private Socio socioInventario;
+    private Producto productoInventario;
 }

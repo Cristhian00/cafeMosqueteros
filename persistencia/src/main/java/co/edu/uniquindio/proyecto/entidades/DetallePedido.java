@@ -1,10 +1,19 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @IdClass(LlaveDetallePedido.class)
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class DetallePedido implements Serializable {
 
     @Column(name = "cantidad")
@@ -15,9 +24,11 @@ public class DetallePedido implements Serializable {
 
     @Id
     @ManyToOne
+    @EqualsAndHashCode.Include
     private Producto productoPedido;
 
     @Id
     @ManyToOne
+    @EqualsAndHashCode.Include
     private Pedido pedidoDetalle;
 }
