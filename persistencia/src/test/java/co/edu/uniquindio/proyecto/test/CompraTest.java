@@ -11,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class CompraTest {
     @Autowired
-    private eCompraRepo compraRepo;
+    private CompraRepo compraRepo;
 
     @Test
     public void registrarCompraTest(){

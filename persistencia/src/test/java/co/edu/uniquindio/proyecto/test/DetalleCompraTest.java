@@ -16,6 +16,9 @@ public class DetalleCompraTest {
 
     @Test
     public void registrarDetalleCompraTest(){
+    DetalleCompra detalleCompra = new DetalleCompra();
+    detalleCompra.setCantidad(3);
+    detalleCompra.setPrecioUnitario(15.000);
 
 
     }
