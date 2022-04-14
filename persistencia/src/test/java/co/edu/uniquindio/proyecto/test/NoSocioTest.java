@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.entidades.NoSocio;
+import co.edu.uniquindio.proyecto.repositorios.NoSocioRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,13 +69,13 @@ public class NoSocioTest {
 
         registrado.setCelular("3206977325");
         noSocioRepo.save(registrado);
-        NoSocio buscado = noSocioRepo.finById("111").orElse(null);
+        NoSocio buscado = noSocioRepo.findById("111").orElse(null);
         Assertions.assertEquals("3206977325", buscado.getCelular());
 
     }
     @Test
     public void listarNoSocioTest(){
-        List<NoSocio> lista = noSocioRepo.finAll();
+        List<NoSocio> lista = noSocioRepo.findAll();
         System.out.println(lista);
     }
 }

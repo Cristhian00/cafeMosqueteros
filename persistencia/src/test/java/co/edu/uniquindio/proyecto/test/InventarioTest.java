@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
+import co.edu.uniquindio.proyecto.repositorios.InventarioRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 public class InventarioTest {
 
     @Autowired
-    private InvetarioRepo invetarioRepo;
+    private InventarioRepo invetarioRepo;
 
     @Test
     public void registrarInventarioTest(){

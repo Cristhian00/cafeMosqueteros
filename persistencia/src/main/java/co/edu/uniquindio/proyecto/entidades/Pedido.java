@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 

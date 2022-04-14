@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.entidades.DetalleCompra;
 import co.edu.uniquindio.proyecto.entidades.DetalleEstado;
+import co.edu.uniquindio.proyecto.repositorios.DetalleEstadoRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

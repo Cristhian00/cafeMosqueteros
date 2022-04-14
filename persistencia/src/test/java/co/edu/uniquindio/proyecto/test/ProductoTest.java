@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.TipoProducto;
+import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,10 @@ public class ProductoTest {
 
     private TipoProducto tipoProducto;
 
-
     @Test
     public void registrarProductoTest(){
         Producto producto = new Producto();
         producto.setIdProducto(2323);
-        producto.setNombre("Cafe granulado");
-        producto.setTipoProducto(tipoProducto);
-        producto.setDescripcion("Productos listos");
-        producto.setPrecioCompra("25000");
-        producto.setPrecioVenta("35000");
-        producto.setUnidadesDisponibles("43");
 
         Producto guardado = productoRepo.save(producto);
 
@@ -41,13 +35,6 @@ public class ProductoTest {
 
         Producto producto = new Producto();
         producto.setIdProducto(2323);
-        producto.setNombre("Cafe granulado");
-        producto.setTipoProducto(tipoProducto);
-        producto.setDescripcion("Productos listos");
-        producto.setPrecioCompra("25000");
-        producto.setPrecioVenta("35000");
-        producto.setUnidadesDisponibles("43");
-
         Producto registrado = productoRepo.save(producto);
 
         productoRepo.delete(registrado);
@@ -61,16 +48,10 @@ public class ProductoTest {
     public void actualizarProductoTest(){
         Producto producto = new Producto();
         producto.setIdProducto(2323);
-        producto.setNombre("Cafe granulado");
-        producto.setTipoProducto(tipoProducto);
-        producto.setDescripcion("Productos listos");
-        producto.setPrecioCompra("25000");
-        producto.setPrecioVenta("35000");
-        producto.setUnidadesDisponibles("43");
 
         Producto registrado = productoRepo.save(producto);
 
-        registrado.setPrecioVenta("40000");
+        registrado.setPrecioVenta(40000);
         productoRepo.save(registrado);
 
         Producto buscado = productoRepo.findById(2323).orElse(null);

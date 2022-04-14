@@ -42,7 +42,7 @@ public class Jerarquia implements Serializable {
     @ManyToOne
     private Promocion promocionJerarquia;
 
-    public Jerarquia(String nombre,@Positive int cantidadHijos,@Positive int totalventas,
+    public Jerarquia(String nombre, @Positive int cantidadHijos, @Positive int totalventas,
                      Promocion promocionJerarquia) {
         this.nombre = nombre;
         this.cantidadHijos = cantidadHijos;
