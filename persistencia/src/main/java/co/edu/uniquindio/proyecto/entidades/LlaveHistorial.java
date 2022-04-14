@@ -4,6 +4,6 @@ import java.io.Serializable;
 
 public class LlaveHistorial implements Serializable {
 
-    private Socio socioHistorial;
-    private Jerarquia jerarquiahistorial;
+    private String socioHistorial;
+    private int jerarquiahistorial;
 }

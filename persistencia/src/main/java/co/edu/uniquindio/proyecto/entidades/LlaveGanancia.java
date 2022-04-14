@@ -5,5 +5,5 @@ import java.io.Serializable;
 public class LlaveGanancia implements Serializable {
 
     private int idGanancias;
-    private Socio socioGanancia;
+    private String socioGanancia;
 }

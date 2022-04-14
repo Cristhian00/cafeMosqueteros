@@ -14,4 +14,8 @@ import java.io.Serializable;
 public class NoSocio extends Persona implements Serializable {
 
 
+    public NoSocio(String cedula, String primerNombre, String primerApellido, String correo, String celular, String contrasenia) {
+        super(cedula, primerNombre, primerApellido, correo, celular, contrasenia);
+
+    }
 }

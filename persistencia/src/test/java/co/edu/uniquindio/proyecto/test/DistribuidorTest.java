@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.entidades.Distribuidor;
+import co.edu.uniquindio.proyecto.repositorios.DistribuidorRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,49 +18,34 @@ public class DistribuidorTest {
 
     @Test
     public void registrarDistribuidorTest(){
-        Distribuidor distribuidor = new Distribuidor();
-        distribuidor.setNitDistribuidor("12345");
-        distribuidor.setNombre("Ernesto Perez");
-        distribuidor.setCiudad("Armenia");
-
-        Distribuidor guardado = distribuidorRepo.save(distribuidor);
+     Distribuidor distribuidor = new Distribuidor("2121","Carlos Martinez","Armenia");
+     Distribuidor guardado = distribuidorRepo.save(distribuidor);
         Assertions.assertNotNull(guardado);
     }
 
     @Test
     public void eliminarDistribuidorTest(){
-    Distribuidor distribuidor = new Distribuidor();
-    distribuidor.setNitDistribuidor("12345");
-    distribuidor.setNombre("Ernesto Perez");
-    distribuidor.setCiudad("Armenia");
-
-    //Primero se guarda
-    Distribuidor registrado = distribuidorRepo.save(distribuidor);
-
+        Distribuidor distribuidor = new Distribuidor("2121","Carlos Martinez","Armenia");
+        Distribuidor guardado = distribuidorRepo.save(distribuidor);
     //Luego se elimina
-    distribuidorRepo.delete(registrado);
+    distribuidorRepo.delete(guardado);
 
-    //Por ultimo, Se verifica que si haya quedado borrado
-    Distribuidor buscado = distribuidorRepo.findById("12345").orElse(null);
-    Assertions.assertNotNull(buscado);
+    Distribuidor buscado = distribuidorRepo.findByNitDistribuidor(distribuidor.getNitDistribuidor());
+
+        Assertions.assertNull(buscado);
 
     }
     @Test
     public void actualizarDistribuidorTest(){
-     Distribuidor distribuidor = new Distribuidor();
-     distribuidor.setNitDistribuidor("12345");
-     distribuidor.setNombre("Ernesto Perez");
-     distribuidor.setCiudad("Armenia");
+        Distribuidor distribuidor = new Distribuidor("2121","Carlos Martinez","Armenia");
+        Distribuidor guardado = distribuidorRepo.save(distribuidor);
 
-     Distribuidor registrado = distribuidorRepo.save(distribuidor);
+        guardado.setNombre("Carlos Hernandez");
 
-     registrado.setNombre("Carlos Valencia");
+         distribuidorRepo.save(guardado);
 
-
-     distribuidorRepo.save(registrado);
-
-     Distribuidor buscado = distribuidorRepo.findById("12345").orElse(null);
-     Assertions.assertEquals("Carlos Valencia", buscado.getNombre());
+        Distribuidor buscado = distribuidorRepo.findByNitDistribuidor(distribuidor.getNitDistribuidor());
+        Assertions.assertEquals("Carlos Hernandez", buscado.getNitDistribuidor());
 
     }
     @Test

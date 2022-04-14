@@ -1,10 +1,22 @@
 package co.edu.uniquindio.proyecto.test;
 
+
+import co.edu.uniquindio.proyecto.entidades.Jerarquia;
+import co.edu.uniquindio.proyecto.entidades.Promocion;
 import co.edu.uniquindio.proyecto.entidades.Socio;
+
+import co.edu.uniquindio.proyecto.repositorios.JerarquiaRepo;
+import co.edu.uniquindio.proyecto.repositorios.PromocionRepo;
+import co.edu.uniquindio.proyecto.repositorios.SocioRepo;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import java.util.Date;
+import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -12,25 +24,70 @@ public class SocioTest {
 
     @Autowired
     private SocioRepo socioRepo;
+    @Autowired
+    private PromocionRepo promocionRepo;
+    @Autowired
+    private JerarquiaRepo jerarquiaRepo;
 
     @Test
-    public void registrarSocioTest(){
-        Socio socio = new Socio();
-        socio.setCedula("432");
-        socio.setContrasenia("3232");
+    public void registrarSocioTest() {
+        Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
+        promocionRepo.save(promocion);
+
+        Jerarquia jerarquia = new Jerarquia("Bronce", 5, 10000, promocion);
+        jerarquiaRepo.save(jerarquia);
+
+        Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
+                "312432", "admin", new Date(), "Activo", null, jerarquia);
+
+        Socio guardado = socioRepo.save(socio);
+        Assertions.assertNotNull(guardado);
 
     }
-    @Test
-    public void eliminarSocioTest(){
 
+    @Test
+    public void eliminarSocioTest() {
+        Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
+        promocionRepo.save(promocion);
+
+        Jerarquia jerarquia = new Jerarquia("Bronce", 5, 10000, promocion);
+        jerarquiaRepo.save(jerarquia);
+
+        Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
+                "312432", "admin", new Date(), "Activo", null, jerarquia);
+
+        Socio guardado = socioRepo.save(socio);
+
+        socioRepo.delete(guardado);
+
+        //HACER FINDBY
+    }
+
+    @Test
+    public void actualizarSocioTest() {
+        Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
+        promocionRepo.save(promocion);
+
+        Jerarquia jerarquia = new Jerarquia("Bronce", 5, 10000, promocion);
+        jerarquiaRepo.save(jerarquia);
+
+        Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
+                "312432", "admin", new Date(), "Activo", null, jerarquia);
+
+        Socio guardado = socioRepo.save(socio);
+
+        guardado.setCorreo("cristhian@gmail.com");
+
+        socioRepo.save(guardado);
+
+        //HCAER FINDBY
 
     }
-    @Test
-    public void actualizarSocioTest(){
 
-    }
     @Test
-    public void listarSocioTest(){
+    public void listarSocioTest() {
+        List<Socio> lista = socioRepo.findAll();
+        System.out.println(lista);
 
     }
 }

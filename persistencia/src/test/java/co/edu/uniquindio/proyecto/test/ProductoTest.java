@@ -2,6 +2,8 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.entidades.Producto;
 import co.edu.uniquindio.proyecto.entidades.TipoProducto;
+import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
+import co.edu.uniquindio.proyecto.repositorios.TipoProductoRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,70 +18,52 @@ public class ProductoTest {
 
     @Autowired
     private ProductoRepo productoRepo;
-
-    private TipoProducto tipoProducto;
-
+    @Autowired
+    private TipoProductoRepo tipoProductoRepo;
 
     @Test
-    public void registrarProductoTest(){
-        Producto producto = new Producto();
-        producto.setIdProducto(2323);
-        producto.setNombre("Cafe granulado");
-        producto.setTipoProducto(tipoProducto);
-        producto.setDescripcion("Productos listos");
-        producto.setPrecioCompra("25000");
-        producto.setPrecioVenta("35000");
-        producto.setUnidadesDisponibles("43");
+    public void registrarProductoTest() {
+        TipoProducto tipoProducto = new TipoProducto("Molido", "mg", 500);
+        tipoProductoRepo.save(tipoProducto);
 
+        Producto producto = new Producto("cafe aroma vainilla", "Café con toques sueves de vainilla", 35.000, 25.000, 30, tipoProducto);
         Producto guardado = productoRepo.save(producto);
 
         Assertions.assertNotNull(guardado);
     }
 
     @Test
-    public void eliminarProductoTest(){
+    public void eliminarProductoTest() {
 
-        Producto producto = new Producto();
-        producto.setIdProducto(2323);
-        producto.setNombre("Cafe granulado");
-        producto.setTipoProducto(tipoProducto);
-        producto.setDescripcion("Productos listos");
-        producto.setPrecioCompra("25000");
-        producto.setPrecioVenta("35000");
-        producto.setUnidadesDisponibles("43");
+        TipoProducto tipoProducto = new TipoProducto("Molido", "mg", 500);
+        tipoProductoRepo.save(tipoProducto);
 
-        Producto registrado = productoRepo.save(producto);
+        Producto producto = new Producto("cafe aroma vainilla", "Café con toques sueves de vainilla", 35.000, 25.000, 30, tipoProducto);
+        Producto guardado = productoRepo.save(producto);
 
-        productoRepo.delete(registrado);
+        productoRepo.delete(guardado);
 
-        Producto buscado = productoRepo.findById(2323).orElse(null);
-        Assertions.assertNotNull(buscado);
+        //HACER FINDBY
 
     }
 
     @Test
-    public void actualizarProductoTest(){
-        Producto producto = new Producto();
-        producto.setIdProducto(2323);
-        producto.setNombre("Cafe granulado");
-        producto.setTipoProducto(tipoProducto);
-        producto.setDescripcion("Productos listos");
-        producto.setPrecioCompra("25000");
-        producto.setPrecioVenta("35000");
-        producto.setUnidadesDisponibles("43");
+    public void actualizarProductoTest() {
+        TipoProducto tipoProducto = new TipoProducto("Molido", "mg", 500);
+        tipoProductoRepo.save(tipoProducto);
 
-        Producto registrado = productoRepo.save(producto);
-
-        registrado.setPrecioVenta("40000");
-        productoRepo.save(registrado);
-
-        Producto buscado = productoRepo.findById(2323).orElse(null);
-        Assertions.assertEquals("40000", buscado.getPrecioVenta());
+        Producto producto = new Producto("cafe aroma vainilla", "Café con toques sueves de vainilla", 35.000, 25.000, 30, tipoProducto);
+        Producto guardado = productoRepo.save(producto);
 
 
+        guardado.setPrecioVenta(40000);
+        productoRepo.save(guardado);
+
+        //HACER FINDBY
     }
+
     @Test
-    public void listarProductoTest(){
+    public void listarProductoTest() {
         List<Producto> lista = productoRepo.findAll();
         System.out.println(lista);
     }

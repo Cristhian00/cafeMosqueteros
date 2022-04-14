@@ -36,7 +36,7 @@ public class TipoProducto implements Serializable {
     @OneToMany(mappedBy = "tipoProducto")
     private List<Producto> productos;
 
-    public TipoProducto(String descripcion, String unidadMedida,@Positive double medida) {
+    public TipoProducto(String descripcion, String unidadMedida, @Positive double medida) {
         this.descripcion = descripcion;
         this.unidadMedida = unidadMedida;
         this.medida = medida;

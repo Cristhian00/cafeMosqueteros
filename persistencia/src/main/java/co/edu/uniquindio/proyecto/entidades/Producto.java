@@ -30,13 +30,13 @@ public class Producto implements Serializable {
     private String descripcion;
 
     @Column(name = "precio_venta")
-    private String precioVenta;
+    private double precioVenta;
 
     @Column(name = "precio_compra")
-    private String precioCompra;
+    private double precioCompra;
 
     @Column(name = "unidades_disponibles")
-    private String unidadesDisponibles;
+    private int unidadesDisponibles;
 
     @OneToMany(mappedBy = "productoInventario")
     private List<Inventario> inventarios;
@@ -50,8 +50,8 @@ public class Producto implements Serializable {
     @OneToMany(mappedBy = "productoPedido")
     private List<DetallePedido> pedidos;
 
-    public Producto(String nombre, String descripcion, String precioVenta, String precioCompra,
-                    String unidadesDisponibles, TipoProducto tipoProducto) {
+    public Producto(String nombre, String descripcion, double precioVenta, double precioCompra,
+                    int unidadesDisponibles, TipoProducto tipoProducto) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precioVenta = precioVenta;

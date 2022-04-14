@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.entidades.NoSocio;
+import co.edu.uniquindio.proyecto.repositorios.NoSocioRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,63 +19,35 @@ public class NoSocioTest {
 
     @Test
     public void registrarNoSocioTest(){
-        NoSocio noSocio = new NoSocio();
-        noSocio.setCedula("111");
-        noSocio.setPrimerNombre("Diego");
-        noSocio.setSegundoNombre("Mauricio");
-        noSocio.setPrimerApellido("Valencia");
-        noSocio.setSegundoApellido("Hernandez");
-        noSocio.setCelular("3146237743");
-        noSocio.setCorreo("diego@gmail.com");
-        noSocio.setContrasenia("diego123");
-
+        NoSocio noSocio = new NoSocio("111","Diego","Valencia","diego@gmail.com","3146326623","diego123");
         NoSocio guardado = noSocioRepo.save(noSocio);
         Assertions.assertNotNull(guardado);
     }
     @Test
     public void eliminarNoSocioTest(){
-    NoSocio noSocio = new NoSocio();
-        noSocio.setCedula("111");
-        noSocio.setPrimerNombre("Diego");
-        noSocio.setSegundoNombre("Mauricio");
-        noSocio.setPrimerApellido("Valencia");
-        noSocio.setSegundoApellido("Hernandez");
-        noSocio.setCelular("3146237743");
-        noSocio.setCorreo("diego@gmail.com");
-        noSocio.setContrasenia("diego123");
+        NoSocio noSocio = new NoSocio("111","Diego","Valencia","diego@gmail.com","3146326623","diego123");
+        NoSocio guardado = noSocioRepo.save(noSocio);
 
-        NoSocio registrado = noSocioRepo.save(noSocio);
+        noSocioRepo.delete(guardado);
 
-        noSocioRepo.delete(registrado);
-
-        NoSocio buscado = noSocioRepo.findById("111").orElse(null);
-        Assertions.assertNotNull(buscado);
+       //hacer FINDBY
 
 
     }
     @Test
     public void actualizarNoSocioTest(){
-        NoSocio noSocio = new NoSocio();
-        noSocio.setCedula("111");
-        noSocio.setPrimerNombre("Diego");
-        noSocio.setSegundoNombre("Mauricio");
-        noSocio.setPrimerApellido("Valencia");
-        noSocio.setSegundoApellido("Hernandez");
-        noSocio.setCelular("3146237743");
-        noSocio.setCorreo("diego@gmail.com");
-        noSocio.setContrasenia("diego123");
+        NoSocio noSocio = new NoSocio("111","Diego","Valencia","diego@gmail.com","3146326623","diego123");
+        NoSocio guardado = noSocioRepo.save(noSocio);
 
-        NoSocio registrado = noSocioRepo.save(noSocio);
+        guardado.setCelular("3147327723");
 
-        registrado.setCelular("3206977325");
-        noSocioRepo.save(registrado);
-        NoSocio buscado = noSocioRepo.finById("111").orElse(null);
-        Assertions.assertEquals("3206977325", buscado.getCelular());
+        noSocioRepo.save(guardado);
+       //FINDBY
 
     }
     @Test
     public void listarNoSocioTest(){
-        List<NoSocio> lista = noSocioRepo.finAll();
+        List<NoSocio> lista = noSocioRepo.findAll();
         System.out.println(lista);
     }
 }

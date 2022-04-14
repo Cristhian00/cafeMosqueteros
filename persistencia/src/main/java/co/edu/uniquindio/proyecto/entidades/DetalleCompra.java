@@ -33,7 +33,7 @@ public class DetalleCompra implements Serializable {
     @EqualsAndHashCode.Include
     private Compra compraDetalle;
 
-    public DetalleCompra(@Positive int cantidad,@Positive double precioUnitario,
+    public DetalleCompra(@Positive int cantidad, @Positive double precioUnitario,
                          Producto productoDetalle, Compra compraDetalle) {
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
