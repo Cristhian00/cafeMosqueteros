@@ -24,42 +24,46 @@ public class PedidoTest {
 
 
     @Test
-    public void registrarPedidoTest(){
-        Distribuidor distribuidor = new Distribuidor("1314","Fernando Gonzales","Armenia");
+    public void registrarPedidoTest() {
+        Distribuidor distribuidor = new Distribuidor("1314", "Fernando Gonzales", "Armenia");
         distribuidorRepo.save(distribuidor);
 
-        Pedido pedido = new Pedido(new Date(),120.500,distribuidor);
+        Pedido pedido = new Pedido(new Date(), 120.500, distribuidor);
         Pedido guardado = pedidoRepo.save(pedido);
 
         Assertions.assertNotNull(guardado);
     }
+
     @Test
-    public void eliminarPedidoTest(){
-        Distribuidor distribuidor = new Distribuidor("1314","Fernando Gonzales","Armenia");
+    public void eliminarPedidoTest() {
+        Distribuidor distribuidor = new Distribuidor("1314", "Fernando Gonzales", "Armenia");
         distribuidorRepo.save(distribuidor);
 
-        Pedido pedido = new Pedido(new Date(),120.500,distribuidor);
+        Pedido pedido = new Pedido(new Date(), 120.500, distribuidor);
         Pedido guardado = pedidoRepo.save(pedido);
 
         pedidoRepo.delete(guardado);
-
-        //HACER FINDBY
+        Pedido buscado = pedidoRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscado);
     }
+
     @Test
-    public void actualizarPedidoTest(){
-        Distribuidor distribuidor = new Distribuidor("1314","Fernando Gonzales","Armenia");
+    public void actualizarPedidoTest() {
+        Distribuidor distribuidor = new Distribuidor("1314", "Fernando Gonzales", "Armenia");
         distribuidorRepo.save(distribuidor);
 
-        Pedido pedido = new Pedido(new Date(),120.500,distribuidor);
+        Pedido pedido = new Pedido(new Date(), 120500, distribuidor);
         Pedido guardado = pedidoRepo.save(pedido);
 
-        guardado.setTotal(210.000);
-
+        guardado.setTotal(210000);
         pedidoRepo.save(guardado);
-    //HACER FINDBY
+
+        Pedido buscado =  pedidoRepo.findById(1).orElse(null);
+        Assertions.assertEquals(210000, buscado.getTotal());
     }
+
     @Test
-    public void listarPedidoTest(){
+    public void listarPedidoTest() {
 
     }
 }

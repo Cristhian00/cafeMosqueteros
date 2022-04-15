@@ -17,18 +17,16 @@ import java.io.Serializable;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ganancia implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idGanancias")
-    @EqualsAndHashCode.Include
-    private int idGanancias;
-
     @Column(name = "ganancias")
     private double ganancias;
 
+    @Id
+    @EqualsAndHashCode.Include
     @Column(name = "anio")
     private int anio;
 
+    @Id
+    @EqualsAndHashCode.Include
     @Column(name = "mes")
     private String mes;
 
@@ -37,7 +35,7 @@ public class Ganancia implements Serializable {
     @EqualsAndHashCode.Include
     private Socio socioGanancia;
 
-    public Ganancia(@Positive double ganancias,@Positive int anio, String mes, Socio socioGanancia) {
+    public Ganancia(@Positive double ganancias, @Positive int anio, String mes, Socio socioGanancia) {
         this.ganancias = ganancias;
         this.anio = anio;
         this.mes = mes;

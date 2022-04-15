@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class LlaveGanancia implements Serializable {
 
-    private int idGanancias;
+    private int anio;
+    private String mes;
     private String socioGanancia;
 }

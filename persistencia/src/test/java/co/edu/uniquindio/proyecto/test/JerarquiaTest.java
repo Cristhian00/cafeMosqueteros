@@ -20,45 +20,46 @@ public class JerarquiaTest {
     private PromocionRepo promocionRepo;
 
     @Test
-    public void registrarJerarquiaTest(){
+    public void registrarJerarquiaTest() {
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
 
-        Jerarquia jerarquia = new Jerarquia("Oro",4,200000,promocion);
+        Jerarquia jerarquia = new Jerarquia("Oro", 4, 200000, promocion);
         Jerarquia guardado = jerarquiaRepo.save(jerarquia);
 
         Assertions.assertNotNull(guardado);
-
     }
+
     @Test
-    public void eliminarJerarquiaTest(){
+    public void eliminarJerarquiaTest() {
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
 
-        Jerarquia jerarquia = new Jerarquia("Oro",4,200000,promocion);
+        Jerarquia jerarquia = new Jerarquia("Oro", 4, 200000, promocion);
         Jerarquia guardado = jerarquiaRepo.save(jerarquia);
 
         jerarquiaRepo.delete(guardado);
-
-    //FINDBY
-
+        Jerarquia buscado = jerarquiaRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscado);
     }
+
     @Test
-    public void actualizarJerarquiaTest(){
+    public void actualizarJerarquiaTest() {
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
 
-        Jerarquia jerarquia = new Jerarquia("Oro",4,200000,promocion);
+        Jerarquia jerarquia = new Jerarquia("Oro", 4, 200000, promocion);
         Jerarquia guardado = jerarquiaRepo.save(jerarquia);
 
         guardado.setTotalventas(150000);
-
         jerarquiaRepo.save(guardado);
-        //FINDBY
 
+        Jerarquia buscado = jerarquiaRepo.findById(1).orElse(null);
+        Assertions.assertEquals(150000, buscado.getTotalventas());
     }
+
     @Test
-    public void listarJerarquiaTest(){
+    public void listarJerarquiaTest() {
 
     }
 }

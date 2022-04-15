@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Date;
-import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -127,7 +126,6 @@ public class DetalleCompraTest {
 
         //Modificamos el total
         guardada.setCantidad(10);
-
 
         //Con save guardamos el registro modificado
         detalleCompraRepo.save(guardada);

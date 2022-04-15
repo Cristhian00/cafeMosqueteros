@@ -17,41 +17,39 @@ public class DistribuidorTest {
     private DistribuidorRepo distribuidorRepo;
 
     @Test
-    public void registrarDistribuidorTest(){
-     Distribuidor distribuidor = new Distribuidor("2121","Carlos Martinez","Armenia");
-     Distribuidor guardado = distribuidorRepo.save(distribuidor);
+    public void registrarDistribuidorTest() {
+        Distribuidor distribuidor = new Distribuidor("2121", "Carlos Martinez", "Armenia");
+        Distribuidor guardado = distribuidorRepo.save(distribuidor);
         Assertions.assertNotNull(guardado);
     }
 
     @Test
-    public void eliminarDistribuidorTest(){
-        Distribuidor distribuidor = new Distribuidor("2121","Carlos Martinez","Armenia");
+    public void eliminarDistribuidorTest() {
+        Distribuidor distribuidor = new Distribuidor("2121", "Carlos Martinez", "Armenia");
         Distribuidor guardado = distribuidorRepo.save(distribuidor);
-    //Luego se elimina
-    distribuidorRepo.delete(guardado);
+        //Luego se elimina
+        distribuidorRepo.delete(guardado);
 
-    Distribuidor buscado = distribuidorRepo.findByNitDistribuidor(distribuidor.getNitDistribuidor());
-
+        Distribuidor buscado = distribuidorRepo.findById(distribuidor.getNitDistribuidor()).orElse(null);
         Assertions.assertNull(buscado);
-
     }
+
     @Test
-    public void actualizarDistribuidorTest(){
-        Distribuidor distribuidor = new Distribuidor("2121","Carlos Martinez","Armenia");
+    public void actualizarDistribuidorTest() {
+        Distribuidor distribuidor = new Distribuidor("2121", "Carlos Martinez", "Armenia");
         Distribuidor guardado = distribuidorRepo.save(distribuidor);
 
         guardado.setNombre("Carlos Hernandez");
 
-         distribuidorRepo.save(guardado);
+        distribuidorRepo.save(guardado);
 
-        Distribuidor buscado = distribuidorRepo.findByNitDistribuidor(distribuidor.getNitDistribuidor());
-        Assertions.assertEquals("Carlos Hernandez", buscado.getNitDistribuidor());
-
+        Distribuidor buscado = distribuidorRepo.findById(distribuidor.getNitDistribuidor()).orElse(null);
+        Assertions.assertEquals("Carlos Hernandez", buscado.getNombre());
     }
-    @Test
-    public void listarDistribuidorTest(){
-        List<Distribuidor> lista = distribuidorRepo.findAll();
 
+    @Test
+    public void listarDistribuidorTest() {
+        List<Distribuidor> lista = distribuidorRepo.findAll();
         System.out.println(lista);
 
     }

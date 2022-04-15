@@ -18,35 +18,38 @@ public class NoSocioTest {
     private NoSocioRepo noSocioRepo;
 
     @Test
-    public void registrarNoSocioTest(){
-        NoSocio noSocio = new NoSocio("111","Diego","Valencia","diego@gmail.com","3146326623","diego123");
+    public void registrarNoSocioTest() {
+        NoSocio noSocio = new NoSocio("123456", "Diego", "Valencia",
+                "diego@gmail.com", "3146326623", "diego123");
         NoSocio guardado = noSocioRepo.save(noSocio);
         Assertions.assertNotNull(guardado);
     }
+
     @Test
-    public void eliminarNoSocioTest(){
-        NoSocio noSocio = new NoSocio("111","Diego","Valencia","diego@gmail.com","3146326623","diego123");
+    public void eliminarNoSocioTest() {
+        NoSocio noSocio = new NoSocio("123456", "Diego", "Valencia", "diego@gmail.com", "3146326623", "diego123");
         NoSocio guardado = noSocioRepo.save(noSocio);
 
         noSocioRepo.delete(guardado);
-
-       //hacer FINDBY
-
-
+        NoSocio buscado = noSocioRepo.findById("123456").orElse(null);
+        Assertions.assertNull(buscado);
     }
+
     @Test
-    public void actualizarNoSocioTest(){
-        NoSocio noSocio = new NoSocio("111","Diego","Valencia","diego@gmail.com","3146326623","diego123");
+    public void actualizarNoSocioTest() {
+        NoSocio noSocio = new NoSocio("123456", "Diego", "Valencia",
+                "diego@gmail.com", "3146326623", "diego123");
         NoSocio guardado = noSocioRepo.save(noSocio);
 
         guardado.setCelular("3147327723");
-
         noSocioRepo.save(guardado);
-       //FINDBY
 
+        NoSocio buscado = noSocioRepo.findById("123456").orElse(null);
+        Assertions.assertEquals("3147327723", buscado.getCelular());
     }
+
     @Test
-    public void listarNoSocioTest(){
+    public void listarNoSocioTest() {
         List<NoSocio> lista = noSocioRepo.findAll();
         System.out.println(lista);
     }

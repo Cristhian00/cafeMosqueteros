@@ -42,9 +42,8 @@ public class ProductoTest {
         Producto guardado = productoRepo.save(producto);
 
         productoRepo.delete(guardado);
-
-        //HACER FINDBY
-
+        Producto buscado = productoRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscado);
     }
 
     @Test
@@ -52,14 +51,15 @@ public class ProductoTest {
         TipoProducto tipoProducto = new TipoProducto("Molido", "mg", 500);
         tipoProductoRepo.save(tipoProducto);
 
-        Producto producto = new Producto("cafe aroma vainilla", "Café con toques sueves de vainilla", 35.000, 25.000, 30, tipoProducto);
+        Producto producto = new Producto("cafe aroma vainilla", "Café con toques sueves de vainilla",
+                35000, 25.000, 30, tipoProducto);
         Producto guardado = productoRepo.save(producto);
 
 
         guardado.setPrecioVenta(40000);
         productoRepo.save(guardado);
-
-        //HACER FINDBY
+        Producto buscado = productoRepo.findById(1).orElse(null);
+        Assertions.assertEquals(40000, buscado.getPrecioVenta());
     }
 
     @Test

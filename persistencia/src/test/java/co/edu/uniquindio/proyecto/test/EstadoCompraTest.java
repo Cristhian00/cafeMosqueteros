@@ -19,27 +19,28 @@ public class EstadoCompraTest {
         EstadoCompra estadoCompra = new EstadoCompra("La compra se encuentra en proceso de verificación");
         EstadoCompra guardado = estadoCompraRepo.save(estadoCompra);
         Assertions.assertNotNull(guardado);
-
     }
 
     @Test
     public void eliminarEstadoCompraTest(){
-        EstadoCompra estadoCompra = new EstadoCompra("La compra se encuentra en proceso de verificación");
+        EstadoCompra estadoCompra = new EstadoCompra("PENDIENTE");
         EstadoCompra guardado = estadoCompraRepo.save(estadoCompra);
 
         estadoCompraRepo.delete(guardado);
-
-        //HACER FIND REPOSITORIO
-
+        EstadoCompra buscado = estadoCompraRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscado);
     }
 
     @Test
     public void actualizarEstadoCompraTest(){
-        EstadoCompra estadoCompra = new EstadoCompra("La compra se encuentra en proceso de verificación");
+        EstadoCompra estadoCompra = new EstadoCompra("PENDIENTE");
         EstadoCompra guardado = estadoCompraRepo.save(estadoCompra);
-        guardado.setDescripcion("La compra fue aprobada");
+
+        guardado.setDescripcion("APROBADA");
         estadoCompraRepo.save(guardado);
-        //FIND HACER
+
+        EstadoCompra buscada = estadoCompraRepo.findById(1).orElse(null);
+        Assertions.assertEquals("APROBADA", buscada.getDescripcion());
     }
     @Test
     public void listarEstadoCompraTest(){

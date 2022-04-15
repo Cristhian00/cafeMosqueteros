@@ -42,7 +42,6 @@ public class SocioTest {
 
         Socio guardado = socioRepo.save(socio);
         Assertions.assertNotNull(guardado);
-
     }
 
     @Test
@@ -59,8 +58,8 @@ public class SocioTest {
         Socio guardado = socioRepo.save(socio);
 
         socioRepo.delete(guardado);
-
-        //HACER FINDBY
+        Socio buscado = socioRepo.findById("123456").orElse(null);
+        Assertions.assertNull(buscado);
     }
 
     @Test
@@ -77,11 +76,10 @@ public class SocioTest {
         Socio guardado = socioRepo.save(socio);
 
         guardado.setCorreo("cristhian@gmail.com");
-
         socioRepo.save(guardado);
 
-        //HCAER FINDBY
-
+        Socio buscado = socioRepo.findById("123456").orElse(null);
+        Assertions.assertEquals("cristhian@gmail.com", buscado.getCorreo());
     }
 
     @Test

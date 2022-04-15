@@ -17,11 +17,7 @@ import java.io.Serializable;
 public class Nivel implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     @EqualsAndHashCode.Include
-    private int id;
-
     @Column(name = "numero_nivel")
     private int numeroNivel;
 

@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public interface EstadoCompraRepo extends JpaRepository<EstadoCompra, Integer> {
 
-    @Query("SELECT de FROM DetalleEstado de JOIN  Compra  C ON  de.compraEstado.idCompra = c.idCompra WHERE de.compraEstado.idCompra = ?1")
-    List<EstadoCompra> obtenerEstadoCompra (int id);
+    //@Query("SELECT de FROM DetalleEstado de JOIN  Compra  C ON  de.compraEstado.idCompra = c.idCompra WHERE de.compraEstado.idCompra = ?1")
+    //List<EstadoCompra> obtenerEstadoCompra (int id);
 
-    @Query("SELECT de FROM DetalleEstado de JOIN  Compra  C ON  de.compraEstado.idCompra = c.idCompra WHERE de.compraEstado.fecha = ?2")
-    List<EstadoCompra> obtenerEstadoCompra (Date fecha);
+    //@Query("SELECT de FROM DetalleEstado de JOIN  Compra  C ON  de.compraEstado.idCompra = c.idCompra WHERE de.compraEstado.fecha = ?2")
+    //List<EstadoCompra> obtenerEstadoCompra (Date fecha);
 }

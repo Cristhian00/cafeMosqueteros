@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @DataJpaTest
@@ -28,9 +30,9 @@ public class DetalleEstadoTest {
     private JerarquiaRepo jerarquiaRepo;
 
     @Test
-    public void registrarDetalleEstadoTest(){
+    public void registrarDetalleEstadoTest() {
 
-        EstadoCompra estadoCompra = new EstadoCompra("El producto esta pago");
+        EstadoCompra estadoCompra = new EstadoCompra("PENDIENTE");
         estadoCompraRepo.save(estadoCompra);
 
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
@@ -43,19 +45,18 @@ public class DetalleEstadoTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(),39.900,socio);
+        Compra compra = new Compra(new Date(), 39.900, socio);
         compraRepo.save(compra);
 
-        DetalleEstado detalleEstado = new DetalleEstado(new Date(),estadoCompra,compra);
+        DetalleEstado detalleEstado = new DetalleEstado(new Date(), estadoCompra, compra);
         DetalleEstado guardado = detalleEstadoRepo.save(detalleEstado);
 
         //Comprobamos que si haya quedado
         Assertions.assertNotNull(guardado);
-
-
     }
+
     @Test
-    public void eliminarDetalleEstadoTest(){
+    public void eliminarDetalleEstadoTest() {
         EstadoCompra estadoCompra = new EstadoCompra("El producto esta pago");
         estadoCompraRepo.save(estadoCompra);
 
@@ -69,19 +70,20 @@ public class DetalleEstadoTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(),39.900,socio);
+        Compra compra = new Compra(new Date(), 39.900, socio);
         compraRepo.save(compra);
 
-        DetalleEstado detalleEstado = new DetalleEstado(new Date(),estadoCompra,compra);
+        DetalleEstado detalleEstado = new DetalleEstado(new Date(), estadoCompra, compra);
         DetalleEstado guardado = detalleEstadoRepo.save(detalleEstado);
 
         detalleEstadoRepo.delete(guardado);
-        DetalleEstado buscar = detalleEstadoRepo.findDetalleEstadoBy(compra);
+        DetalleEstado buscar = detalleEstadoRepo.findByCompraEstadoAndEstadoDetalle(compra, estadoCompra);
 
         Assertions.assertNull(buscar);
     }
+
     @Test
-    public void actualizarDetalleEstadoTest(){
+    public void actualizarDetalleEstadoTest() {
 
         EstadoCompra estadoCompra = new EstadoCompra("El producto esta pago");
         estadoCompraRepo.save(estadoCompra);
@@ -96,21 +98,27 @@ public class DetalleEstadoTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(),39.900,socio);
+        Compra compra = new Compra(new Date(), 39.900, socio);
         compraRepo.save(compra);
 
-        DetalleEstado detalleEstado = new DetalleEstado(new Date(),estadoCompra,compra);
+        DetalleEstado detalleEstado = new DetalleEstado(new Date(), estadoCompra, compra);
         DetalleEstado guardado = detalleEstadoRepo.save(detalleEstado);
 
-        guardado.setFecha(new Date());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            Date fecha = sdf.parse("2021/04/15");
+            guardado.setFecha(fecha);
 
-        detalleEstadoRepo.save(guardado);
-       DetalleEstado buscado = detalleEstadoRepo.findDetalleEstadoBy(compra);
-        Assertions.assertEquals(new Date(),buscado.getFecha());
-
+            detalleEstadoRepo.save(guardado);
+            DetalleEstado buscado = detalleEstadoRepo.findByCompraEstadoAndEstadoDetalle(compra, estadoCompra);
+            Assertions.assertEquals(fecha, buscado.getFecha());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
+
     @Test
-    public void listarDetalleEstadoTest(){
+    public void listarDetalleEstadoTest() {
 
     }
 }

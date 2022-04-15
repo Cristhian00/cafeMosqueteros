@@ -20,7 +20,6 @@ public class PromocionTest {
     @Test
     public void registrarPromocionTest() {
         Promocion promocion = new Promocion("Cupon de descuento", 0.5);
-
         Promocion guardado = promocionRepo.save(promocion);
 
         Assertions.assertNotNull(guardado);
@@ -32,7 +31,8 @@ public class PromocionTest {
         Promocion guardado = promocionRepo.save(promocion);
 
         promocionRepo.delete(guardado);
-        //FINDBY
+        Promocion buscado = promocionRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscado);
     }
 
     @Test
@@ -41,11 +41,10 @@ public class PromocionTest {
         Promocion guardado = promocionRepo.save(promocion);
 
         guardado.setDescuento(1.0);
-
         promocionRepo.save(guardado);
 
-        //HACER FINDBY
-
+        Promocion buscado = promocionRepo.findById(1).orElse(null);
+        Assertions.assertEquals(1.0, buscado.getDescuento());
     }
 
     @Test

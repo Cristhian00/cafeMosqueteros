@@ -16,32 +16,36 @@ public class NivelTest {
     private NivelRepo nivelRepo;
 
     @Test
-    public void registrarNivelTest(){
-        Nivel nivel = new Nivel(2,2.5);
+    public void registrarNivelTest() {
+        Nivel nivel = new Nivel(2, 2.5);
         Nivel guardado = nivelRepo.save(nivel);
         Assertions.assertNotNull(guardado);
     }
+
     @Test
-    public void eliminarNivelTest(){
-        Nivel nivel = new Nivel(2,2.5);
+    public void eliminarNivelTest() {
+        Nivel nivel = new Nivel(2, 2.5);
         Nivel guardado = nivelRepo.save(nivel);
 
         nivelRepo.delete(guardado);
-
-    //HACER FINDBY
+        Nivel buscado = nivelRepo.findById(2).orElse(null);
+        Assertions.assertNull(buscado);
     }
+
     @Test
-    public void actualizarNivelTest(){
-        Nivel nivel = new Nivel(2,2.5);
+    public void actualizarNivelTest() {
+        Nivel nivel = new Nivel(2, 2.5);
         Nivel guardado = nivelRepo.save(nivel);
 
         guardado.setComision(2.0);
 
         nivelRepo.save(guardado);
-        //HACER FINDBY
+        Nivel buscado = nivelRepo.findById(2).orElse(null);
+        Assertions.assertEquals(2.0, buscado.getComision());
     }
+
     @Test
-    public void listarNivelTest(){
+    public void listarNivelTest() {
 
     }
 }

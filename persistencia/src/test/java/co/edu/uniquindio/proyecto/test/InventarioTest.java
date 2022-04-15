@@ -16,7 +16,7 @@ import java.util.List;
 public class InventarioTest {
 
     @Autowired
-    private InventarioRepo invetarioRepo;
+    private InventarioRepo inventarioRepo;
     @Autowired
     private PromocionRepo promocionRepo;
     @Autowired
@@ -48,10 +48,9 @@ public class InventarioTest {
         productoRepo.save(producto);
 
         Inventario inventario = new Inventario(50, socio, producto);
-        Inventario guardado = invetarioRepo.save(inventario);
+        Inventario guardado = inventarioRepo.save(inventario);
 
         Assertions.assertNotNull(guardado);
-
     }
 
     @Test
@@ -73,12 +72,11 @@ public class InventarioTest {
         productoRepo.save(producto);
 
         Inventario inventario = new Inventario(50, socio, producto);
-        Inventario guardado = invetarioRepo.save(inventario);
+        Inventario guardado = inventarioRepo.save(inventario);
 
-        invetarioRepo.delete(guardado);
-
-        //HACER FINDBY
-
+        inventarioRepo.delete(guardado);
+        Inventario buscado = inventarioRepo.findBySocioInventarioAndAndProductoInventario(socio, producto);
+        Assertions.assertNull(buscado);
     }
 
     @Test
@@ -100,19 +98,18 @@ public class InventarioTest {
         productoRepo.save(producto);
 
         Inventario inventario = new Inventario(50, socio, producto);
-        Inventario guardado = invetarioRepo.save(inventario);
+        Inventario guardado = inventarioRepo.save(inventario);
 
         guardado.setCantidad(70);
 
-        invetarioRepo.save(guardado);
-
-        //HACER FINDBY
-
+        inventarioRepo.save(guardado);
+        Inventario buscado = inventarioRepo.findBySocioInventarioAndAndProductoInventario(socio, producto);
+        Assertions.assertEquals(70, buscado.getCantidad());
     }
 
     @Test
     public void listarInventarioTest() {
-        List<Inventario> lista = invetarioRepo.findAll();
+        List<Inventario> lista = inventarioRepo.findAll();
         System.out.println(lista);
     }
 }

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @DataJpaTest
@@ -29,9 +31,8 @@ public class HistorialJerarquiaTest {
     @Autowired
     private SocioRepo socioRepo;
 
-
     @Test
-    public void registrarHistorialJerarquiaTest(){
+    public void registrarHistorialJerarquiaTest() {
 
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
@@ -43,14 +44,14 @@ public class HistorialJerarquiaTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(),new Date(),socio,jerarquia);
+        HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(), new Date(), socio, jerarquia);
         HistorialJerarquia guardado = historialJerarquiaRepo.save(historialJerarquia);
 
         Assertions.assertNotNull(guardado);
-
     }
+
     @Test
-    public void eliminarHistorialJerarquiaTest(){
+    public void eliminarHistorialJerarquiaTest() {
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
 
@@ -61,14 +62,16 @@ public class HistorialJerarquiaTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(),new Date(),socio,jerarquia);
+        HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(), new Date(), socio, jerarquia);
         HistorialJerarquia guardado = historialJerarquiaRepo.save(historialJerarquia);
 
         historialJerarquiaRepo.delete(guardado);
-    //FIND
+        HistorialJerarquia buscado = historialJerarquiaRepo.findBySocioHistorialAndJerarquiahistorial(socio, jerarquia);
+        Assertions.assertNull(buscado);
     }
+
     @Test
-    public void actualizarHistorialJerarquiaTest(){
+    public void actualizarHistorialJerarquiaTest() {
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
 
@@ -79,16 +82,24 @@ public class HistorialJerarquiaTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(),new Date(),socio,jerarquia);
+        HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(), new Date(), socio, jerarquia);
         HistorialJerarquia guardado = historialJerarquiaRepo.save(historialJerarquia);
 
-        guardado.setFechaFin(new Date());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            Date fecha = sdf.parse("2021/04/15");
+            guardado.setFechaInicio(fecha);
+            historialJerarquiaRepo.save(guardado);
 
-        historialJerarquiaRepo.save(guardado);
-        //FIND HCAER
+            HistorialJerarquia buscado = historialJerarquiaRepo.findBySocioHistorialAndJerarquiahistorial(socio, jerarquia);
+            Assertions.assertEquals(fecha, buscado.getFechaInicio());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
+
     @Test
-    public void listarHistorialJerarquiaTest(){
+    public void listarHistorialJerarquiaTest() {
 
     }
 }

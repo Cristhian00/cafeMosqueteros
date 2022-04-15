@@ -36,7 +36,9 @@ public class TipoProductoTest {
         TipoProducto guardado = tipoProductoRepo.save(tipoProducto);
 
         tipoProductoRepo.delete(guardado);
-        //HACER FINDBY
+
+        TipoProducto buscado = tipoProductoRepo.findById(1).orElse(null);
+        Assertions.assertNull(buscado);
     }
 
     @Test
@@ -45,11 +47,10 @@ public class TipoProductoTest {
         TipoProducto guardado = tipoProductoRepo.save(tipoProducto);
 
         guardado.setMedida(450);
-
         tipoProductoRepo.save(guardado);
 
-        //HACER FINDBY
-
+        TipoProducto buscado = tipoProductoRepo.findById(1).orElse(null);
+        Assertions.assertEquals(450, buscado.getMedida());
     }
 
     @Test

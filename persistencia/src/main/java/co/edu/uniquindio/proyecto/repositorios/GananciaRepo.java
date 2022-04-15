@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface GananciaRepo extends JpaRepository<Ganancia, LlaveGanancia> {
 
 
-    Ganancia findByGananciasAndSocioGanancia(Ganancia ganancia, Socio socioGanancia);
+    Ganancia findBySocioGananciaAndAnioAndMes(Socio socio, int anio, String mes);
 }

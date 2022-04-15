@@ -24,75 +24,80 @@ public class DetallePedidoTest {
     @Autowired
     private TipoProductoRepo tipoProductoRepo;
 
-
     @Test
-    public void registrarDetallePedidoTest(){
-        Distribuidor distribuidor = new Distribuidor("0921","Abelardo Sanchez","Cali");
+    public void registrarDetallePedidoTest() {
+        Distribuidor distribuidor = new Distribuidor("0921", "Abelardo Sanchez", "Cali");
         distribuidorRepo.save(distribuidor);
 
-        Pedido pedido = new Pedido(new Date(),40.900,distribuidor);
+        Pedido pedido = new Pedido(new Date(), 40.900, distribuidor);
         pedidoRepo.save(pedido);
 
-        TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano","300",38.56);
+        TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano", "300", 38.56);
         tipoProductoRepo.save(tipoProducto);
 
-        Producto producto = new Producto("café mosqueteros molido","Cafe molido",35.000,25.000,20,tipoProducto);
+        Producto producto = new Producto("café mosqueteros molido", "Cafe molido", 35.000, 25.000, 20, tipoProducto);
         productoRepo.save(producto);
 
-        DetallePedido detallePedido = new DetallePedido(3,35.000,producto,pedido);
+        DetallePedido detallePedido = new DetallePedido(3, producto.getPrecioCompra(),
+                producto, pedido);
         DetallePedido guardado = detallePedidoRepo.save(detallePedido);
 
         Assertions.assertNotNull(guardado);
-
     }
 
     @Test
-    public void eliminarDetallePedidoTest(){
-        Distribuidor distribuidor = new Distribuidor("0921","Abelardo Sanchez","Cali");
+    public void eliminarDetallePedidoTest() {
+
+        Distribuidor distribuidor = new Distribuidor("0921", "Abelardo Sanchez", "Cali");
         distribuidorRepo.save(distribuidor);
 
-        Pedido pedido = new Pedido(new Date(),40.900,distribuidor);
+        Pedido pedido = new Pedido(new Date(), 40.900, distribuidor);
         pedidoRepo.save(pedido);
 
-        TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano","300",38.56);
+        TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano", "300", 38.56);
         tipoProductoRepo.save(tipoProducto);
 
-        Producto producto = new Producto("café mosqueteros molido","Cafe molido",35.000,25.000,20,tipoProducto);
+        Producto producto = new Producto("café mosqueteros molido", "Cafe molido", 35.000, 25.000, 20, tipoProducto);
         productoRepo.save(producto);
 
-        DetallePedido detallePedido = new DetallePedido(3,35.000,producto,pedido);
+        DetallePedido detallePedido = new DetallePedido(3, 35.000, producto, pedido);
         DetallePedido guardado = detallePedidoRepo.save(detallePedido);
 
         detallePedidoRepo.delete(guardado);
-        //FALTA EN LOS REPOSITORIOS
+        DetallePedido buscado = detallePedidoRepo.findByProductoPedidoAndPedidoDetalle(producto, pedido);
 
+        Assertions.assertNull(buscado);
     }
+
     @Test
-    public void actualizarDetallePedidoTest(){
-        Distribuidor distribuidor = new Distribuidor("0921","Abelardo Sanchez","Cali");
+    public void actualizarDetallePedidoTest() {
+        Distribuidor distribuidor = new Distribuidor("0921", "Abelardo Sanchez", "Cali");
         distribuidorRepo.save(distribuidor);
 
-        Pedido pedido = new Pedido(new Date(),40.900,distribuidor);
+        Pedido pedido = new Pedido(new Date(), 40.900, distribuidor);
         pedidoRepo.save(pedido);
 
-        TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano","300",38.56);
+        TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano", "300",
+                38.56);
         tipoProductoRepo.save(tipoProducto);
 
-        Producto producto = new Producto("café mosqueteros molido","Cafe molido",35.000,25.000,20,tipoProducto);
+        Producto producto = new Producto("café mosqueteros molido", "Cafe molido",
+                35.000, 25.000, 20, tipoProducto);
         productoRepo.save(producto);
 
-        DetallePedido detallePedido = new DetallePedido(3,35.000,producto,pedido);
+        DetallePedido detallePedido = new DetallePedido(3, producto.getPrecioCompra(), producto, pedido);
         DetallePedido guardado = detallePedidoRepo.save(detallePedido);
 
         guardado.setCantidad(5);
 
         detallePedidoRepo.save(guardado);
 
-        //FALTA VERIFICACIÓN
-
+        DetallePedido buscado = detallePedidoRepo.findByProductoPedidoAndPedidoDetalle(producto, pedido);
+        Assertions.assertEquals(5, buscado.getCantidad());
     }
+
     @Test
-    public void listarDetallePedidoTest(){
+    public void listarDetallePedidoTest() {
 
     }
 }

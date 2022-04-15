@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DistribuidorRepo extends JpaRepository<Distribuidor, String> {
 
-    Distribuidor findByNitDistribuidor(String nitDistribuidor);
+    //Distribuidor findByNitDistribuidor(String nitDistribuidor);
 }

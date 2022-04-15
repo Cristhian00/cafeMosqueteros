@@ -33,7 +33,7 @@ public class GananciaTest {
     private JerarquiaRepo jerarquiaRepo;
 
     @Test
-    public void registrarGananciaTest(){
+    public void registrarGananciaTest() {
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
 
@@ -44,13 +44,14 @@ public class GananciaTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        Ganancia ganancia = new Ganancia(100.000,2021,"noviembre",socio);
+        Ganancia ganancia = new Ganancia(100.000, 2021, "noviembre", socio);
         Ganancia guardar = gananciaRepo.save(ganancia);
 
         Assertions.assertNotNull(guardar);
     }
+
     @Test
-    public void eliminarGananciaTest(){
+    public void eliminarGananciaTest() {
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
 
@@ -61,17 +62,17 @@ public class GananciaTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        Ganancia ganancia = new Ganancia(100.000,2021,"noviembre",socio);
+        Ganancia ganancia = new Ganancia(100.000, 2021, "Noviembre", socio);
         Ganancia guardar = gananciaRepo.save(ganancia);
 
         gananciaRepo.delete(guardar);
 
-      Ganancia buscado = gananciaRepo.findByGananciasAndSocioGanancia(ganancia,socio);
+        Ganancia buscado = gananciaRepo.findBySocioGananciaAndAnioAndMes(socio, 2021, "Noviembre");
         Assertions.assertNull(buscado);
-
     }
+
     @Test
-    public void actualizarGananciaTest(){
+    public void actualizarGananciaTest() {
         Promocion promocion = new Promocion("Viaje a Cocora", 0.3);
         promocionRepo.save(promocion);
 
@@ -82,18 +83,19 @@ public class GananciaTest {
                 "312432", "admin", new Date(), "Activo", null, jerarquia);
         socioRepo.save(socio);
 
-        Ganancia ganancia = new Ganancia(100.000,2021,"noviembre",socio);
+        Ganancia ganancia = new Ganancia(100000, 2021, "noviembre", socio);
         Ganancia guardar = gananciaRepo.save(ganancia);
 
-        guardar.setMes("Octubre");
+        guardar.setGanancias(50000);
 
         gananciaRepo.save(guardar);
 
-        Ganancia buscado = gananciaRepo.findByGananciasAndSocioGanancia(ganancia,socio);
-        Assertions.assertEquals("Octubre", buscado.getMes());
+        Ganancia buscado = gananciaRepo.findBySocioGananciaAndAnioAndMes(socio, 2021, "Noviembre");
+        Assertions.assertEquals(50000, buscado.getGanancias());
     }
+
     @Test
-    public void listarGananciaTest(){
+    public void listarGananciaTest() {
 
     }
 }
