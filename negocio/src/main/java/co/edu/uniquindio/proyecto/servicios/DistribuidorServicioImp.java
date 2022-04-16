@@ -41,7 +41,7 @@ public class DistribuidorServicioImp implements  DistribuidorServicio{
 
     @Override
     public void eliminarDistribuidor(String nitDistribuidor) throws Exception {
-      
+
     }
 
     @Override
