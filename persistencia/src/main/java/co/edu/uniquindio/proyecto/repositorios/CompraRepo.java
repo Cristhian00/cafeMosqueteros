@@ -17,4 +17,7 @@ public interface CompraRepo extends JpaRepository<Compra, Integer> {
     @Query("SELECT c FROM Compra c WHERE c.fecha = ?1")
     List<Compra> obtenerCompras(Date fecha);
 
+    @Query("SELECT c FROM Compra c WHERE c.idCompra = ?1")
+    Compra obtenerCompra(int id);
+
 }

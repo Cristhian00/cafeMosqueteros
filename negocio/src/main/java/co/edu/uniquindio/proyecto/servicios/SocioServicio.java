@@ -10,7 +10,7 @@ public interface SocioServicio {
 
     Socio actualizarSocio(Socio s) throws Exception;
 
-    void eliminarSocio(String cedula) throws Exception;
+    boolean eliminarSocio(String cedula) throws Exception;
 
     List<Socio> listarSocio();
 }

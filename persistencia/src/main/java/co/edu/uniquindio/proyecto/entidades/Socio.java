@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
@@ -22,8 +19,10 @@ public class Socio extends Persona implements Serializable {
     @Column(name = "fecha")
     private Date fechaVinculacion;
 
-    @Column(name = "estado")
-    private String estado;
+    //Estado en el que se encuentra el lugar
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", nullable = false)
+    private EstadoSocio estado;
 
     @ManyToOne
     private Socio padre;
@@ -47,7 +46,7 @@ public class Socio extends Persona implements Serializable {
     private List<Compra> compras;
 
     public Socio(String cedula, String primerNombre, String primerApellido, String correo,
-                 String celular, String contrasenia, Date fechaVinculacion, String estado,
+                 String celular, String contrasenia, Date fechaVinculacion, EstadoSocio estado,
                  Socio padre, Jerarquia jerarquia) {
         super(cedula, primerNombre, primerApellido, correo, celular, contrasenia);
         this.fechaVinculacion = fechaVinculacion;

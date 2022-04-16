@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +51,9 @@ public class Producto implements Serializable {
     @OneToMany(mappedBy = "productoPedido")
     private List<DetallePedido> pedidos;
 
-    public Producto(String nombre, String descripcion, double precioVenta, double precioCompra,
-                    int unidadesDisponibles, TipoProducto tipoProducto) {
+    public Producto(String nombre, String descripcion, @Positive double precioVenta,
+                    @Positive double precioCompra, @Positive int unidadesDisponibles,
+                    TipoProducto tipoProducto) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precioVenta = precioVenta;

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.test;
 
 
+import co.edu.uniquindio.proyecto.entidades.EstadoSocio;
 import co.edu.uniquindio.proyecto.entidades.Jerarquia;
 import co.edu.uniquindio.proyecto.entidades.Promocion;
 import co.edu.uniquindio.proyecto.entidades.Socio;
@@ -38,7 +39,7 @@ public class SocioTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
 
         Socio guardado = socioRepo.save(socio);
         Assertions.assertNotNull(guardado);
@@ -53,7 +54,7 @@ public class SocioTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
 
         Socio guardado = socioRepo.save(socio);
 
@@ -71,7 +72,7 @@ public class SocioTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
 
         Socio guardado = socioRepo.save(socio);
 

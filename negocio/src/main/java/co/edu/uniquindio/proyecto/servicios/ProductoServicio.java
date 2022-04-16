@@ -11,7 +11,7 @@ public interface ProductoServicio {
 
     Producto actualizarProducto(Producto producto) throws Exception;
 
-    void eliminarProducto(int idProducto) throws Exception;
+    boolean eliminarProducto(int idProducto) throws Exception;
 
     List<Producto> listarProducto();
 }

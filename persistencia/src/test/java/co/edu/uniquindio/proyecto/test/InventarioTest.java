@@ -38,7 +38,7 @@ public class InventarioTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano", "300", 38.56);
@@ -62,7 +62,7 @@ public class InventarioTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano", "300", 38.56);
@@ -88,7 +88,7 @@ public class InventarioTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         TipoProducto tipoProducto = new TipoProducto("Cafe 100% colombiano", "300", 38.56);

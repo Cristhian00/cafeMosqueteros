@@ -44,7 +44,7 @@ public class DetalleCompraTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         Compra compra = new Compra(new Date(), 90000, socio);
@@ -73,7 +73,7 @@ public class DetalleCompraTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         Compra compra = new Compra(new Date(), 90000, socio);
@@ -107,7 +107,7 @@ public class DetalleCompraTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         Compra compra = new Compra(new Date(), 90000, socio);

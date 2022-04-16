@@ -11,7 +11,7 @@ public interface CompraServicio {
 
     Compra actualizarCompra(Compra c) throws Exception;
 
-    void eliminarCompra(int idCompra) throws Exception;
+    boolean eliminarCompra(int idCompra) throws Exception;
 
     List<Compra> listarCompra();
 }

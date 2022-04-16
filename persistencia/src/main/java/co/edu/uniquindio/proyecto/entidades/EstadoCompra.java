@@ -23,7 +23,7 @@ public class EstadoCompra implements Serializable {
     @EqualsAndHashCode.Include
     private int idEstado;
 
-    @Column(name = "descripcion", length = 100)
+    @Column(name = "descripcion", length = 100, unique = true)
     private String descripcion;
 
     @OneToMany(mappedBy = "estadoDetalle")

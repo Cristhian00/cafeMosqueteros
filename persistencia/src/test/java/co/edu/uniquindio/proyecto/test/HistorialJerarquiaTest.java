@@ -1,9 +1,6 @@
 package co.edu.uniquindio.proyecto.test;
 
-import co.edu.uniquindio.proyecto.entidades.HistorialJerarquia;
-import co.edu.uniquindio.proyecto.entidades.Jerarquia;
-import co.edu.uniquindio.proyecto.entidades.Promocion;
-import co.edu.uniquindio.proyecto.entidades.Socio;
+import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.HistorialJerarquiaRepo;
 import co.edu.uniquindio.proyecto.repositorios.JerarquiaRepo;
 import co.edu.uniquindio.proyecto.repositorios.PromocionRepo;
@@ -41,7 +38,7 @@ public class HistorialJerarquiaTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(), new Date(), socio, jerarquia);
@@ -59,7 +56,7 @@ public class HistorialJerarquiaTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(), new Date(), socio, jerarquia);
@@ -79,7 +76,7 @@ public class HistorialJerarquiaTest {
         jerarquiaRepo.save(jerarquia);
 
         Socio socio = new Socio("123456", "Cristhian", "Ortiz", "Cris@mail.com",
-                "312432", "admin", new Date(), "Activo", null, jerarquia);
+                "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
         HistorialJerarquia historialJerarquia = new HistorialJerarquia(new Date(), new Date(), socio, jerarquia);
