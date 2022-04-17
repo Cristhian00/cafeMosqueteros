@@ -28,7 +28,7 @@ public class CompraServicioImp implements CompraServicio {
         return compra.isEmpty();
     }
 
-    public boolean existeSocio(String cedula) {
+    public boolean  existeSocio(String cedula) {
         Optional<Socio> socio = socioRepo.findById(cedula);
         return socio.isEmpty();
     }

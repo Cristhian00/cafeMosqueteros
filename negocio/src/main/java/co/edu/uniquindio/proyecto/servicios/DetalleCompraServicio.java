@@ -11,7 +11,7 @@ public interface DetalleCompraServicio {
 
     DetalleCompra actualizarDetalleCompra(DetalleCompra detalleCompra) throws Exception;
 
-    void eliminarDetalleCompra(int idCompra) throws Exception;
+   boolean eliminarDetalleCompra(int idCompra, int idProducto) throws Exception;
 
     List<DetalleCompra> listarDetalleCompra();
 }

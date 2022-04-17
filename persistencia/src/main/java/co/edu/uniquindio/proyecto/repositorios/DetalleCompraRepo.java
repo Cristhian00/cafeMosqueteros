@@ -13,4 +13,5 @@ public interface DetalleCompraRepo extends JpaRepository<DetalleCompra, LlaveDet
 
     DetalleCompra findByProductoDetalleAndCompraDetalle(Producto producto, Compra compra);
 
+
 }
