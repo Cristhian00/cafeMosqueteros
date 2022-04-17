@@ -20,6 +20,11 @@ public class GananciaServicioImp implements GananciaServicio {
         this.socioRepo = socioRepo;
     }
 
+    public boolean gananciaSocio(String cedula){
+        Optional<Socio> ganaciaSocio =  socioRepo.findByGanancias(cedula);
+        return  ganaciaSocio.isEmpty();
+    }
+
     public boolean  existeSocio(String cedula) {
         Optional<Socio> socio = socioRepo.findById(cedula);
         return socio.isEmpty();
@@ -49,9 +54,6 @@ public class GananciaServicioImp implements GananciaServicio {
         if (estadoSocio(g.getSocioGanancia().getCedula()) == EstadoSocio.PENDIENTE) {
             throw new Exception("El socio aun no se encuentra aprobado");
         }
-        g.setMes("febrero");
-        g.setGanancias(34000);
-        g.setAnio(2022);
 
         Ganancia ganancia = gananciaRepo.save(g);
         return ganancia;
@@ -59,11 +61,28 @@ public class GananciaServicioImp implements GananciaServicio {
 
     @Override
     public Ganancia actualizarGanancia(Ganancia g) throws Exception {
-        return null;
+        if(existeSocio(g.getSocioGanancia().getCedula())){
+            throw new Exception("El número de cédula no se encuentra asociado a ningún socio activo");
+        }
+        if (estadoSocio(g.getSocioGanancia().getCedula() )== EstadoSocio.NO_ACTIVO) {
+            throw new Exception("El socio no se encuentra activo");
+        }
+        if (estadoSocio(g.getSocioGanancia().getCedula()) == EstadoSocio.PENDIENTE) {
+            throw new Exception("El socio aun no se encuentra aprobado");
+        }
+
+        Ganancia ganancia = gananciaRepo.save(g);
+        return ganancia;
+
     }
 
     @Override
     public void eliminarGanancia(String cedula) throws Exception {
+
+        if (gananciaSocio(cedula)){
+            throw new Exception("El socio no tiene ganancia a borrar");
+        }
+
 
     }
 

@@ -11,4 +11,5 @@ public interface GananciaRepo extends JpaRepository<Ganancia, LlaveGanancia> {
 
 
     Ganancia findBySocioGananciaAndAnioAndMes(Socio socio, int anio, String mes);
+
 }

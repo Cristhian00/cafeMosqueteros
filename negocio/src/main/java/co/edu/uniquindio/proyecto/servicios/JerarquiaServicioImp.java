@@ -43,7 +43,7 @@ public class JerarquiaServicioImp implements JerarquiaServicio{
     @Override
     public Jerarquia registrarJerarquia(Jerarquia j) throws Exception {
         List<Socio> listaSocios = j.getSocios();
-        
+
         return null;
     }
 

@@ -16,4 +16,6 @@ public interface SocioRepo extends JpaRepository<Socio, String> {
 
     @Query("SELECT s FROM Socio s WHERE s.cedula = ?1")
     Socio obtenerUsuarioCedula(String cedula);
+
+    Optional<Socio> findByGanancias(String cedula);
 }

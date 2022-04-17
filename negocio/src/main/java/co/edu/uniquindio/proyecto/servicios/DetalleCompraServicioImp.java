@@ -66,8 +66,7 @@ public class DetalleCompraServicioImp implements DetalleCompraServicio {
         if (estadoCompra(detalleCompra.getCompraDetalle().getIdCompra()) == true) {
             throw new Exception("No se puede agregar la compra debido a  su estado");
         }
-        detalleCompra.setCantidad(10);
-        detalleCompra.setPrecioUnitario(25000);
+
        DetalleCompra dc = detalleCompraRepo.save(detalleCompra);
 
         return dc;
