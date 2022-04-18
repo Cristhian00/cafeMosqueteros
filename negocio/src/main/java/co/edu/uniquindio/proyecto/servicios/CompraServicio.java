@@ -9,8 +9,6 @@ public interface CompraServicio {
 
     Compra registrarCompra(Compra c) throws Exception;
 
-    Compra actualizarCompra(Compra c) throws Exception;
-
     boolean eliminarCompra(int idCompra) throws Exception;
 
     List<Compra> listarCompra();

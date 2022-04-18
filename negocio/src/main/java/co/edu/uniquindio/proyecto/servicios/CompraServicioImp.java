@@ -28,7 +28,7 @@ public class CompraServicioImp implements CompraServicio {
         return compra.isEmpty();
     }
 
-    public boolean  existeSocio(String cedula) {
+    public boolean existeSocio(String cedula) {
         Optional<Socio> socio = socioRepo.findById(cedula);
         return socio.isEmpty();
     }
@@ -48,8 +48,7 @@ public class CompraServicioImp implements CompraServicio {
         }
     }
 
-    @Override
-    public Compra registrarCompra(Compra c) throws Exception {
+    public void validaciones(Compra c) throws Exception {
         if (c.getSocioCompra() == null) {
             throw new Exception("La compra debe estar asociada a un socio");
         }
@@ -65,6 +64,11 @@ public class CompraServicioImp implements CompraServicio {
         if (c.getDetalleCompras().isEmpty()) {
             throw new Exception("Debe haber al menos un detalle de compra");
         }
+    }
+
+    @Override
+    public Compra registrarCompra(Compra c) throws Exception {
+        validaciones(c);
         List<DetalleEstado> lista = c.getEstados();
         lista.add(new DetalleEstado(new Date(), estadoCompra("PENDIENTE"), c));
         c.setEstados(lista);
@@ -74,41 +78,17 @@ public class CompraServicioImp implements CompraServicio {
     }
 
     @Override
-    public Compra actualizarCompra(Compra c) throws Exception {
-        if(idDisponible(c.getIdCompra())){
-            throw new Exception("La compra no se encuentra registrada");
-        }
-        if (c.getSocioCompra() == null) {
-            throw new Exception("La compra debe estar asociada a un socio");
-        }
-        if (existeSocio(c.getSocioCompra().getCedula())) {
-            throw new Exception("El número de cédula no se encuentra asociado a ningún socio activo");
-        }
-        if (estadoSocio(c.getSocioCompra().getCedula()) == EstadoSocio.NO_ACTIVO) {
-            throw new Exception("El socio no se encuentra activo");
-        }
-        if (estadoSocio(c.getSocioCompra().getCedula()) == EstadoSocio.PENDIENTE) {
-            throw new Exception("El socio aun no se encuentra aprobado");
-        }
-        if (c.getDetalleCompras().isEmpty()) {
-            throw new Exception("Debe haber al menos un detalle de compra");
-        }
-        compraRepo.save(c);
-        return c;
-    }
-
-    @Override
     public boolean eliminarCompra(int idCompra) throws Exception {
-        if(idDisponible(idCompra)){
+        if (idDisponible(idCompra)) {
             throw new Exception("La compra no se encuentra registrada");
         }
         Compra c = compraRepo.obtenerCompra(idCompra);
         List<DetalleEstado> estados = c.getEstados();
 
-        for (DetalleEstado d: estados) {
-            if(d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("APROBADO")
-            || d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("RECHAZADO")
-            || d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("ENVIADO")){
+        for (DetalleEstado d : estados) {
+            if (d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("APROBADO")
+                    || d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("RECHAZADO")
+                    || d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("ENVIADO")) {
                 throw new Exception("La compra no se puede eliminar porque su estado ya fue procesado");
             }
         }

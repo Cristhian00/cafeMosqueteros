@@ -24,7 +24,7 @@ public class Jerarquia implements Serializable {
     @EqualsAndHashCode.Include
     private int idJerarquia;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", unique = true)
     private String nombre;
 
     @Column(name = "cantidad_hijos")
