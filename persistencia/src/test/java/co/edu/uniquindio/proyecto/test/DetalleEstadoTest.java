@@ -45,7 +45,7 @@ public class DetalleEstadoTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(), 39.900, socio);
+        Compra compra = new Compra(new Date(), 39.900, socio, null);
         compraRepo.save(compra);
 
         DetalleEstado detalleEstado = new DetalleEstado(new Date(), estadoCompra, compra);
@@ -70,7 +70,7 @@ public class DetalleEstadoTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(), 39.900, socio);
+        Compra compra = new Compra(new Date(), 39.900, socio, null);
         compraRepo.save(compra);
 
         DetalleEstado detalleEstado = new DetalleEstado(new Date(), estadoCompra, compra);
@@ -98,7 +98,7 @@ public class DetalleEstadoTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(), 39.900, socio);
+        Compra compra = new Compra(new Date(), 39.900, socio, null);
         compraRepo.save(compra);
 
         DetalleEstado detalleEstado = new DetalleEstado(new Date(), estadoCompra, compra);

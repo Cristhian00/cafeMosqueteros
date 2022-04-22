@@ -41,8 +41,8 @@ public class DetalleCompraServicioImp implements DetalleCompraServicio {
         List<DetalleEstado> list = compra.getEstados();
 
         for (DetalleEstado d : list) {
-            if (d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("APROBADA")
-                    || d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("RECHAZADA")) {
+            if (d.getEstadoDetalle().getNombre().equalsIgnoreCase("APROBADA")
+                    || d.getEstadoDetalle().getNombre().equalsIgnoreCase("RECHAZADA")) {
                 return true;
             }
         }

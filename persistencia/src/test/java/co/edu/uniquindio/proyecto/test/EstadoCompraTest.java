@@ -36,11 +36,11 @@ public class EstadoCompraTest {
         EstadoCompra estadoCompra = new EstadoCompra("PENDIENTE");
         EstadoCompra guardado = estadoCompraRepo.save(estadoCompra);
 
-        guardado.setDescripcion("APROBADA");
+        guardado.setNombre("APROBADA");
         estadoCompraRepo.save(guardado);
 
         EstadoCompra buscada = estadoCompraRepo.findById(1).orElse(null);
-        Assertions.assertEquals("APROBADA", buscada.getDescripcion());
+        Assertions.assertEquals("APROBADA", buscada.getNombre());
     }
     @Test
     public void listarEstadoCompraTest(){

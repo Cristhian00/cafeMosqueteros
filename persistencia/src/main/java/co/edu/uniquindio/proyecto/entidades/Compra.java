@@ -34,16 +34,20 @@ public class Compra implements Serializable {
     @ManyToOne
     private Socio socioCompra;
 
+    @ManyToOne
+    private NoSocio noSocioCompra;
+
     @OneToMany(mappedBy = "compraDetalle")
     private List<DetalleCompra> detalleCompras;
 
     @OneToMany(mappedBy = "compraEstado")
     private List<DetalleEstado> estados;
 
-    public Compra(Date fecha, @Positive double total, Socio socioCompra) {
+    public Compra(Date fecha, @Positive double total, Socio socioCompra, NoSocio noSocioCompra) {
         this.fecha = fecha;
         this.total = total;
         this.socioCompra = socioCompra;
+        this.noSocioCompra = noSocioCompra;
         this.detalleCompras = new ArrayList<>();
         this.estados = new ArrayList<>();
     }

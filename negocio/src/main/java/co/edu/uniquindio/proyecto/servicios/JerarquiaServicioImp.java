@@ -15,30 +15,10 @@ import java.util.Optional;
 public class JerarquiaServicioImp implements JerarquiaServicio{
 
     private final JerarquiaRepo jerarquiaRepo;
-    private  final SocioRepo socioRepo;
-   // private  final PromocionRepo promocionRepo;
 
     public JerarquiaServicioImp(JerarquiaRepo jerarquiaRepo, SocioRepo socioRepo) {
         this.jerarquiaRepo = jerarquiaRepo;
-        this.socioRepo = socioRepo;
-      //  this.promocionRepo = promocionRepo;
     }
-
-    public boolean  existeSocio(String cedula) {
-        Optional<Socio> socio = socioRepo.findById(cedula);
-        return socio.isEmpty();
-    }
-    public EstadoSocio estadoSocio(String cedula) {
-        Socio socio = socioRepo.obtenerUsuarioCedula(cedula);
-        if (socio.getEstado() == EstadoSocio.ACTIVO) {
-            return EstadoSocio.ACTIVO;
-        } else if (socio.getEstado() == EstadoSocio.PENDIENTE) {
-            return EstadoSocio.PENDIENTE;
-        } else {
-            return EstadoSocio.NO_ACTIVO;
-        }
-    }
-
 
     @Override
     public Jerarquia registrarJerarquia(Jerarquia j) throws Exception {
