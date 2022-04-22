@@ -44,17 +44,18 @@ public class DetalleEstadoServicioImp implements DetalleEstadoServicio {
         Compra compra = compraRepo.obtenerCompra(detalleEstado.getCompraEstado().getIdCompra());
         Socio socio = socioRepo.obtenerUsuarioCedula(compra.getSocioCompra().getCedula());
         detalleEstado.setFecha(new Date());
-        if (detalleEstado.getEstadoDetalle().getDescripcion().equalsIgnoreCase("RECHAZADO")) {
+
+        if (detalleEstado.getEstadoDetalle().getNombre().equalsIgnoreCase("RECHAZADO")) {
             for (DetalleCompra detalle : compra.getDetalleCompras()) {
                 productoAux = productoRepo.obtenerProducto(detalle.getProductoDetalle().getIdProducto());
                 productoAux.setUnidadesDisponibles(productoAux.getUnidadesDisponibles() + detalle.getCantidad());
                 productoRepo.save(productoAux);
             }
-        } else if (detalleEstado.getEstadoDetalle().getDescripcion().equalsIgnoreCase("APROBADA")) {
+        } else if (detalleEstado.getEstadoDetalle().getNombre().equalsIgnoreCase("APROBADA")) {
             for (DetalleCompra detalle : compra.getDetalleCompras()) {
                 productoAux = productoRepo.obtenerProducto(detalle.getProductoDetalle().getIdProducto());
                 if (existeInventario(socio.getCedula(), productoAux.getIdProducto())) {
-                    Inventario inventario = inventarioRepo.findBySocioInventarioAndAndProductoInventario(socio, productoAux);
+                    Inventario inventario = inventarioRepo.obtenerSocioInventarioAndProductoInventario(socio, productoAux);
                     inventario.setCantidad(inventario.getCantidad() + detalle.getCantidad());
                     inventarioRepo.save(inventario);
                 } else {

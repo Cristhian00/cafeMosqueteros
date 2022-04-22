@@ -23,14 +23,14 @@ public class EstadoCompra implements Serializable {
     @EqualsAndHashCode.Include
     private int idEstado;
 
-    @Column(name = "descripcion", length = 100, unique = true)
-    private String descripcion;
+    @Column(name = "nombre", length = 100, unique = true)
+    private String nombre;
 
     @OneToMany(mappedBy = "estadoDetalle")
     private List<DetalleEstado> estados;
 
-    public EstadoCompra(String descripcion) {
-        this.descripcion = descripcion;
+    public EstadoCompra(String nombre) {
+        this.nombre = nombre;
         this.estados = new ArrayList<>();
     }
 }

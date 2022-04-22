@@ -10,7 +10,5 @@ public interface GananciaServicio {
 
     Ganancia actualizarGanancia(Ganancia g) throws Exception;
 
-    void eliminarGanancia(String cedula) throws Exception;
-
     List<Ganancia> listarGanancia();
 }

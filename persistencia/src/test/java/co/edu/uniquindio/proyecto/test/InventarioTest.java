@@ -75,7 +75,7 @@ public class InventarioTest {
         Inventario guardado = inventarioRepo.save(inventario);
 
         inventarioRepo.delete(guardado);
-        Inventario buscado = inventarioRepo.findBySocioInventarioAndAndProductoInventario(socio, producto);
+        Inventario buscado = inventarioRepo.obtenerSocioInventarioAndProductoInventario(socio, producto);
         Assertions.assertNull(buscado);
     }
 
@@ -103,7 +103,7 @@ public class InventarioTest {
         guardado.setCantidad(70);
 
         inventarioRepo.save(guardado);
-        Inventario buscado = inventarioRepo.findBySocioInventarioAndAndProductoInventario(socio, producto);
+        Inventario buscado = inventarioRepo.obtenerSocioInventarioAndProductoInventario(socio, producto);
         Assertions.assertEquals(70, buscado.getCantidad());
     }
 

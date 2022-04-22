@@ -20,15 +20,16 @@ public class GananciaServicioImp implements GananciaServicio {
         this.socioRepo = socioRepo;
     }
 
-    public boolean gananciaSocio(String cedula){
-        Optional<Socio> ganaciaSocio =  socioRepo.findByGanancias(cedula);
-        return  ganaciaSocio.isEmpty();
+    public boolean ExisteGanancia(int anio, String mes, String cedula) {
+        Optional<Ganancia> ganaciaSocio = socioRepo.obtenerGanancia(anio, mes, cedula);
+        return ganaciaSocio.isEmpty();
     }
 
-    public boolean  existeSocio(String cedula) {
+    public boolean existeSocio(String cedula) {
         Optional<Socio> socio = socioRepo.findById(cedula);
         return socio.isEmpty();
     }
+
     public EstadoSocio estadoSocio(String cedula) {
         Socio socio = socioRepo.obtenerUsuarioCedula(cedula);
         if (socio.getEstado() == EstadoSocio.ACTIVO) {
@@ -40,20 +41,24 @@ public class GananciaServicioImp implements GananciaServicio {
         }
     }
 
-    @Override
-    public Ganancia registrarGanancia(Ganancia g) throws Exception {
-        if(g.getSocioGanancia().getCompras()== null){
-            throw  new Exception("El socio debe tener una compra asociada");
-        }
-        if(existeSocio(g.getSocioGanancia().getCedula())){
+    public void validaciones(Ganancia g) throws Exception{
+        if (existeSocio(g.getSocioGanancia().getCedula())) {
             throw new Exception("El número de cédula no se encuentra asociado a ningún socio activo");
         }
-        if (estadoSocio(g.getSocioGanancia().getCedula() )== EstadoSocio.NO_ACTIVO) {
+        if (estadoSocio(g.getSocioGanancia().getCedula()) == EstadoSocio.NO_ACTIVO) {
             throw new Exception("El socio no se encuentra activo");
         }
         if (estadoSocio(g.getSocioGanancia().getCedula()) == EstadoSocio.PENDIENTE) {
             throw new Exception("El socio aun no se encuentra aprobado");
         }
+    }
+
+    @Override
+    public Ganancia registrarGanancia(Ganancia g) throws Exception {
+        if (g.getSocioGanancia().getCompras() == null) {
+            throw new Exception("El socio debe tener una compra asociada");
+        }
+        validaciones(g);
 
         Ganancia ganancia = gananciaRepo.save(g);
         return ganancia;
@@ -61,29 +66,10 @@ public class GananciaServicioImp implements GananciaServicio {
 
     @Override
     public Ganancia actualizarGanancia(Ganancia g) throws Exception {
-        if(existeSocio(g.getSocioGanancia().getCedula())){
-            throw new Exception("El número de cédula no se encuentra asociado a ningún socio activo");
-        }
-        if (estadoSocio(g.getSocioGanancia().getCedula() )== EstadoSocio.NO_ACTIVO) {
-            throw new Exception("El socio no se encuentra activo");
-        }
-        if (estadoSocio(g.getSocioGanancia().getCedula()) == EstadoSocio.PENDIENTE) {
-            throw new Exception("El socio aun no se encuentra aprobado");
-        }
+        validaciones(g);
 
         Ganancia ganancia = gananciaRepo.save(g);
         return ganancia;
-
-    }
-
-    @Override
-    public void eliminarGanancia(String cedula) throws Exception {
-
-        if (gananciaSocio(cedula)){
-            throw new Exception("El socio no tiene ganancia a borrar");
-        }
-
-
     }
 
     @Override

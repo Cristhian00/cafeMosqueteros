@@ -89,8 +89,6 @@ public class DetalleCompraServicioImp implements DetalleCompraServicio {
         }
         detalleCompra.setPrecioUnitario(precioUnitario(detalleCompra.getProductoDetalle().getIdProducto()));
 
-        Socio socio = socioRepo.obtenerUsuarioCedula(detalleCompra.getCompraDetalle().getSocioCompra().getCedula());
-
         Compra compra = compraRepo.obtenerCompra(detalleCompra.getCompraDetalle().getIdCompra());
         compra.setTotal(compra.getTotal() + (detalleCompra.getCantidad() * detalleCompra.getPrecioUnitario()));
         compraRepo.save(compra);
@@ -139,6 +137,7 @@ public class DetalleCompraServicioImp implements DetalleCompraServicio {
     @Override
     public boolean eliminarDetalleCompra(DetalleCompra detalleCompra) throws Exception {
 
+        validaciones(detalleCompra);
         Compra compra = compraRepo.obtenerCompra(detalleCompra.getCompraDetalle().getIdCompra());
         Producto producto = productoRepo.obtenerProducto(detalleCompra.getProductoDetalle().getIdProducto());
 

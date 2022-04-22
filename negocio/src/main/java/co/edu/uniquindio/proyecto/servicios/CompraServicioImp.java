@@ -33,8 +33,8 @@ public class CompraServicioImp implements CompraServicio {
         return socio.isEmpty();
     }
 
-    public EstadoCompra estadoCompra(String estado) {
-        return estadoCompraRepo.findByDescripcion(estado);
+    public EstadoCompra estadoCompra(String nombre) {
+        return estadoCompraRepo.obtenerEstadoNombre(nombre);
     }
 
     public EstadoSocio estadoSocio(String cedula) {
@@ -86,15 +86,13 @@ public class CompraServicioImp implements CompraServicio {
         List<DetalleEstado> estados = c.getEstados();
 
         for (DetalleEstado d : estados) {
-            if (d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("APROBADO")
-                    || d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("RECHAZADO")
-                    || d.getEstadoDetalle().getDescripcion().equalsIgnoreCase("ENVIADO")) {
+            if (d.getEstadoDetalle().getNombre().equalsIgnoreCase("APROBADO")
+                    || d.getEstadoDetalle().getNombre().equalsIgnoreCase("RECHAZADO")
+                    || d.getEstadoDetalle().getNombre().equalsIgnoreCase("ENVIADO")) {
                 throw new Exception("La compra no se puede eliminar porque su estado ya fue procesado");
             }
         }
-
         compraRepo.delete(c);
-
         return true;
     }
 

@@ -10,7 +10,7 @@ public interface EstadoCompraServicio {
 
     EstadoCompra actualizarEstadoCompra(EstadoCompra estadoCompra) throws Exception;
 
-    void eliminarEstadoCompra(int idEstado) throws Exception;
+    boolean eliminarEstadoCompra(int idEstado) throws Exception;
 
     List<EstadoCompra> listarEstadoCompra();
 }
