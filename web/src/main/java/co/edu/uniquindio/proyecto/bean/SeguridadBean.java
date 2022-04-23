@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.servicios.PersonaServicioImp;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.io.Serializable;
 public class SeguridadBean implements Serializable {
 
     @Autowired
-    private PersonaServicio personaServicio;
+    private PersonaServicioImp personaServicio;
 
     @Getter
     @Setter

@@ -11,9 +11,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@MappedSuperclass
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public abstract class Persona implements Serializable {

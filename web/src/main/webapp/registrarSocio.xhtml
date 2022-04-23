@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Página de Inicio</title>
+</h:head>
+<h:body>
+    <p:panel header="Registrar Usuario" style="width: 55%; margin-left: 25%">
+        <h:form>
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="nombre_usuario" value="Nombre completo"/>
+                <p:inputText id="nombre_usuario" value="#{SocioRegBean.socio.primerNombre}"
+                             required="true" requiredMessage="Debe ingresar el nombre completo"/>
+                <p:message for="nombre_usuario"/>
+
+                <p:outputLabel for="cedula_usuario" value="Cédula"/>
+                <p:inputText id="cedula_usuario" value="#{SocioRegBean.socio.cedula}" required="true"
+                             requiredMessage="Debe ingresar un número de cédula"/>
+                <p:message for="cedula_usuario"/>
+
+                <p:outputLabel for="email_usuario" value="Email"/>
+                <p:inputText id="email_usuario" value="#{SocioRegBean.socio.correo}" required="true"
+                             requiredMessage="Debe ingresar el email"/>
+                <p:message for="email_usuario"/>
+
+                <p:outputLabel for="nickname_usuario" value="Nickname"/>
+                <p:inputText id="nickname_usuario" value="#{SocioRegBean.socio.segundoApellido}" required="true"
+                             requiredMessage="Debe ingresar el nickname"/>
+                <p:message for="nickname_usuario"/>
+
+
+                <p:outputLabel for="contrasenia_usuario" value="Contraseña"/>
+                <p:password id="contrasenia_usuario" value="#{SocioRegBean.socio.contrasenia}" required="true"
+                            requiredMessage="Debe ingresar una contraseña"/>
+                <p:message for="contrasenia_usuario"/>
+            </h:panelGrid>
+            <p:commandButton styleClass="mt-4" value="Registrar Usuario"
+                             action="#{SocioRegBean.registrarSocio}"
+                             update="@form"/>
+            <p:growl for="mensaje-usuario" showDetail="true"/>
+        </h:form>
+    </p:panel>
+
+
+
+</h:body>
+</html>
