@@ -11,23 +11,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Página de Inicio</title>
 </h:head>
+
 <h:body>
-    <h:form rendered="#{!seguridadBean.autenticado}">
-        <h:panelGrid columns="3" cellpadding="5">
-            <p:outputLabel for="email_login" value="Email ó Nickname:"/>
-            <p:inputText id="email_login" value="#{seguridadBean.correo}" required="true"/>
-            <p:message for="email_login"/>
+    <p:panel header="Inicio sesión" style="width: 55%; margin-left: 25% ">
+        <h:form rendered="#{!seguridadBean.autenticado}">
+            <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
+                <p:outputLabel for="email_login" value="Correo electronico:"/>
+                <p:inputText id="email_login" value="#{seguridadBean.correo}" required="true"/>
+                <p:message for="email_login"/>
 
-            <p:outputLabel for="password_login" value="Password:"/>
-            <p:password id="password_login" value="#{seguridadBean.contrasenia}" required="true"/>
-            <p:message for="password_login"/>
-        </h:panelGrid>
-        <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
-                         icon="pi pi-sign-in" iconPos="left" styleClass="mt-4" update="@form"/>
-        <p:commandButton value="Recuperar contraseña" action="#{seguridadBean.recuperar}" style="margin-left: 30px"
-                         icon="pi pi-key" iconPos="left" styleClass="mt-4" update="@form"/>
-        <p:growl for="mensaje-sesion" showDetail="true"/>
-    </h:form>
+                <p:outputLabel for="password_login" value="Contraseña:"/>
+                <p:password id="password_login" value="#{seguridadBean.contrasenia}" required="true"/>
+                <p:message for="password_login"/>
 
+                <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
+                                 icon="pi pi-sign-in" iconPos="left" styleClass="mt-4" update="@form"/>
+                <p:commandButton value="Recuperar contraseña" action="#{seguridadBean.recuperar}" style="margin-left: 30px"
+                                 icon="pi pi-key" iconPos="left" styleClass="mt-4" update="@form"/>
+                <p:growl for="mensaje-sesion" showDetail="true"/>
+            </h:panelGrid>
+
+        </h:form>
+    </p:panel>
 </h:body>
 </html>
