@@ -84,6 +84,16 @@ public class JerarquiaServicioImp implements JerarquiaServicio {
     }
 
     @Override
+    public Jerarquia obtenerJerarquia(String nombre) {
+        return jerarquiaRepo.obtenerJerarquia(nombre);
+    }
+
+    @Override
+    public Jerarquia obtenerJerarquia(int id) {
+        return jerarquiaRepo.findByIdJerarquia(id);
+    }
+
+    @Override
     public List<Jerarquia> listarJerarquia() {
         return jerarquiaRepo.findAll();
     }

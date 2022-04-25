@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.repositorios.TipoProductoRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TipoProductoServicioImp implements TipoProductoServicio{
@@ -33,5 +34,14 @@ public class TipoProductoServicioImp implements TipoProductoServicio{
     @Override
     public List<TipoProducto> listarTipoProducto() {
         return null;
+    }
+
+    @Override
+    public TipoProducto obtenerTipo(int id) throws Exception{
+        Optional<TipoProducto> tipo = tipoProductoRepo.findById(id);
+        if (tipo.isEmpty()) {
+            throw new Exception("No existe un tipo resgitrado con ese ID");
+        }
+        return tipo.get();
     }
 }

@@ -13,5 +13,9 @@ public interface JerarquiaServicio {
 
     void eliminarJerarquia(int idJerarquia) throws Exception;
 
+    Jerarquia obtenerJerarquia(String nombre);
+
+    Jerarquia obtenerJerarquia(int id);
+
     List<Jerarquia> listarJerarquia();
 }

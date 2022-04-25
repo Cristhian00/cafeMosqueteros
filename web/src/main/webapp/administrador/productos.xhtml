@@ -14,9 +14,11 @@
 <h:body>
     <ui:composition template="/WEB-INF/plantilla.xhtml">
 
-        <ui:define name="title">Café Mosqueteros | Inicio</ui:define>
+        <ui:define name="title">Café Mosqueteros | Productos</ui:define>
 
-        <ui:insert name="content">INDEX</ui:insert>
+        <ui:define name="content">
+            <ui:insert name="contenido">PRODUCTOS ADMINISTRADOR</ui:insert>
+        </ui:define>
 
     </ui:composition>
 

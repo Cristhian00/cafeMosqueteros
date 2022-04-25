@@ -4,6 +4,7 @@ package co.edu.uniquindio.proyecto.servicios;
 import co.edu.uniquindio.proyecto.entidades.TipoProducto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TipoProductoServicio {
 
@@ -14,4 +15,6 @@ public interface TipoProductoServicio {
     void eliminarTipoProducto(int idTipo) throws Exception;
 
     List<TipoProducto> listarTipoProducto();
+
+    TipoProducto obtenerTipo(int id) throws Exception;
 }

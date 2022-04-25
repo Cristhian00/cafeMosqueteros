@@ -22,9 +22,9 @@ public class PersonaServicioImp implements PersonaServicio {
 
 
     @Override
-    public Persona login(String emailOrNick, String contrasenia) throws Exception {
+    public Persona login(String correo, String contrasenia) throws Exception {
 
-        Optional<Persona> persona = personaRepo.findByCorreoAndContrasenia(emailOrNick,contrasenia);
+        Optional<Persona> persona = personaRepo.findByCorreoAndContrasenia(correo, contrasenia);
 
         if(persona.isEmpty()){
             throw new Exception("Los datos de autenticación son incorrectos");

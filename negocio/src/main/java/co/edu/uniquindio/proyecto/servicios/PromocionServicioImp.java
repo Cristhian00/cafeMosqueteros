@@ -65,6 +65,11 @@ public class PromocionServicioImp implements PromocionServicio {
     }
 
     @Override
+    public Promocion obtenerPromocion(int id) throws Exception {
+        return promocionRepo.findByIdPromocion(id);
+    }
+
+    @Override
     public List<Promocion> listarPromocion() {
         return promocionRepo.findAll();
     }

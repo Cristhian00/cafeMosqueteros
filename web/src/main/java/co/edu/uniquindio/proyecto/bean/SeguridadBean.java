@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.servicios.AdministradorServicioImp;
 import co.edu.uniquindio.proyecto.servicios.PersonaServicioImp;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,9 +20,16 @@ public class SeguridadBean implements Serializable {
     @Autowired
     private PersonaServicioImp personaServicio;
 
+    @Autowired
+    private AdministradorServicioImp adm;
+
     @Getter
     @Setter
     private Persona persona;
+
+    @Getter
+    @Setter
+    private Administrador administrador;
 
     @Getter
     @Setter
@@ -43,12 +51,15 @@ public class SeguridadBean implements Serializable {
 
         if (correo != null && contrasenia != null) {
             try {
-                persona = personaServicio.login(correo, contrasenia);
-                if(persona instanceof Socio){
-                    rol = "socio";
-                } else if(persona instanceof NoSocio){
-                    rol = "noSocio";
-                } else{
+                administrador = adm.login(correo, contrasenia);
+                if(administrador == null){
+                    persona = personaServicio.login(correo, contrasenia);
+                    if(persona instanceof Socio){
+                        rol = "socio";
+                    } else if(persona instanceof NoSocio){
+                        rol = "noSocio";
+                    }
+                } else {
                     rol = "administrador";
                 }
                 autenticado = true;

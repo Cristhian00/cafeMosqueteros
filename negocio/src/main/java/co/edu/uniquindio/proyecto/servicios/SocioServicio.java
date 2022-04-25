@@ -12,5 +12,7 @@ public interface SocioServicio {
 
     boolean eliminarSocio(String cedula) throws Exception;
 
+    Socio obtenerSocio(String cedula) throws Exception;
+
     List<Socio> listarSocio();
 }
