@@ -33,7 +33,7 @@ public class TipoProductoServicioImp implements TipoProductoServicio{
 
     @Override
     public List<TipoProducto> listarTipoProducto() {
-        return null;
+        return tipoProductoRepo.findAll();
     }
 
     @Override

@@ -79,6 +79,17 @@ public class EstadoCompraServicioImp implements EstadoCompraServicio {
     }
 
     @Override
+    public EstadoCompra obtenerEstado(String nombre) throws Exception{
+        if(nombre == null){
+            throw new Exception("Debe ingresar un nombre");
+        }
+        if (!existeEstado(nombre)){
+            throw new Exception("No existe un estado con ese nombre");
+        }
+        return estadoCompraRepo.obtenerEstadoNombre(nombre);
+    }
+
+    @Override
     public List<EstadoCompra> listarEstadoCompra() {
         return estadoCompraRepo.findAll();
     }

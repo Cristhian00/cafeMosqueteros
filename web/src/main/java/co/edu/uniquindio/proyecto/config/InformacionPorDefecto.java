@@ -116,23 +116,108 @@ public class InformacionPorDefecto implements CommandLineRunner {
             socioServicio.registrarSocio(socio6);
             socioServicio.registrarSocio(socio7);
         }
+
+        if (productoServicio.listarProducto().isEmpty()) {
+            TipoProducto tipo1 = new TipoProducto("Enlatado", "ml", 350);
+            TipoProducto tipo2 = new TipoProducto("Molido", "gr", 500);
+            TipoProducto tipo3 = new TipoProducto("Grano", "lb", 2);
+            TipoProducto tipo4 = new TipoProducto("Dulce", "gr", 50);
+            tipoProductoServicio.registrarTipoProducto(tipo1);
+            tipoProductoServicio.registrarTipoProducto(tipo2);
+            tipoProductoServicio.registrarTipoProducto(tipo3);
+            tipoProductoServicio.registrarTipoProducto(tipo4);
+
+            Producto producto1 = new Producto("CafeYa", "Bebida energizante", 5000,
+                    2400, 50, tipo1);
+            Producto producto2 = new Producto("Cafe gourmet", "Café molido gourmet", 35000,
+                    20000, 30, tipo2);
+            Producto producto3 = new Producto("Cafe de Montenegro", "Café en grano de Monteblack", 30000,
+                    17000, 40, tipo3);
+            Producto producto4 = new Producto("Arequipe de cafe", "Dulce de arequipe con café", 10000,
+                    6500, 70, tipo4);
+            productoServicio.registrarProducto(producto1);
+            productoServicio.registrarProducto(producto2);
+            productoServicio.registrarProducto(producto3);
+            productoServicio.registrarProducto(producto4);
+        }
+
+        if (estadoCompraServicio.listarEstadoCompra().isEmpty()) {
+            EstadoCompra estado1 = new EstadoCompra("PENDIENTE");
+            EstadoCompra estado2 = new EstadoCompra("APROBADO");
+            EstadoCompra estado3 = new EstadoCompra("RECHAZADO");
+            estadoCompraServicio.registrarEstadoCompra(estado1);
+            estadoCompraServicio.registrarEstadoCompra(estado2);
+            estadoCompraServicio.registrarEstadoCompra(estado3);
+        }
+
         if (compraServicio.listarCompra().isEmpty()) {
             Socio socio1 = socioServicio.obtenerSocio("123456");
             Socio socio2 = socioServicio.obtenerSocio("122334");
             Socio socio3 = socioServicio.obtenerSocio("098765");
-            Compra c1 = new Compra(new Date(), 90000, socio1, null);
-            Compra c2 = new Compra(new Date(), 20000, socio2, null);
-            Compra c3 = new Compra(new Date(), 30000, socio3, null);
-            Compra c4 = new Compra(new Date(), 120000, socio1, null);
-            Compra c5 = new Compra(new Date(), 45000, socio1, null);
-            Compra c6 = new Compra(new Date(), 34000, socio2, null);
+            socio1.setEstado(EstadoSocio.ACTIVO);
+            socio2.setEstado(EstadoSocio.ACTIVO);
+            socio3.setEstado(EstadoSocio.ACTIVO);
+            socioServicio.actualizarSocio(socio1);
+            socioServicio.actualizarSocio(socio2);
+            socioServicio.actualizarSocio(socio3);
+
+            Compra c1 = new Compra(new Date(), 0, socio1, null);
+            Compra c2 = new Compra(new Date(), 0, socio2, null);
+            Compra c3 = new Compra(new Date(), 0, socio3, null);
+            Compra c4 = new Compra(new Date(), 0, socio1, null);
+            Compra c5 = new Compra(new Date(), 0, socio1, null);
+            Compra c6 = new Compra(new Date(), 0, socio2, null);
+
             compraServicio.registrarCompra(c1);
             compraServicio.registrarCompra(c2);
             compraServicio.registrarCompra(c3);
             compraServicio.registrarCompra(c4);
             compraServicio.registrarCompra(c5);
             compraServicio.registrarCompra(c6);
-        }
 
+            Producto p1 = productoServicio.obtenerProducto(1);
+            Producto p2 = productoServicio.obtenerProducto(2);
+            Producto p3 = productoServicio.obtenerProducto(3);
+            Producto p4 = productoServicio.obtenerProducto(4);
+
+            DetalleCompra detalleCompra1_1 = new DetalleCompra(3, p1.getPrecioVenta(), p1, c1);
+            DetalleCompra detalleCompra1_2 = new DetalleCompra(5, p2.getPrecioVenta(), p2, c1);
+            DetalleCompra detalleCompra1_3 = new DetalleCompra(5, p3.getPrecioVenta(), p3, c1);
+            DetalleCompra detalleCompra2_1 = new DetalleCompra(2, p1.getPrecioVenta(), p1, c2);
+            DetalleCompra detalleCompra2_2 = new DetalleCompra(5, p2.getPrecioVenta(), p2, c2);
+            DetalleCompra detalleCompra2_3 = new DetalleCompra(2, p3.getPrecioVenta(), p3, c2);
+            DetalleCompra detalleCompra3_1 = new DetalleCompra(5, p1.getPrecioVenta(), p1, c3);
+            DetalleCompra detalleCompra3_2 = new DetalleCompra(10, p4.getPrecioVenta(), p4, c3);
+            DetalleCompra detalleCompra4_1 = new DetalleCompra(8, p4.getPrecioVenta(), p4, c4);
+            DetalleCompra detalleCompra4_2 = new DetalleCompra(6, p2.getPrecioVenta(), p2, c4);
+            DetalleCompra detalleCompra4_3 = new DetalleCompra(10, p3.getPrecioVenta(), p3, c4);
+
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra1_1);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra1_2);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra1_3);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra2_1);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra2_2);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra2_3);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra3_1);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra3_2);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra4_1);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra4_2);
+            detalleCompraServicio.registrarDetalleCompra(detalleCompra4_3);
+
+            EstadoCompra estado = estadoCompraServicio.obtenerEstado("APROBADO");
+            DetalleEstado detalleEstado1 = new DetalleEstado(new Date(), estado, c1);
+            DetalleEstado detalleEstado2 = new DetalleEstado(new Date(), estado, c2);
+            DetalleEstado detalleEstado3 = new DetalleEstado(new Date(), estado, c3);
+            DetalleEstado detalleEstado4 = new DetalleEstado(new Date(), estado, c4);
+            detalleEstadoServicio.registrarDetalleEstado(detalleEstado1);
+            detalleEstadoServicio.registrarDetalleEstado(detalleEstado2);
+            detalleEstadoServicio.registrarDetalleEstado(detalleEstado3);
+            detalleEstadoServicio.registrarDetalleEstado(detalleEstado4);
+        }
+        if (detalleCompraServicio.listarDetalleCompra().isEmpty()) {
+            Compra compra1 = compraServicio.obtenerCompra(1);
+            Compra compra2 = compraServicio.obtenerCompra(2);
+            Compra compra3 = compraServicio.obtenerCompra(3);
+        }
     }
 }

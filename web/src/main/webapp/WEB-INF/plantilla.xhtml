@@ -23,7 +23,8 @@
         <ui:insert name="header">
             <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-primary">
                 <div class="container">
-                    <a class="navbar-brand" href="/"><i class="pi pi-dollar" style="font-size: 25px"></i> CAFÉ MOSQUETEROS</a>
+                    <a class="navbar-brand" href="/"><i class="pi pi-dollar"
+                                                        style="font-size: 25px"></i> CAFÉ MOSQUETEROS</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarColor02"
                             aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,10 +36,12 @@
                                 <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                             </li>
                             <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
-                                <a class="nav-link active" aria-current="page" href="/casosDeExito.xhtml">Casos de Éxito</a>
+                                <a class="nav-link active" aria-current="page"
+                                   href="/casosDeExito.xhtml">Casos de Éxito</a>
                             </li>
                             <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
-                                <a class="nav-link active" aria-current="page" href="/sobreNosotros.xhtml">Sobre Nosotros</a>
+                                <a class="nav-link active" aria-current="page"
+                                   href="/sobreNosotros.xhtml">Sobre Nosotros</a>
                             </li>
                             <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
                                 <a class="nav-link active" aria-current="page" href="/productos.xhtml">Productos</a>
@@ -47,18 +50,19 @@
                                 jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
                                 <a class="nav-link" href="/administrador/productos.xhtml">Productos</a>
                             </li>
-                            <li class="nav-item" jsf:rendered="#{!seguridadBean.autenticado or seguridadBean.rol == 'noSocio'}">
+                            <li class="nav-item"
+                                jsf:rendered="#{!seguridadBean.autenticado or seguridadBean.rol == 'noSocio'}">
                                 <a class="nav-link" href="/trabajaConNosotros.xhtml">Trabaja con Nosotros</a>
                             </li>
                             <li class="nav-item"
                                 jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'socio'}">
                                 <a class="nav-link"
-                                   href="/socio/perfilSocio.xhtml">Perfil(#{seguridadBean.persona.nombre})</a>
+                                   href="/socio/perfilSocio.xhtml">Perfil(#{seguridadBean.persona.primerNombre})</a>
                             </li>
                             <li class="nav-item"
                                 jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'noSocio'}">
                                 <a class="nav-link"
-                                   href="/noSocio/perfilNoSocio.xhtml">Perfil(#{seguridadBean.persona.nombre})</a>
+                                   href="/noSocio/perfilNoSocio.xhtml">Perfil(#{seguridadBean.persona.primerNombre})</a>
                             </li>
                             <li class="nav-item"
                                 jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
@@ -80,13 +84,14 @@
                                              icon="pi pi-user" iconPos="righ" onclick="PF('login').show()"
                                              rendered="#{!seguridadBean.autenticado}"/>
                             <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Cerrar Sesión"
-                                             icon="pi pi-sign-out" iconPos="righ" action="#{seguridadBean.cerrarSesion}"
+                                             icon="pi pi-sign-out" iconPos="righ"
+                                             action="#{seguridadBean.cerrarSesion()}"
                                              rendered="#{seguridadBean.autenticado}"/>
                         </div>
                     </div>
                 </div>
             </nav>
-            <p:dialog header="Iniciar sesión" showEffect="fade" widgetVar="login" modal="true"
+            <p:dialog header="Iniciar sesión" showEffect="fade" widgetVar="login" modal="true" styleClass="ql-color-red"
                       rendered="#{!seguridadBean.autenticado}">
                 <h:form rendered="#{!seguridadBean.autenticado}">
                     <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
@@ -98,13 +103,17 @@
                         <p:password id="password_login" value="#{seguridadBean.contrasenia}" required="true"/>
                         <p:message for="password_login"/>
 
-                        <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
-                                         icon="pi pi-sign-in" iconPos="left" styleClass="mt-4" update="@form"/>
-                        <p:commandButton value="Recuperar contraseña" action="#{seguridadBean.recuperar}"
-                                         style="margin-left: 30px"
-                                         icon="pi pi-key" iconPos="left" styleClass="mt-4" update="@form"/>
+
                         <p:growl for="mensaje-sesion" showDetail="true"/>
                     </h:panelGrid>
+                    <div class="d-flex">
+                        <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
+                                         icon="pi pi-sign-in" iconPos="left" styleClass="ui-button-raised ui-button-warning"
+                                         update="@form"/>
+                        <p:commandButton value="Recuperar contraseña" action="#{seguridadBean.recuperar}"
+                                         style="margin-left: 30px"
+                                         icon="pi pi-key" iconPos="left" styleClass="ui-button-raised ui-button-warning" update="@form"/>
+                    </div>
 
                 </h:form>
             </p:dialog>

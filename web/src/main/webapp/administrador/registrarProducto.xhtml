@@ -22,45 +22,46 @@
                     <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
 
                         <p:outputLabel for="nombre" value="Nombre producto"/>
-                        <p:inputText id="nombre" value="#{ProductoRegBean.producto.nombre}" required="true"
+                        <p:inputText id="nombre" value="#{productoRegBean.producto.nombre}" required="true"
                                      requiredMessage="Debe ingresar el nombre del producto"/>
                         <p:message for="nombre"/>
 
                         <p:outputLabel for="Descripcion" value="Descripcion:"/>
-                        <p:inputText id="Descripcion" value="#{ProductoRegBean.producto.descripcion}"
+                        <p:inputText id="Descripcion" value="#{productoRegBean.producto.descripcion}"
                                      required="true" requiredMessage="Debe ingresar una descripcion del producto"/>
                         <p:message for="Descripcion"/>
 
                         <p:outputLabel for="PrecioVenta" value="Precio venta:"/>
-                        <p:inputText id="PrecioVenta" value="#{ProductoRegBean.producto.precioVenta}"
+                        <p:inputText id="PrecioVenta" value="#{productoRegBean.producto.precioVenta}"
                                      required="true" requiredMessage="Debe ingresar el pecio al pueblico"/>
                         <p:message for="PrecioVenta"/>
 
                         <p:outputLabel for="PrecioCompra" value="Precio compra:"/>
-                        <p:inputText id="PrecioCompra" value="#{ProductoRegBean.producto.precioCompra}"
+                        <p:inputText id="PrecioCompra" value="#{productoRegBean.producto.precioCompra}"
                                      required="true" requiredMessage="Debe ingresar el pecio compra del producto"/>
                         <p:message for="PrecioCompra"/>
 
 
                         <p:outputLabel for="UnidadesDisponibles" value="Unidades disponibles:"/>
-                        <p:inputText id="UnidadesDisponibles" value="#{ProductoRegBean.producto.unidadesDisponibles}"
+                        <p:inputText id="UnidadesDisponibles" value="#{productoRegBean.producto.unidadesDisponibles}"
                                      required="true"
                                      requiredMessage="Debe ingresar las unidades disponibles del producto"/>
                         <p:message for="UnidadesDisponibles"/>
 
                         <p:outputLabel for="tipo_producto" value="Tipo Producto: "/>
-                        <p:selectOneMenu id="tipo_producto" value="#{ProductoRegBean.producto.tipoProducto}"
+                        <p:selectOneMenu id="tipo_producto" value="#{productoRegBean.producto.tipoProducto}"
                                          converter="#{tipoProductoConverter}" required="true"
                                          requiredMessage="Debe seleccionar un tipo de producto">
                             <f:selectItem itemLabel="Seleccione: " noSelectionOption="true"/>
                             <f:selectItems var="tipo" itemLabel="#{tipo.descripcion}"
-                                           value="#{lugarBean.ciudades}"/>
+                                           value="#{productoRegBean.tipos}"/>
                         </p:selectOneMenu>
+                        <p:message for="tipo_producto" style="width: 200px"/>
 
                         <p:commandButton styleClass="mt-4" value="Registrar Producto"
-                                         action="#{ProductoRegBean.registrarProducto}"
+                                         action="#{productoRegBean.registrarProducto()}"
                                          update="@form"/>
-                        <p:growl for="mensaje-usuario" showDetail="true"/>
+                        <p:growl for="mensaje-socio" showDetail="true"/>
 
                     </h:panelGrid>
                 </h:form>

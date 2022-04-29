@@ -29,7 +29,7 @@ public class DetalleEstadoServicioImp implements DetalleEstadoServicio {
     public boolean existeInventario(String cedula, int idProducto) {
         Socio socio = socioRepo.obtenerUsuarioCedula(cedula);
 
-        for (Inventario inventario : socio.getInventarios()) {
+        for (Inventario inventario : inventarioRepo.obtenerInventariosUsuario(socio.getCedula())) {
             if (inventario.getProductoInventario().getIdProducto() == idProducto) {
                 return true;
             }
@@ -46,13 +46,13 @@ public class DetalleEstadoServicioImp implements DetalleEstadoServicio {
         detalleEstado.setFecha(new Date());
 
         if (detalleEstado.getEstadoDetalle().getNombre().equalsIgnoreCase("RECHAZADO")) {
-            for (DetalleCompra detalle : compra.getDetalleCompras()) {
+            for (DetalleCompra detalle : detalleCompraRepo.obtenerDetallesCompra(compra.getIdCompra())) {
                 productoAux = productoRepo.obtenerProducto(detalle.getProductoDetalle().getIdProducto());
                 productoAux.setUnidadesDisponibles(productoAux.getUnidadesDisponibles() + detalle.getCantidad());
                 productoRepo.save(productoAux);
             }
-        } else if (detalleEstado.getEstadoDetalle().getNombre().equalsIgnoreCase("APROBADA")) {
-            for (DetalleCompra detalle : compra.getDetalleCompras()) {
+        } else if (detalleEstado.getEstadoDetalle().getNombre().equalsIgnoreCase("APROBADO")) {
+            for (DetalleCompra detalle : detalleCompraRepo.obtenerDetallesCompra(compra.getIdCompra())) {
                 productoAux = productoRepo.obtenerProducto(detalle.getProductoDetalle().getIdProducto());
                 if (existeInventario(socio.getCedula(), productoAux.getIdProducto())) {
                     Inventario inventario = inventarioRepo.obtenerSocioInventarioAndProductoInventario(socio, productoAux);
@@ -63,9 +63,15 @@ public class DetalleEstadoServicioImp implements DetalleEstadoServicio {
                     inventarioRepo.save(inventario);
                 }
             }
+            return detalleEstadoRepo.save(detalleEstado);
             //AGREGAR EL DTO PARA LAS GANANCIAS
         }
         return null;
+    }
+
+    @Override
+    public List<DetalleEstado> listaEstados(int idCompra) {
+        return detalleEstadoRepo.obtenerEstadosCompra(idCompra);
     }
 
     @Override

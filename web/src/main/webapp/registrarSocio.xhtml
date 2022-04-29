@@ -22,49 +22,53 @@
                     <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
 
                         <p:outputLabel for="cedula_usuario" value="Cédula"/>
-                        <p:inputText id="cedula_usuario" value="#{SocioRegBean.socio.cedula}" required="true"
+                        <p:inputText id="cedula_usuario" value="#{socioRegBean.socio.cedula}" required="true"
                                      requiredMessage="Debe ingresar un número de cédula"/>
                         <p:message for="cedula_usuario"/>
 
                         <p:outputLabel for="PrimerNombre" value="Primer nombre"/>
-                        <p:inputText id="PrimerNombre" value="#{SocioRegBean.socio.primerNombre}"
+                        <p:inputText id="PrimerNombre" value="#{socioRegBean.socio.primerNombre}"
                                      required="true" requiredMessage="Debe ingresar el primer nombre"/>
                         <p:message for="PrimerNombre"/>
 
                         <p:outputLabel for="SegundoNombre" value="Segundo nombre"/>
-                        <p:inputText id="SegundoNombre" value="#{SocioRegBean.socio.segundoNombre}"
+                        <p:inputText id="SegundoNombre" value="#{socioRegBean.socio.segundoNombre}"
                                      requiredMessage="Debe ingresar el segundo nombre"/>
                         <p:message for="SegundoNombre"/>
 
                         <p:outputLabel for="PrimerApellido" value="Primer apellido"/>
-                        <p:inputText id="PrimerApellido" value="#{SocioRegBean.socio.primerApellido}"
+                        <p:inputText id="PrimerApellido" value="#{socioRegBean.socio.primerApellido}"
                                      required="true" requiredMessage="Debe ingresar el primer apellido"/>
                         <p:message for="PrimerApellido"/>
 
                         <p:outputLabel for="SegundoApellido" value="Segundo apellido"/>
-                        <p:inputText id="SegundoApellido" value="#{SocioRegBean.socio.segundoApellido}"
+                        <p:inputText id="SegundoApellido" value="#{socioRegBean.socio.segundoApellido}"
                                      required="true" requiredMessage="Debe ingresar el segundo apellido"/>
                         <p:message for="SegundoApellido"/>
 
 
                         <p:outputLabel for="Correo" value="Correo"/>
-                        <p:inputText id="Correo" value="#{SocioRegBean.socio.correo}" required="true"
+                        <p:inputText id="Correo" value="#{socioRegBean.socio.correo}" required="true"
                                      requiredMessage="Debe ingresar el correo"/>
                         <p:message for="Correo"/>
 
                         <p:outputLabel for="Celular" value="Celular"/>
-                        <p:inputText id="Celular" value="#{SocioRegBean.socio.celular}" required="true"
+                        <p:inputText id="Celular" value="#{socioRegBean.socio.celular}" required="true"
                                      requiredMessage="Debe ingresar el celular"/>
                         <p:message for="Celular"/>
 
+                        <p:outputLabel for="CedulaPadre" value="Cédula referenciado"/>
+                        <p:inputText id="CedulaPadre" value="#{socioRegBean.cedulaPadre}" required="true"
+                                     requiredMessage="Debe ingresar la cédula del referenciado"/>
+                        <p:message for="CedulaPadre"/>
 
                         <p:outputLabel for="contrasenia_usuario" value="Contraseña"/>
-                        <p:password id="contrasenia_usuario" value="#{SocioRegBean.socio.contrasenia}" required="true"
+                        <p:password id="contrasenia_usuario" value="#{socioRegBean.socio.contrasenia}" required="true"
                                     requiredMessage="Debe ingresar una contraseña"/>
                         <p:message for="contrasenia_usuario"/>
 
                         <p:commandButton styleClass="mt-4" value="Registrar Socio"
-                                         action="#{SocioRegBean.registrarSocio}"
+                                         action="#{socioRegBean.registrarSocio()}"
                                          update="@form"/>
                         <p:growl for="mensaje-usuario" showDetail="true"/>
 

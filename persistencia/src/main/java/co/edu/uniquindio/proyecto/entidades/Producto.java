@@ -45,7 +45,7 @@ public class Producto implements Serializable {
     @OneToMany(mappedBy = "productoDetalle")
     private List<DetalleCompra> detalleCompras;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private TipoProducto tipoProducto;
 
     @OneToMany(mappedBy = "productoPedido")

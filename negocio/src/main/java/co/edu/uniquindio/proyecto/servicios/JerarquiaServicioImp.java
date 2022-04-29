@@ -23,30 +23,30 @@ public class JerarquiaServicioImp implements JerarquiaServicio {
 
     public boolean existeJerarquia(int idJerarquia) {
         Optional<Jerarquia> j = jerarquiaRepo.findById(idJerarquia);
-        return j.isEmpty();
+        return j.isPresent();
     }
 
     public boolean existeNombreJerarquia(String nombre) {
 
         Optional<Jerarquia> j = jerarquiaRepo.findByNombre(nombre);
-        return j.isEmpty();
+        return j.isPresent();
     }
 
+    public void validaciones(Jerarquia jerarquia) throws Exception {
+        if (existeNombreJerarquia(jerarquia.getNombre())) {
+            throw new Exception("El nombre de la jerarquia ya existe");
+        }
+        if (jerarquia.getNombre().length() > 50) {
+            throw new Exception("El nombre de la jerarquia excede los caracteres");
+        }
+        if (jerarquia.getTotalventas() < 0) {
+            throw new Exception("Lo sentimos no deben de haber ventas negativas");
+        }
+    }
 
     @Override
     public Jerarquia registrarJerarquia(Jerarquia j) throws Exception {
-
-        if (existeNombreJerarquia(j.getNombre())) {
-            throw new Exception("El nombre de la jerarquia ya existe");
-        }
-        if (j.getNombre().length() > 50) {
-            throw new Exception("El nombre de la jerarquia excede los caracteres");
-        }
-        if (j.getTotalventas() < 0) {
-            throw new Exception("Lo sentimos no deben de haber ventas negativas");
-        }
-        Promocion promo = new Promocion("Por fidelidad ", 0.3);
-        j.setPromocionJerarquia(promo);
+        validaciones(j);
         Jerarquia jerarquia = jerarquiaRepo.save(j);
 
         return jerarquia;
@@ -54,16 +54,7 @@ public class JerarquiaServicioImp implements JerarquiaServicio {
 
     @Override
     public Jerarquia actualizarJerarquia(Jerarquia j) throws Exception {
-        if (existeNombreJerarquia(j.getNombre())) {
-            throw new Exception("El nombre de la jerarquia ya existe");
-        }
-        if (j.getNombre().length() > 50) {
-            throw new Exception("El nombre de la jerarquia excede los caracteres");
-        }
-        if (j.getTotalventas() < 0) {
-            throw new Exception("Lo sentimos no deben de haber ventas negativas");
-        }
-
+        validaciones(j);
         Jerarquia jerarquia = jerarquiaRepo.save(j);
 
         return jerarquia;
@@ -76,7 +67,7 @@ public class JerarquiaServicioImp implements JerarquiaServicio {
         if (existeNombreJerarquia(j.getNombre())) {
             throw new Exception("El nombre de la jerarquia ya existe");
         }
-        if (existeJerarquia(j.getIdJerarquia())){
+        if (existeJerarquia(j.getIdJerarquia())) {
             throw new Exception("La jerarquia ya existe");
         }
         jerarquiaRepo.delete(j);

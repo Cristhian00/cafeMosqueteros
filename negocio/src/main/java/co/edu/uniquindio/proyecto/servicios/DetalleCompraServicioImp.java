@@ -12,14 +12,16 @@ import java.util.Optional;
 public class DetalleCompraServicioImp implements DetalleCompraServicio {
 
     private final DetalleCompraRepo detalleCompraRepo;
+    private final DetalleEstadoRepo detalleEstadoRepo;
     private final ProductoRepo productoRepo;
     private final CompraRepo compraRepo;
     private final SocioRepo socioRepo;
     private final InventarioRepo inventarioRepo;
 
-    public DetalleCompraServicioImp(DetalleCompraRepo detalleCompraRepo, ProductoRepo productoRepo,
+    public DetalleCompraServicioImp(DetalleCompraRepo detalleCompraRepo, DetalleEstadoRepo detalleEstadoRepo, ProductoRepo productoRepo,
                                     CompraRepo compraRepo, SocioRepo socioRepo, InventarioRepo inventarioRepo) {
         this.detalleCompraRepo = detalleCompraRepo;
+        this.detalleEstadoRepo = detalleEstadoRepo;
         this.productoRepo = productoRepo;
         this.compraRepo = compraRepo;
         this.socioRepo = socioRepo;
@@ -37,8 +39,7 @@ public class DetalleCompraServicioImp implements DetalleCompraServicio {
     }
 
     public boolean estadoCompra(int idCompra) {
-        Compra compra = compraRepo.obtenerCompra(idCompra);
-        List<DetalleEstado> list = compra.getEstados();
+        List<DetalleEstado> list = detalleEstadoRepo.obtenerEstadosCompra(idCompra);
 
         for (DetalleEstado d : list) {
             if (d.getEstadoDetalle().getNombre().equalsIgnoreCase("APROBADA")

@@ -79,6 +79,14 @@ public class ProductoServicioImp implements ProductoServicio {
     }
 
     @Override
+    public Producto obtenerProducto(int id) throws Exception {
+        if(idDisponible(id)){
+            throw new Exception("Debe ingresar una id valida");
+        }
+        return productoRepo.obtenerProducto(id);
+    }
+
+    @Override
     public List<Producto> listarProducto() {
         return productoRepo.findAll();
     }

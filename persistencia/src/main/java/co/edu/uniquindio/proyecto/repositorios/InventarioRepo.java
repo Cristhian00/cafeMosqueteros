@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -17,4 +18,7 @@ public interface InventarioRepo extends JpaRepository<Inventario, LlaveInventari
 
     @Query("SELECT i FROM Inventario i WHERE i.socioInventario = ?1 AND i.productoInventario = ?2")
     Inventario obtenerSocioInventarioAndProductoInventario(Socio socio, Producto producto);
+
+    @Query("SELECT i FROM Inventario i WHERE i.socioInventario.cedula = ?1")
+    List<Inventario> obtenerInventariosUsuario(String cedula);
 }

@@ -2,10 +2,12 @@ package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.CompraRepo;
+import co.edu.uniquindio.proyecto.repositorios.DetalleEstadoRepo;
 import co.edu.uniquindio.proyecto.repositorios.EstadoCompraRepo;
 import co.edu.uniquindio.proyecto.repositorios.SocioRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,11 +18,13 @@ public class CompraServicioImp implements CompraServicio {
     private final CompraRepo compraRepo;
     private final SocioRepo socioRepo;
     private final EstadoCompraRepo estadoCompraRepo;
+    private final DetalleEstadoRepo detalleEstadoRepo;
 
-    public CompraServicioImp(CompraRepo compraRepo, SocioRepo socioRepo, EstadoCompraRepo estadoCompraRepo) {
+    public CompraServicioImp(CompraRepo compraRepo, SocioRepo socioRepo, EstadoCompraRepo estadoCompraRepo, DetalleEstadoRepo detalleEstadoRepo) {
         this.compraRepo = compraRepo;
         this.socioRepo = socioRepo;
         this.estadoCompraRepo = estadoCompraRepo;
+        this.detalleEstadoRepo = detalleEstadoRepo;
     }
 
     public boolean idDisponible(int id) {
@@ -31,10 +35,6 @@ public class CompraServicioImp implements CompraServicio {
     public boolean existeSocio(String cedula) {
         Optional<Socio> socio = socioRepo.findById(cedula);
         return socio.isEmpty();
-    }
-
-    public EstadoCompra estadoCompra(String nombre) {
-        return estadoCompraRepo.obtenerEstadoNombre(nombre);
     }
 
     public EstadoSocio estadoSocio(String cedula) {
@@ -61,18 +61,15 @@ public class CompraServicioImp implements CompraServicio {
         if (estadoSocio(c.getSocioCompra().getCedula()) == EstadoSocio.PENDIENTE) {
             throw new Exception("El socio aun no se encuentra aprobado");
         }
-        if (c.getDetalleCompras().isEmpty()) {
-            throw new Exception("Debe haber al menos un detalle de compra");
-        }
     }
 
     @Override
     public Compra registrarCompra(Compra c) throws Exception {
         validaciones(c);
-        List<DetalleEstado> lista = c.getEstados();
-        lista.add(new DetalleEstado(new Date(), estadoCompra("PENDIENTE"), c));
-        c.setEstados(lista);
         compraRepo.save(c);
+        EstadoCompra estado = estadoCompraRepo.obtenerEstadoNombre("PENDIENTE");
+        DetalleEstado detalleEstado = new DetalleEstado(new Date(), estado, c);
+        detalleEstadoRepo.save(detalleEstado);
 
         return c;
     }
@@ -94,6 +91,15 @@ public class CompraServicioImp implements CompraServicio {
         }
         compraRepo.delete(c);
         return true;
+    }
+
+    @Override
+    public Compra obtenerCompra(int id) throws Exception{
+
+        if(idDisponible(id)){
+            throw new Exception("Debe ingresar un id que exista");
+        }
+        return compraRepo.obtenerCompra(id);
     }
 
     @Override

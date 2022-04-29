@@ -18,12 +18,10 @@ public class PromocionServicioImp implements PromocionServicio {
 
     public boolean existePromocion(int idPromocion) {
         Optional<Promocion> promocion = promocionRepo.findById(idPromocion);
-        return promocion.isEmpty();
+        return promocion.isPresent();
     }
 
-    @Override
-    public Promocion registrarPromocion(Promocion promocion) throws Exception {
-
+    public void validaciones(Promocion promocion) throws Exception{
         if (existePromocion(promocion.getIdPromocion())) {
             throw new Exception("La promocion ya existe");
         }
@@ -33,22 +31,17 @@ public class PromocionServicioImp implements PromocionServicio {
         if (promocion.getDescuento() < 0) {
             throw new Exception("Los decuentos no pueden ser negativos");
         }
+    }
 
+    @Override
+    public Promocion registrarPromocion(Promocion promocion) throws Exception {
+        validaciones(promocion);
         return promocionRepo.save(promocion);
     }
 
     @Override
     public Promocion actualizarPromocion(Promocion promocion) throws Exception {
-        if (existePromocion(promocion.getIdPromocion())) {
-            throw new Exception("La promocion ya existe");
-        }
-        if (promocion.getDescripcion().length() > 200) {
-            throw new Exception("Excediste la cantidad de caracteres");
-        }
-        if (promocion.getDescuento() < 0) {
-            throw new Exception("Los decuentos no pueden ser negativos");
-        }
-
+        validaciones(promocion);
         return promocionRepo.save(promocion);
     }
 
