@@ -11,6 +11,7 @@ import java.util.Date;
 @Component
 public class InformacionPorDefecto implements CommandLineRunner {
 
+
     @Autowired
     private AdministradorServicio adminServicio;
 
@@ -67,6 +68,10 @@ public class InformacionPorDefecto implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if(adminServicio.obtenerAdministrador().isEmpty()){
+            Administrador administrador = new Administrador("admin@gmail.com","admin");
+            adminServicio.registrarAdministrador(administrador);
+        }
 
         if (promocionServicio.listarPromocion().isEmpty()) {
             Promocion promocion1 = new Promocion("Viaje a Cocora", 0.15);

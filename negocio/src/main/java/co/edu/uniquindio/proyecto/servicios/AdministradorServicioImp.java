@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.entidades.Persona;
 import co.edu.uniquindio.proyecto.repositorios.AdministradorRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +25,11 @@ public class AdministradorServicioImp implements AdministradorServicio {
             return null;
         }
         return admin.get();
+    }
+
+    @Override
+    public List<Administrador> obtenerAdministrador() {
+        return administradorRepo.findAll();
     }
 
     @Override
