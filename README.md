@@ -77,6 +77,6 @@ Por último utilizaremos el comando “use” para seleccionar la base de datos 
 
 ![33](https://user-images.githubusercontent.com/64999632/162826217-b4895344-d3c4-4029-9331-2b9e3e84d049.PNG)
 
-Luego de tener todo instalado y la bases de datos creada y en uso se debe abrir el proyecto incialmente ejecutar persistencia para la creacion de las tablas y 
-la información suministrada, luego ejecuta en la carpeta web el archivo WepApplication, por ultimo se dirige al navegador y introduce http://localhost:8080/ . 
+Luego de tener todo instalado y la bases de datos creada y en uso se debe abrir el proyecto incialmente ejecutar el archivo PersistenciaApplication dentro de la carpeta persistencia para la creacion de las tablas y 
+la información suministrada, luego ejecuta el archivo WepApplication que esta en la carpeta web , por ultimo se dirige al navegador y introduce localhost:8080 . 
 
