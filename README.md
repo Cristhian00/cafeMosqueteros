@@ -1,9 +1,17 @@
-# PROYECTO  FINAL CAFE MOSQUETERO
+# PROYECTO  FINAL CAFE MOSQUETEROS
 El proposito de esta implementación es mostrar la forma en como trabajan las empresas multinivel
 enfocada en la venta de productos a base de café.
 
+# Video del funcionamiento (CAFE MOSQUETEROS)
+En el siguiente video se dara una breve ilustración del funcionamiento de la aplicación de cafe mosqueteros
+https://youtu.be/qCMXCMftVlA
 
-Los framework utilizados en este proyecto son las últimas versiones que hay hasta la fecha , En cuanto a al sistema operativo se recomienda utilizar win 10.
+# Intalación y configuración del entorno
+
+Los framework utilizados en este proyecto son las últimas versiones que hay hasta la fecha , En cuanto a al sistema operativo se recomienda utilizar win 10, y 
+en cuanto explorador se recomienda chrome.
+
+
 
 **Framework IntelliJ IDEA (Ultimate)** https://www.jetbrains.com/es-es/idea/download/#section=windows
 Luego de descargar el .exe se ejecuta y nos sale la siguiente ventana.
@@ -73,4 +81,7 @@ Para comprobar que la base de datos fue creada correctamente, lo puedes hacer co
 Por último utilizaremos el comando “use” para seleccionar la base de datos que anteriormente creamos.
 
 ![33](https://user-images.githubusercontent.com/64999632/162826217-b4895344-d3c4-4029-9331-2b9e3e84d049.PNG)
+
+Luego de tener todo instalado y la bases de datos creada y en uso se debe abrir el proyecto incialmente ejecutar el archivo PersistenciaApplication dentro de la carpeta persistencia para la creacion de las tablas y 
+la información suministrada, luego ejecuta el archivo WepApplication que esta en la carpeta web , por ultimo se dirige al navegador y introduce localhost:8080 . 
 
