@@ -63,6 +63,10 @@
                                      requiredMessage="Debe ingresar la cédula del referenciado"/>
                         <p:message for="CedulaPadre"/>
 
+                        <p:outputLabel for="estado" value="Estado socio"/>
+                        <p:inputText id="estado" value="#{socioDetalleBean.socio.estado.name()}" required="true" disabled="true"/>
+                        <p:message for="estado"/>
+
                         <p:outputLabel for="contrasenia" value="Contraseña"/>
                         <p:password id="contrasenia" value="#{socioDetalleBean.socio.contrasenia}" required="true"
                                     requiredMessage="Debe ingresar una contraseña"/>

@@ -48,4 +48,21 @@ public class NoSocioDetalleBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("mensaje-noSocio", msg);
         }
     }
+
+    public String eliminarCuenta(){
+        FacesMessage msg;
+        try {
+            noSocioServicio.eliminarNoSocio(noSocio.getCedula());
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Alerta", "Se elimino con exito");
+            FacesContext.getCurrentInstance().addMessage("mensaje-noSocio", msg);
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            return "/index.xhtml?faces-redirect=true";
+        } catch (Exception e) {
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Alerta", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("mensaje-noSocio", msg);
+        }
+        return "";
+    }
 }
