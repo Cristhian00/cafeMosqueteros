@@ -2,6 +2,9 @@
 El proposito de esta implementación es mostrar la forma en como trabajan las empresas multinivel
 enfocada en la venta de productos a base de café.
 
+#Video del funcionamiento 
+
+
 
 Los framework utilizados en este proyecto son las últimas versiones que hay hasta la fecha , En cuanto a al sistema operativo se recomienda utilizar win 10, y 
 en cuanto explorador se recomienda chrome.
