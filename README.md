@@ -3,7 +3,10 @@ El proposito de esta implementación es mostrar la forma en como trabajan las em
 enfocada en la venta de productos a base de café.
 
 
-Los framework utilizados en este proyecto son las últimas versiones que hay hasta la fecha , En cuanto a al sistema operativo se recomienda utilizar win 10.
+Los framework utilizados en este proyecto son las últimas versiones que hay hasta la fecha , En cuanto a al sistema operativo se recomienda utilizar win 10, y 
+en cuanto explorador se recomienda chrome.
+
+
 
 **Framework IntelliJ IDEA (Ultimate)** https://www.jetbrains.com/es-es/idea/download/#section=windows
 Luego de descargar el .exe se ejecuta y nos sale la siguiente ventana.
