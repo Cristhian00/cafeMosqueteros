@@ -1,9 +1,9 @@
-# PROYECTO  FINAL CAFE MOSQUETERO
+# PROYECTO  FINAL CAFE MOSQUETEROS
 El proposito de esta implementación es mostrar la forma en como trabajan las empresas multinivel
 enfocada en la venta de productos a base de café.
 
 # Video del funcionamiento (CAFE MOSQUETEROS)
-En el siguiente video se dara una breve ilustración del funcionamiento de la aplicación de cafe mosquetero
+En el siguiente video se dara una breve ilustración del funcionamiento de la aplicación de cafe mosqueteros
 https://youtu.be/qCMXCMftVlA
 
 # Intalación y configuración del entorno
