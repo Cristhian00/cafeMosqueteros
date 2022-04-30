@@ -18,4 +18,6 @@ public interface ProductoServicio {
     Producto obtenerProducto(int id) throws Exception;
 
     List<Producto> listarProducto();
+
+    List<Producto> listarProductosActivos();
 }

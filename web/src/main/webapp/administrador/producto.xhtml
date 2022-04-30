@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</h:head>
+
+<h:body>
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+
+        <ui:define name="title">Café Mosqueteros | Producto</ui:define>
+
+        <ui:define name="content">
+            <p:panel header="#{productoDetalleBean.producto.nombre}" style="width: 55%;  margin-left: 25%">
+                <h:form>
+
+                    <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
+
+                        <p:outputLabel for="id" value="Id producto"/>
+                        <p:inputText id="id" value="#{productoDetalleBean.producto.idProducto}" required="true"
+                                     requiredMessage="Debe ingresar el id del producto" disabled="true"/>
+                        <p:message for="id"/>
+
+                        <p:outputLabel for="nombre" value="Nombre producto"/>
+                        <p:inputText id="nombre" value="#{productoDetalleBean.producto.nombre}" required="true"
+                                     requiredMessage="Debe ingresar el nombre del producto"/>
+                        <p:message for="nombre"/>
+
+                        <p:outputLabel for="Descripcion" value="Descripcion:"/>
+                        <p:inputText id="Descripcion" value="#{productoDetalleBean.producto.descripcion}"
+                                     required="true" requiredMessage="Debe ingresar una descripcion del producto"/>
+                        <p:message for="Descripcion"/>
+
+                        <p:outputLabel for="PrecioVenta" value="Precio venta:"/>
+                        <p:inputText id="PrecioVenta" value="#{productoDetalleBean.producto.precioVenta}"
+                                     required="true" requiredMessage="Debe ingresar el pecio al pueblico"/>
+                        <p:message for="PrecioVenta"/>
+
+                        <p:outputLabel for="PrecioCompra" value="Precio compra:"/>
+                        <p:inputText id="PrecioCompra" value="#{productoDetalleBean.producto.precioCompra}"
+                                     required="true" requiredMessage="Debe ingresar el pecio compra del producto"/>
+                        <p:message for="PrecioCompra"/>
+
+
+                        <p:outputLabel for="UnidadesDisponibles" value="Unidades disponibles:"/>
+                        <p:inputText id="UnidadesDisponibles" value="#{productoDetalleBean.producto.unidadesDisponibles}"
+                                     required="true"
+                                     requiredMessage="Debe ingresar las unidades disponibles del producto"/>
+                        <p:message for="UnidadesDisponibles"/>
+
+                        <p:outputLabel for="tipo_producto" value="Tipo Producto: "/>
+                        <p:selectOneMenu id="tipo_producto" value="#{productoDetalleBean.producto.tipoProducto}"
+                                         converter="#{tipoProductoConverter}" required="true"
+                                         requiredMessage="Debe seleccionar un tipo de producto">
+                            <f:selectItem itemLabel="Seleccione: " noSelectionOption="true"/>
+                            <f:selectItems var="tipo" itemLabel="#{tipo.descripcion}"
+                                           value="#{productoDetalleBean.tipos}"/>
+                        </p:selectOneMenu>
+                        <p:message for="tipo_producto" style="width: 200px"/>
+
+                        <p:commandButton styleClass="mt-4" value="Actualizar Producto"
+                                         action="#{productoDetalleBean.actualizarProducto()}"
+                                         update="@form"/>
+                        <p:growl for="mensaje-producto" showDetail="true"/>
+
+                        <p:commandButton styleClass="mt-4" value="Eliminar Producto"
+                                         action="#{productoDetalleBean.eliminarProducto()}"
+                                         update="@form"/>
+                        <p:growl for="mensaje-producto" showDetail="true"/>
+
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

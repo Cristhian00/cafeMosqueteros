@@ -59,4 +59,14 @@ public class Socio extends Persona implements Serializable {
         this.ganancias = new ArrayList<>();
         this.compras = new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        return "Socio{" +
+                "fechaVinculacion=" + fechaVinculacion +
+                ", estado=" + estado +
+                ", padre=" + padre +
+                ", jerarquia=" + jerarquia +
+                '}';
+    }
 }

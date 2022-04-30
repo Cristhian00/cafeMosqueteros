@@ -23,7 +23,7 @@
         <ui:insert name="header">
             <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-primary">
                 <div class="container">
-                    <a class="navbar-brand" href="/"><i class="pi pi-dollar"
+                    <a class="navbar-brand" href="/"><i class="pi pi-globe"
                                                         style="font-size: 25px"></i> CAFÉ MOSQUETEROS</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarColor02"
@@ -57,12 +57,13 @@
                             <li class="nav-item"
                                 jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'socio'}">
                                 <a class="nav-link"
-                                   href="/socio/perfilSocio.xhtml">Perfil(#{seguridadBean.persona.primerNombre})</a>
+                                   href="/socio/perfilSocio.xhtml?faces-redirect=true&amp;socio=#{seguridadBean.persona.cedula}"
+                                >Perfil(#{seguridadBean.persona.primerNombre})</a>
                             </li>
                             <li class="nav-item"
                                 jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'noSocio'}">
                                 <a class="nav-link"
-                                   href="/noSocio/perfilNoSocio.xhtml">Perfil(#{seguridadBean.persona.primerNombre})</a>
+                                   href="/noSocio/perfilNoSocio.xhtml?faces-redirect=true&amp;usuario=#{seguridadBean.persona.cedula}">Perfil(#{seguridadBean.persona.primerNombre})</a>
                             </li>
                             <li class="nav-item"
                                 jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
@@ -82,6 +83,9 @@
                         <div class="d-flex">
                             <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Iniciar Sesión"
                                              icon="pi pi-user" iconPos="righ" onclick="PF('login').show()"
+                                             rendered="#{!seguridadBean.autenticado}"/>
+                            <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Registrarse"
+                                             icon="pi pi-user-plus" iconPos="righ" action="#{seguridadBean.registrarNoSocio()}"
                                              rendered="#{!seguridadBean.autenticado}"/>
                             <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Cerrar Sesión"
                                              icon="pi pi-sign-out" iconPos="righ"
@@ -108,11 +112,13 @@
                     </h:panelGrid>
                     <div class="d-flex">
                         <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
-                                         icon="pi pi-sign-in" iconPos="left" styleClass="ui-button-raised ui-button-warning"
+                                         icon="pi pi-sign-in" iconPos="left"
+                                         styleClass="ui-button-raised ui-button-warning"
                                          update="@form"/>
                         <p:commandButton value="Recuperar contraseña" action="#{seguridadBean.recuperar}"
                                          style="margin-left: 30px"
-                                         icon="pi pi-key" iconPos="left" styleClass="ui-button-raised ui-button-warning" update="@form"/>
+                                         icon="pi pi-key" iconPos="left" styleClass="ui-button-raised ui-button-warning"
+                                         update="@form"/>
                     </div>
 
                 </h:form>

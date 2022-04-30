@@ -25,8 +25,8 @@ public class InventarioServicioImp implements InventarioServicio {
         this.productoRepo = productoRepo;
     }
 
-    public boolean existeSocio(Socio s) {
-        Optional<Socio> socio = socioRepo.findById(s.getCedula());
+    public boolean existeSocio(String cedula) {
+        Optional<Socio> socio = socioRepo.findById(cedula);
         return socio.isPresent();
     }
 
@@ -49,7 +49,7 @@ public class InventarioServicioImp implements InventarioServicio {
         if (i.getSocioInventario() == null) {
             throw new Exception("Debe ingresar el socio al que pertenezca el inventario");
         }
-        if (!existeSocio(i.getSocioInventario())) {
+        if (!existeSocio(i.getSocioInventario().getCedula())) {
             throw new Exception("El socio al que se le va a registrar el inventario no se encuentra registrado");
         }
         if (i.getProductoInventario() == null) {
@@ -115,6 +115,17 @@ public class InventarioServicioImp implements InventarioServicio {
 
         inventarioRepo.delete(inventarioRepo.obtenerSocioInventarioAndProductoInventario(s, producto));
         return true;
+    }
+
+    @Override
+    public List<Inventario> listarInventarioSocio(String cedula) throws Exception {
+        if(cedula==null){
+            throw new Exception("Debe ingresar una cédula valida");
+        }
+        if(!existeSocio(cedula)){
+            throw new Exception("EL socio que desea cargar no se encuentra registrado");
+        }
+        return inventarioRepo.obtenerInventariosUsuario(cedula);
     }
 
     @Override

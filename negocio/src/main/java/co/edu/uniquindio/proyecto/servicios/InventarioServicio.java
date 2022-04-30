@@ -13,5 +13,7 @@ public interface InventarioServicio {
 
     boolean eliminarInventario(String cedula, Producto producto) throws Exception;
 
+    List<Inventario> listarInventarioSocio(String cedula) throws Exception;
+
     List<Inventario> listarInventario();
 }

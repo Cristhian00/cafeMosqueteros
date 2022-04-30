@@ -28,6 +28,8 @@ public class NoSocioServicioImp implements NoSocioServicio{
         Optional<NoSocio> ns = noSocioRepo.findByCedula(cedula);
         return ns.isEmpty();
     }
+
+    @Override
     public NoSocio obtenerNoSocio(String cedula) throws Exception {
 
         if (cedula == null) {

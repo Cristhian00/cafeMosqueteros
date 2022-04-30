@@ -17,7 +17,66 @@
         <ui:define name="title">Café Mosqueteros | Perfil</ui:define>
 
         <ui:define name="content">
-            <ui:insert name="contenido">PERFIL SOCIO</ui:insert>
+            <p:panel header="Perfil Socio" style="width: 55%; margin-left: 25% ">
+                <h:form>
+
+                    <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
+
+                        <p:outputLabel for="cedula" value="Cédula"/>
+                        <p:inputText id="cedula" value="#{socioDetalleBean.socio.cedula}" required="true"
+                                     requiredMessage="Debe ingresar un número de cédula" disabled="true"/>
+                        <p:message for="cedula"/>
+
+                        <p:outputLabel for="PrimerNombre" value="Primer nombre"/>
+                        <p:inputText id="PrimerNombre" value="#{socioDetalleBean.socio.primerNombre}"
+                                     required="true" requiredMessage="Debe ingresar el primer nombre"/>
+                        <p:message for="PrimerNombre"/>
+
+                        <p:outputLabel for="SegundoNombre" value="Segundo nombre"/>
+                        <p:inputText id="SegundoNombre" value="#{socioDetalleBean.socio.segundoNombre}"
+                                     requiredMessage="Debe ingresar el segundo nombre"/>
+                        <p:message for="SegundoNombre"/>
+
+                        <p:outputLabel for="PrimerApellido" value="Primer apellido"/>
+                        <p:inputText id="PrimerApellido" value="#{socioDetalleBean.socio.primerApellido}"
+                                     required="true" requiredMessage="Debe ingresar el primer apellido"/>
+                        <p:message for="PrimerApellido"/>
+
+                        <p:outputLabel for="SegundoApellido" value="Segundo apellido"/>
+                        <p:inputText id="SegundoApellido" value="#{socioDetalleBean.socio.segundoApellido}"
+                                     requiredMessage="Debe ingresar el segundo apellido"/>
+                        <p:message for="SegundoApellido"/>
+
+
+                        <p:outputLabel for="Correo" value="Correo"/>
+                        <p:inputText id="Correo" value="#{socioDetalleBean.socio.correo}" required="true"
+                                     requiredMessage="Debe ingresar el correo"/>
+                        <p:message for="Correo"/>
+
+                        <p:outputLabel for="Celular" value="Celular"/>
+                        <p:inputText id="Celular" value="#{socioDetalleBean.socio.celular}" required="true"
+                                     requiredMessage="Debe ingresar el celular"/>
+                        <p:message for="Celular"/>
+
+                        <p:outputLabel for="CedulaPadre" value="Cédula referenciado"/>
+                        <p:inputText id="CedulaPadre" value="#{socioDetalleBean.socio.padre.cedula}" required="true" disabled="true"
+                                     requiredMessage="Debe ingresar la cédula del referenciado"/>
+                        <p:message for="CedulaPadre"/>
+
+                        <p:outputLabel for="contrasenia" value="Contraseña"/>
+                        <p:password id="contrasenia" value="#{socioDetalleBean.socio.contrasenia}" required="true"
+                                    requiredMessage="Debe ingresar una contraseña"/>
+                        <p:message for="contrasenia"/>
+
+                        <p:commandButton styleClass="mt-4" value="Actualizar información" icon="pi pi-user-edit" iconPos="righ"
+                                         action="#{socioDetalleBean.actualizarSocio()}"
+                                         update="@form"/>
+                        <p:commandButton styleClass="mt-4" value="Cancelar Membresia" icon="pi pi-user-minus" iconPos="righ"
+                                         action="#{socioDetalleBean.cancelarMembresia()}"/>
+                        <p:growl for="mensaje-socio" showDetail="true"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
         </ui:define>
 
     </ui:composition>

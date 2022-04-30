@@ -17,7 +17,61 @@
         <ui:define name="title">Café Mosqueteros | Perfil</ui:define>
 
         <ui:define name="content">
-            <ui:insert name="contenido">PERFIL NO SOCIO</ui:insert>
+            <p:panel header="Perfil Socio" style="width: 55%; margin-left: 25% ">
+                <h:form>
+
+                    <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
+
+                        <p:outputLabel for="cedula" value="Cédula"/>
+                        <p:inputText id="cedula" value="#{noSocioDetalleBean.noSocio.cedula}" required="true"
+                                     requiredMessage="Debe ingresar un número de cédula" disabled="true"/>
+                        <p:message for="cedula"/>
+
+                        <p:outputLabel for="PrimerNombre" value="Primer nombre"/>
+                        <p:inputText id="PrimerNombre" value="#{noSocioDetalleBean.noSocio.primerNombre}"
+                                     required="true" requiredMessage="Debe ingresar el primer nombre"/>
+                        <p:message for="PrimerNombre"/>
+
+                        <p:outputLabel for="SegundoNombre" value="Segundo nombre"/>
+                        <p:inputText id="SegundoNombre" value="#{noSocioDetalleBean.noSocio.segundoNombre}"
+                                     requiredMessage="Debe ingresar el segundo nombre"/>
+                        <p:message for="SegundoNombre"/>
+
+                        <p:outputLabel for="PrimerApellido" value="Primer apellido"/>
+                        <p:inputText id="PrimerApellido" value="#{noSocioDetalleBean.noSocio.primerApellido}"
+                                     required="true" requiredMessage="Debe ingresar el primer apellido"/>
+                        <p:message for="PrimerApellido"/>
+
+                        <p:outputLabel for="SegundoApellido" value="Segundo apellido"/>
+                        <p:inputText id="SegundoApellido" value="#{noSocioDetalleBean.noSocio.segundoApellido}"
+                                     requiredMessage="Debe ingresar el segundo apellido"/>
+                        <p:message for="SegundoApellido"/>
+
+
+                        <p:outputLabel for="Correo" value="Correo"/>
+                        <p:inputText id="Correo" value="#{noSocioDetalleBean.noSocio.correo}" required="true"
+                                     requiredMessage="Debe ingresar el correo"/>
+                        <p:message for="Correo"/>
+
+                        <p:outputLabel for="Celular" value="Celular"/>
+                        <p:inputText id="Celular" value="#{noSocioDetalleBean.noSocio.celular}" required="true"
+                                     requiredMessage="Debe ingresar el celular"/>
+                        <p:message for="Celular"/>
+
+                        <p:outputLabel for="contrasenia" value="Contraseña"/>
+                        <p:password id="contrasenia" value="#{noSocioDetalleBean.noSocio.contrasenia}" required="true"
+                                    requiredMessage="Debe ingresar una contraseña"/>
+                        <p:message for="contrasenia"/>
+
+                        <p:commandButton styleClass="mt-4" value="Actualizar información"
+                                         action="#{noSocioDetalleBean.actualizarNoSocio()}"
+                                         update="@form"/>
+                        <p:commandButton styleClass="mt-4" value="Cancelar Membresia" icon="pi pi-user-edit" iconPos="righ"
+                                         action="#{noSocioDetalleBean.cancelarMembresia()}"/>
+                        <p:growl for="mensaje-noSocio" showDetail="true"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
         </ui:define>
 
     </ui:composition>

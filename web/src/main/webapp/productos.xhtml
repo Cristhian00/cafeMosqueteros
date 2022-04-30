@@ -18,6 +18,58 @@
 
         <ui:define name="content">
             <ui:insert name="contenido">PRODUCTOS</ui:insert>
+            <div class="container">
+                <div class="">
+                    <div>
+                        <h:form id="form">
+                            <p:dataView var="producto" value="#{productosBean.productos}" rows="6" paginator="true"
+                                        gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+                                <p:dataViewListItem>
+                                    <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+                                        <p:graphicImage width="150" height="150" url="/uploads/producto.jpg"
+                                                        styleClass="imagen-producto"/>
+                                        <p:outputPanel>
+                                            <h:panelGrid columns="2" cellpadding="5">
+                                                <h:outputText value="Nombre:"/>
+                                                <h:outputText value="#{producto.nombre}" style="font-weight: bold"/>
+                                                <h:outputText value="Descripción:"/>
+                                                <h:outputText value="#{producto.descripcion}"/>
+                                                <h:outputText value="Precio:"/>
+                                                <h:outputText value="#{producto.precioVenta}"/>
+                                            </h:panelGrid>
+                                        </p:outputPanel>
+                                        <p:commandButton value="Ver detalles" action="#{productosBean.verDetalles(producto.idProducto)}"
+                                                         styleClass="ui-button-raised" icon="pi pi-arrow-right"
+                                                         iconPos="right"/>
+                                    </h:panelGrid>
+                                </p:dataViewListItem>
+
+                                <p:dataViewGridItem>
+                                    <div class="card" style="width: 18rem;">
+                                        <img width="250" height="250" src="/uploads/producto.jpg"
+                                             class="card-img-top" alt="..."/>
+                                        <div class="card-body">
+                                            <h5 class="card-title">#{producto.nombre}</h5>
+                                            <h:outputText value="Descripción:"/>
+                                            <p class="card-text">#{producto.descripcion}</p>
+                                            <h:outputText value="Unidades disponibles:"/>
+                                            <p class="card-text">#{producto.unidadesDisponibles}</p>
+                                            <h:outputText value="precio:"/>
+                                            <p class="card-text">#{producto.precioVenta}</p>
+                                            <p:commandButton value="Ver deatalles"
+                                                             action="#{productosBean.verDetalles(producto.idProducto)}"
+                                                             styleClass="ui-button-raised" icon="pi pi-arrow-right"
+                                                             iconPos="right"/>
+                                        </div>
+                                    </div>
+                                </p:dataViewGridItem>
+
+                            </p:dataView>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
         </ui:define>
 
     </ui:composition>

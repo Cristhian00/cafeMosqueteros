@@ -90,4 +90,9 @@ public class ProductoServicioImp implements ProductoServicio {
     public List<Producto> listarProducto() {
         return productoRepo.findAll();
     }
+
+    @Override
+    public List<Producto> listarProductosActivos(){
+        return productoRepo.obetenerProductosActivos();
+    }
 }

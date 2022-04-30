@@ -80,4 +80,8 @@ public class SeguridadBean implements Serializable {
     public String recuperar(){
         return "/recuperarContrasenia.xhtml?faces-redirect=true";
     }
+
+    public String registrarNoSocio(){
+        return "/registrarNoSocio.xhtml?faces-redirect=true";
+    }
 }
