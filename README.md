@@ -3,8 +3,10 @@ El proposito de esta implementación es mostrar la forma en como trabajan las em
 enfocada en la venta de productos a base de café.
 
 # Video del funcionamiento (CAFE MOSQUETEROS)
+En el siguiente video se dara una breve ilustración del funcionamiento de la aplicación de cafe mosquetero
+https://youtu.be/qCMXCMftVlA
 
-
+# Intalación y configuración del entorno
 
 Los framework utilizados en este proyecto son las últimas versiones que hay hasta la fecha , En cuanto a al sistema operativo se recomienda utilizar win 10, y 
 en cuanto explorador se recomienda chrome.
