@@ -42,9 +42,9 @@ public class PersonaServicioImp implements PersonaServicio {
     }
 
     @Override
-    public Persona recuperarContrasenia(String cedula, String email) throws Exception {
+    public Persona recuperarContrasenia(String cedula, String correo) throws Exception {
 
-        Optional<Persona> persona = personaRepo.findByCedulaAndCorreo(cedula,email);
+        Optional<Persona> persona = personaRepo.findByCedulaAndCorreo(cedula,correo);
 
         if(persona.isEmpty()){
             throw new Exception("Los datos de no son correctos o no pertenecen a un usuario registrado");
