@@ -61,6 +61,8 @@
                                                              action="#{productosBean.verDetalles(producto.idProducto)}"
                                                              styleClass="ui-button-raised" icon="pi pi-arrow-right"
                                                              iconPos="right"/>
+                                            <p:commandButton value="Agregar al carrito"
+                                                             action="#{seguridadBean.agregarAlCarrito(producto)}" />
                                         </div>
                                     </div>
                                 </p:dataViewGridItem>

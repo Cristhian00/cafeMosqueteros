@@ -69,13 +69,18 @@
                                          update="@form"/>
                         <p:growl for="mensaje-producto" showDetail="true"/>
 
-                        <p:commandButton  styleClass="mt-4" value="Eliminar Producto"
-                                          action="#{productoDetalleBean.eliminarProducto()}"
-                                          update="@form"/>
+                        <p:commandButton  styleClass="mt-4 ui-button-danger" value="Eliminar Producto" update="@form" action="#{productoDetalleBean.eliminarProducto()}" >
+                            <p:confirm header="Alerta" message="¿Está seguro de borrar el producto?"/>
+                        </p:commandButton>
                         <p:growl for="mensaje-producto" showDetail="true"/>
 
 
                     </h:panelGrid>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+                    </p:confirmDialog>
 
                 </h:form>
             </p:panel>

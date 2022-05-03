@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @Component
 @Scope("session")
@@ -22,6 +24,8 @@ public class SeguridadBean implements Serializable {
 
     @Autowired
     private AdministradorServicioImp adm;
+
+    private ArrayList<Producto> carrito;
 
     @Getter
     @Setter
@@ -46,6 +50,26 @@ public class SeguridadBean implements Serializable {
     @Getter
     @Setter
     private String rol;
+
+    @PostConstruct
+    public void inicializar(){
+        carrito = new ArrayList<>();
+    }
+
+    public boolean esActivo(int numero){
+        String viewId = FacesContext.getCurrentInstance().getViewRoot().getViewId().replace(".xhtml", "");
+        if( numero == 1 && viewId.equals("/index")){
+            return true;
+        }else if( numero == 2 && viewId.equals("/productos")){
+            return true;
+        }
+        return false;
+    }
+
+    public void agregarAlCarrito(Producto producto){
+        carrito.add(producto);
+        System.out.println(carrito);
+    }
 
     public String iniciarSesion() {
 

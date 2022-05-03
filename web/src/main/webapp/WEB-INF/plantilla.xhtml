@@ -33,18 +33,18 @@
                     <div class="collapse navbar-collapse" id="navbarColor02">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                                <a class="#{seguridadBean.esActivo(1) ? 'nav-link active' : 'nav-link'}" aria-current="page" href="/">Inicio</a>
                             </li>
                             <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
-                                <a class="nav-link active" aria-current="page"
+                                <a class="nav-link " aria-current="page"
                                    href="/casosDeExito.xhtml">Casos de Éxito</a>
                             </li>
                             <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
-                                <a class="nav-link active" aria-current="page"
+                                <a class="nav-link " aria-current="page"
                                    href="/sobreNosotros.xhtml">Sobre Nosotros</a>
                             </li>
                             <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
-                                <a class="nav-link active" aria-current="page" href="/productos.xhtml">Productos</a>
+                                <a class="#{seguridadBean.esActivo(2) ? 'nav-link active' : 'nav-link'}" aria-current="page" href="/productos.xhtml">Productos</a>
                             </li>
                             <li class="nav-item"
                                 jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
@@ -80,17 +80,19 @@
                                 <a class="nav-link">Perfil(#{seguridadBean.administrador.correo})</a>
                             </li>
                         </ul>
-                        <div class="d-flex">
-                            <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Iniciar Sesión"
-                                             icon="pi pi-user" iconPos="righ" onclick="PF('login').show()"
-                                             rendered="#{!seguridadBean.autenticado}"/>
-                            <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Registrarse"
-                                             icon="pi pi-user-plus" iconPos="righ" action="#{seguridadBean.registrarNoSocio()}"
-                                             rendered="#{!seguridadBean.autenticado}"/>
-                            <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Cerrar Sesión"
-                                             icon="pi pi-sign-out" iconPos="righ"
-                                             action="#{seguridadBean.cerrarSesion()}"
-                                             rendered="#{seguridadBean.autenticado}"/>
+                        <div id="contenedor-botones" class="d-flex">
+                            <h:form>
+                                <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Iniciar Sesión"
+                                                 icon="pi pi-user" iconPos="righ" onclick="PF('login').show()"
+                                                 rendered="#{!seguridadBean.autenticado}"/>
+                                <p:commandButton styleClass="ui-button-raised " value="Registrarse"
+                                                 icon="pi pi-user-plus" iconPos="righ" action="#{seguridadBean.registrarNoSocio()}"
+                                                 rendered="#{!seguridadBean.autenticado}"/>
+                                <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Cerrar Sesión"
+                                                 icon="pi pi-sign-out" iconPos="righ"
+                                                 action="#{seguridadBean.cerrarSesion()}"
+                                                 rendered="#{seguridadBean.autenticado}"/>
+                            </h:form>
                         </div>
                     </div>
                 </div>
@@ -104,7 +106,7 @@
                         <p:message for="email_login"/>
 
                         <p:outputLabel for="password_login" value="Contraseña:"/>
-                        <p:password id="password_login" value="#{seguridadBean.contrasenia}" required="true"/>
+                        <p:password id="password_login" value="#{seguridadBean.contrasenia}" required="true" redisplay="true"/>
                         <p:message for="password_login"/>
 
 
@@ -113,11 +115,10 @@
                     <div class="d-flex">
                         <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
                                          icon="pi pi-sign-in" iconPos="left"
-                                         styleClass="ui-button-raised ui-button-warning"
                                          update="@form"/>
                         <p:commandButton value="Recuperar contraseña" action="#{seguridadBean.recuperar}"
                                          style="margin-left: 30px"
-                                         icon="pi pi-key" iconPos="left" styleClass="ui-button-raised ui-button-warning"
+                                         icon="pi pi-key" iconPos="left"
                                          update="@form"/>
                     </div>
 
