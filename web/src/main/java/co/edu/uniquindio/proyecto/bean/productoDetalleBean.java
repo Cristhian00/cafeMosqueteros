@@ -54,6 +54,7 @@ public class productoDetalleBean implements Serializable {
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Alerta", "Se actualizo con exito");
             FacesContext.getCurrentInstance().addMessage("mensaje-producto", msg);
+
         } catch (Exception e) {
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Alerta", e.getMessage());
@@ -67,6 +68,7 @@ public class productoDetalleBean implements Serializable {
             productoServicio.eliminarProducto(producto.getIdProducto());
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Alerta", "Se elimino con exito");
+            System.out.print("Si entre");
             FacesContext.getCurrentInstance().addMessage("mensaje-producto", msg);
             return "/administrador/productos.xhtml?faces-redirect=true";
         } catch (Exception e) {
