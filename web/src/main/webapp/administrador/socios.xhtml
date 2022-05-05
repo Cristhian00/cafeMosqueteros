@@ -14,12 +14,87 @@
 <h:body>
     <ui:composition template="/WEB-INF/plantilla.xhtml">
 
-        <ui:define name="title">Café Mosqueteros | Socios</ui:define>
+        <ui:define name="title">Café Mosqueteros | Socios y Usuarios</ui:define>
 
         <ui:define name="content">
-            <ui:insert name="contenido">SOCIOS</ui:insert>
-        </ui:define>
+            <div class="card">
+                <h:form>
+                    <div class="p-d-flex p-jc-between">
+                        <div>
+                            <h5>Descargar reporte</h5>
+                            <p:commandButton value="XLSX" styleClass="p-mr-2 p-mb-2">
+                                <p:dataExporter type="xlsxstream" target="tbl" fileName="socios"/>
+                            </p:commandButton>
 
+                            <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+                                <p:dataExporter type="pdf" target="tbl" fileName="socios"/>
+                            </p:commandButton>
+
+                            <p:commandButton value="XML" styleClass="p-mr-2 p-mb-2">
+                                <p:dataExporter type="xml" target="tbl" fileName="socios"/>
+                            </p:commandButton>
+
+                            <p:commandButton value="TXT" styleClass="p-mr-2 p-mb-2">
+                                <p:dataExporter type="txt" target="tbl" fileName="socios"
+                                                exporter="#{sociosBean.textExporter}"/>
+                            </p:commandButton>
+                        </div>
+                    </div>
+
+                    <p:dataTable id="tbl" var="socio" value="#{sociosBean.socios}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="10" styleClass="p-mt-2">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cédula"/>
+                            </f:facet>
+                            <h:outputText value="#{socio.cedula}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre(s)"/>
+                            </f:facet>
+                            <h:outputText
+                                    value="#{socio.primerNombre} #{socio.segundoNombre!=null ? socio.segundoNombre : ''}"/>
+                        </p:column>
+
+                        <p:column styleClass="p-text-center">
+                            <f:facet name="header">
+                                <h:outputText value="Apellido(s)"/>
+                            </f:facet>
+                            <h:outputText
+                                    value="#{socio.primerApellido} #{socio.segundoApellido!=null ? socio.segundoApellido : ''}"/>
+                        </p:column>
+
+                        <p:column styleClass="p-text-right">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha vinculación"/>
+                            </f:facet>
+                            <h:outputText value="#{socio.fechaVinculacion}"/>
+                        </p:column>
+
+                        <p:column styleClass="p-text-right">
+                            <f:facet name="header">
+                                <h:outputText value="Correo"/>
+                            </f:facet>
+                            <h:outputText value="#{socio.correo}">
+                                <f:convertNumber type="currency"/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column styleClass="p-text-right">
+                            <f:facet name="header">
+                                <h:outputText value="Estado"/>
+                            </f:facet>
+                            <h:outputText value="#{socio.estado.name()}">
+                                <f:convertNumber type="currency"/>
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
+        </ui:define>
     </ui:composition>
 
 </h:body>

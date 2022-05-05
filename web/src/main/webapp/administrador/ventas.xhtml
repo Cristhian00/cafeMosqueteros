@@ -17,7 +17,71 @@
         <ui:define name="title">Café Mosqueteros | Ventas</ui:define>
 
         <ui:define name="content">
-            <ui:insert name="contenido">VENTAS</ui:insert>
+            <div class="card">
+                <h:form>
+                    <div class="p-d-flex p-jc-between">
+                        <div>
+                            <h5>Descargar reporte</h5>
+                            <p:commandButton value="XLSX" styleClass="p-mr-2 p-mb-2">
+                                <p:dataExporter type="xlsxstream" target="tbl" fileName="ventas"/>
+                            </p:commandButton>
+
+                            <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+                                <p:dataExporter type="pdf" target="tbl" fileName="ventas"/>
+                            </p:commandButton>
+
+                            <p:commandButton value="XML" styleClass="p-mr-2 p-mb-2">
+                                <p:dataExporter type="xml" target="tbl" fileName="ventas"/>
+                            </p:commandButton>
+
+                            <p:commandButton value="TXT" styleClass="p-mr-2 p-mb-2">
+                                <p:dataExporter type="txt" target="tbl" fileName="ventas" exporter="#{comprasBean.textExporter}"/>
+                            </p:commandButton>
+                        </div>
+                    </div>
+
+                    <p:dataTable id="tbl" var="compra" value="#{comprasBean.compras}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="10" styleClass="p-mt-2">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{compra.idCompra}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha"/>
+                            </f:facet>
+                            <h:outputText value="#{compra.fecha}"/>
+                        </p:column>
+
+                        <p:column  styleClass="p-text-center">
+                            <f:facet name="header">
+                                <h:outputText value="Cédula Socio"/>
+                            </f:facet>
+                            <h:outputText value="#{compra.socioCompra.cedula}"/>
+                        </p:column>
+
+                        <p:column styleClass="p-text-right">
+                            <f:facet name="header">
+                                <h:outputText value="Estado"/>
+                            </f:facet>
+                            <h:outputText value="Definir"/>
+                        </p:column>
+
+                        <p:column styleClass="p-text-right">
+                            <f:facet name="header">
+                                <h:outputText value="Total"/>
+                            </f:facet>
+                            <h:outputText value="#{compra.total}">
+                                <f:convertNumber type="currency" />
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
         </ui:define>
 
     </ui:composition>

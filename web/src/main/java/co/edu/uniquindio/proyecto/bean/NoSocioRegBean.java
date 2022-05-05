@@ -23,6 +23,10 @@ public class NoSocioRegBean implements Serializable {
     @Setter
     private NoSocio noSocio;
 
+    @Getter
+    @Setter
+    private String contrasenia;
+
     public NoSocioRegBean(NoSocioServicio noSocioServicio) {
         this.noSocioServicio = noSocioServicio;
     }
@@ -36,6 +40,9 @@ public class NoSocioRegBean implements Serializable {
 
         FacesMessage msg;
         try {
+            if (contrasenia != null && contrasenia != noSocio.getContrasenia()) {
+                throw new Exception("Las contraseñas no coinciden");
+            }
             noSocioServicio.registrarNoSocio(noSocio);
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Alerta", "El registro fue exitoso");

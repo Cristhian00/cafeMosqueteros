@@ -17,7 +17,7 @@
         <ui:define name="title">Café Mosqueteros | Trabaja con nosotros</ui:define>
 
         <ui:define name="content">
-            <p:panel header="Registrar Socio" style="width: 55%; margin-left: 25% ">
+            <p:panel header="REGISTRARME COMO SOCIO" style="width: 55%; margin-left: 25% ">
                 <h:form>
 
                     <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
@@ -33,8 +33,7 @@
                         <p:message for="PrimerNombre"/>
 
                         <p:outputLabel for="SegundoNombre" value="Segundo nombre"/>
-                        <p:inputText id="SegundoNombre" value="#{socioRegBean.socio.segundoNombre}"
-                                     requiredMessage="Debe ingresar el segundo nombre"/>
+                        <p:inputText id="SegundoNombre" value="#{socioRegBean.socio.segundoNombre}"/>
                         <p:message for="SegundoNombre"/>
 
                         <p:outputLabel for="PrimerApellido" value="Primer apellido"/>
@@ -43,8 +42,7 @@
                         <p:message for="PrimerApellido"/>
 
                         <p:outputLabel for="SegundoApellido" value="Segundo apellido"/>
-                        <p:inputText id="SegundoApellido" value="#{socioRegBean.socio.segundoApellido}"
-                                     requiredMessage="Debe ingresar el segundo apellido"/>
+                        <p:inputText id="SegundoApellido" value="#{socioRegBean.socio.segundoApellido}"/>
                         <p:message for="SegundoApellido"/>
 
 
@@ -67,6 +65,11 @@
                         <p:password id="contrasenia_usuario" value="#{socioRegBean.socio.contrasenia}" required="true"
                                     requiredMessage="Debe ingresar una contraseña"/>
                         <p:message for="contrasenia_usuario"/>
+
+                        <p:outputLabel for="contrasenia_usuario" value="Confirmar contraseña"/>
+                        <p:password id="contrasenia_usuario_confirm" value="#{socioRegBean.contrasenia}" required="true"
+                                    requiredMessage="Debe confirmar la contraseña"/>
+                        <p:message for="contrasenia_usuario_confirm"/>
 
                         <p:commandButton styleClass="mt-4" value="Registrar Socio"
                                          action="#{socioRegBean.registrarSocio()}"

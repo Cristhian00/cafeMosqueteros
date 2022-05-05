@@ -20,6 +20,10 @@ public class SocioRegBean implements Serializable {
 
     @Getter
     @Setter
+    private String contrasenia;
+
+    @Getter
+    @Setter
     private Socio socio;
 
     @Getter
@@ -42,6 +46,9 @@ public class SocioRegBean implements Serializable {
             Socio padre = socioServicio.obtenerSocio(cedulaPadre);
             if (padre != null) {
                 try {
+                    if(contrasenia!=null && contrasenia!=socio.getContrasenia()){
+                        throw new Exception("Las contraseñas no coinciden");
+                    }
                     socioServicio.registrarSocio(socio);
                     msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "Alerta", "El registro fue exitoso");

@@ -16,7 +16,7 @@
         <ui:define name="title">Café Mosqueteros | Registrar Usuario</ui:define>
 
         <ui:define name="content">
-            <p:panel header="Registro" style="width: 55%; margin-left: 25% ">
+            <p:panel header="REGISTRARME" style="width: 55%; margin-left: 25% ">
                 <h:form>
 
                     <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
@@ -32,8 +32,7 @@
                         <p:message for="PrimerNombre"/>
 
                         <p:outputLabel for="SegundoNombre" value="Segundo nombre"/>
-                        <p:inputText id="SegundoNombre" value="#{noSocioRegBean.noSocio.segundoNombre}"
-                                     requiredMessage="Debe ingresar el segundo nombre"/>
+                        <p:inputText id="SegundoNombre" value="#{noSocioRegBean.noSocio.segundoNombre}"/>
                         <p:message for="SegundoNombre"/>
 
                         <p:outputLabel for="PrimerApellido" value="Primer apellido"/>
@@ -42,8 +41,7 @@
                         <p:message for="PrimerApellido"/>
 
                         <p:outputLabel for="SegundoApellido" value="Segundo apellido"/>
-                        <p:inputText id="SegundoApellido" value="#{noSocioRegBean.noSocio.segundoApellido}"
-                                     required="true" requiredMessage="Debe ingresar el segundo apellido"/>
+                        <p:inputText id="SegundoApellido" value="#{noSocioRegBean.noSocio.segundoApellido}"/>
                         <p:message for="SegundoApellido"/>
 
 
@@ -58,9 +56,16 @@
                         <p:message for="Celular"/>
 
                         <p:outputLabel for="contrasenia_usuario" value="Contraseña"/>
-                        <p:password id="contrasenia_usuario" value="#{noSocioRegBean.noSocio.contrasenia}" required="true"
+                        <p:password id="contrasenia_usuario" value="#{noSocioRegBean.noSocio.contrasenia}"
+                                    required="true"
                                     requiredMessage="Debe ingresar una contraseña"/>
                         <p:message for="contrasenia_usuario"/>
+
+                        <p:outputLabel for="contrasenia_usuario" value="Confirmar contraseña"/>
+                        <p:password id="contrasenia_usuario_confirm" value="#{noSocioRegBean.contrasenia}"
+                                    required="true"
+                                    requiredMessage="Debe confirmar la contraseña"/>
+                        <p:message for="contrasenia_usuario_confirm"/>
 
                         <p:commandButton styleClass="mt-4" value="Registrar Socio"
                                          action="#{noSocioRegBean.registrarNoSocio()}"
