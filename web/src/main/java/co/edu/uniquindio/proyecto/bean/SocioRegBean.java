@@ -46,7 +46,7 @@ public class SocioRegBean implements Serializable {
             Socio padre = socioServicio.obtenerSocio(cedulaPadre);
             if (padre != null) {
                 try {
-                    if(contrasenia!=null && contrasenia!=socio.getContrasenia()){
+                    if(contrasenia!=null && !contrasenia.equals(socio.getContrasenia())){
                         throw new Exception("Las contraseñas no coinciden");
                     }
                     socioServicio.registrarSocio(socio);

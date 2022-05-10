@@ -21,142 +21,142 @@
 <h:body>
     <div id="header">
         <ui:insert name="header">
-            <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark">
-                <div class="container">
-                    <a class="navbar-brand" href="/"><i class="pi pi-prime"
-                                                        style="font-size: 25px"></i> CAFÉ MOSQUETEROS</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarColor02"
-                            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarColor02">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="#{seguridadBean.esActivo(1) ? 'nav-link active' : 'nav-link'}"
-                                   aria-current="page" href="/">Inicio</a>
-                            </li>
-                            <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
-                                <a class="#{seguridadBean.esActivo(3) ? 'nav-link active' : 'nav-link'}"
-                                   aria-current="page"
-                                   href="/casosDeExito.xhtml">Casos de Éxito</a>
-                            </li>
-                            <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
-                                <a class="#{seguridadBean.esActivo(5) ? 'nav-link active' : 'nav-link'}"
-                                   aria-current="page"
-                                   href="/sobreNosotros.xhtml">Sobre Nosotros</a>
-                            </li>
-                            <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
-                                <a class="#{seguridadBean.esActivo(2) ? 'nav-link active' : 'nav-link'}"
-                                   aria-current="page" href="/productos.xhtml">Productos</a>
-                            </li>
-                            <li class="nav-item"
-                                jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
-                                <a class="#{seguridadBean.esActivo(7) ? 'nav-link active' : 'nav-link'}"
-                                   href="/administrador/productos.xhtml">Productos</a>
-                            </li>
-                            <li class="nav-item"
-                                jsf:rendered="#{!seguridadBean.autenticado or seguridadBean.rol == 'noSocio'}">
-                                <a class="#{seguridadBean.esActivo(6) ? 'nav-link active' : 'nav-link'}"
-                                   href="/trabajaConNosotros.xhtml">Trabaja con Nosotros</a>
-                            </li>
-                            <li class="nav-item"
-                                jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'socio'}">
-                                <a class="#{seguridadBean.esActivo(11) ? 'nav-link active' : 'nav-link'}"
-                                   href="/socio/perfilSocio.xhtml?faces-redirect=true&amp;socio=#{seguridadBean.persona.cedula}"
-                                >Perfil(#{seguridadBean.persona.primerNombre})</a>
-                            </li>
-                            <li class="nav-item"
-                                jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'noSocio'}">
-                                <a class="#{seguridadBean.esActivo(10) ? 'nav-link active' : 'nav-link'}"
-                                   href="/noSocio/perfilNoSocio.xhtml?faces-redirect=true&amp;usuario=#{seguridadBean.persona.cedula}">Perfil(#{seguridadBean.persona.primerNombre})</a>
-                            </li>
-                            <li class="nav-item"
-                                jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
-                                <a class="#{seguridadBean.esActivo(8) ? 'nav-link active' : 'nav-link'}"
-                                   href="/administrador/socios.xhtml">Socios</a>
-                            </li>
-                            <li class="nav-item"
-                                jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
-                                <a class="#{seguridadBean.esActivo(9) ? 'nav-link active' : 'nav-link'}"
-                                   href="/administrador/ventas.xhtml">Ventas</a>
-                            </li>
-                            <li class="nav-item"
-                                jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
-                                <a class="nav-link">Perfil(#{seguridadBean.administrador.correo})</a>
-                            </li>
-                        </ul>
-                        <div id="contenedor-botones" class="d-flex">
-                            <h:form>
-                                <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Iniciar Sesión"
-                                                 icon="pi pi-user" iconPos="righ" onclick="PF('login').show()"
-                                                 rendered="#{!seguridadBean.autenticado}"/>
-                                <p:commandButton styleClass="ui-button-raised " value="Registrarse"
-                                                 icon="pi pi-user-plus" iconPos="righ" style="margin-left: 5px"
-                                                 action="#{seguridadBean.registrarNoSocio()}"
-                                                 rendered="#{!seguridadBean.autenticado}"/>
-                                <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Cerrar Sesión"
-                                                 icon="pi pi-sign-out" iconPos="righ"
-                                                 action="#{seguridadBean.cerrarSesion()}"
-                                                 rendered="#{seguridadBean.autenticado}"/>
+        <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="pi pi-prime"
+                                                style="font-size: 25px"></i> CAFÉ MOSQUETEROS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarColor02"
+                    aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="#{seguridadBean.esActivo(1) ? 'nav-link active' : 'nav-link'}"
+                           aria-current="page" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
+                        <a class="#{seguridadBean.esActivo(3) ? 'nav-link active' : 'nav-link'}"
+                           aria-current="page"
+                           href="/casosDeExito.xhtml">Casos de Éxito</a>
+                    </li>
+                    <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
+                        <a class="#{seguridadBean.esActivo(5) ? 'nav-link active' : 'nav-link'}"
+                           aria-current="page"
+                           href="/sobreNosotros.xhtml">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item" jsf:rendered="#{seguridadBean.rol != 'administrador'}">
+                        <a class="#{seguridadBean.esActivo(2) ? 'nav-link active' : 'nav-link'}"
+                           aria-current="page" href="/productos.xhtml">Productos</a>
+                    </li>
+                    <li class="nav-item"
+                        jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
+                        <a class="#{seguridadBean.esActivo(7) ? 'nav-link active' : 'nav-link'}"
+                           href="/administrador/productos.xhtml">Productos</a>
+                    </li>
+                    <li class="nav-item"
+                        jsf:rendered="#{!seguridadBean.autenticado or seguridadBean.rol == 'noSocio'}">
+                        <a class="#{seguridadBean.esActivo(6) ? 'nav-link active' : 'nav-link'}"
+                           href="/trabajaConNosotros.xhtml">Trabaja con Nosotros</a>
+                    </li>
+                    <li class="nav-item"
+                        jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'socio'}">
+                        <a class="#{seguridadBean.esActivo(11) ? 'nav-link active' : 'nav-link'}"
+                           href="/socio/perfilSocio.xhtml?faces-redirect=true&amp;socio=#{seguridadBean.persona.cedula}"
+                        >Perfil(#{seguridadBean.persona.primerNombre})</a>
+                    </li>
+                    <li class="nav-item"
+                        jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'noSocio'}">
+                        <a class="#{seguridadBean.esActivo(10) ? 'nav-link active' : 'nav-link'}"
+                           href="/noSocio/perfilNoSocio.xhtml?faces-redirect=true&amp;usuario=#{seguridadBean.persona.cedula}">Perfil(#{seguridadBean.persona.primerNombre})</a>
+                    </li>
+                    <li class="nav-item"
+                        jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
+                        <a class="#{seguridadBean.esActivo(8) ? 'nav-link active' : 'nav-link'}"
+                           href="/administrador/socios.xhtml">Socios</a>
+                    </li>
+                    <li class="nav-item"
+                        jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
+                        <a class="#{seguridadBean.esActivo(9) ? 'nav-link active' : 'nav-link'}"
+                           href="/administrador/ventas.xhtml">Ventas</a>
+                    </li>
+                    <li class="nav-item"
+                        jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 'administrador'}">
+                        <a class="nav-link">Perfil(#{seguridadBean.administrador.correo})</a>
+                    </li>
+                </ul>
+                <div id="contenedor-botones" class="d-flex">
+                    <h:form>
+                        <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Iniciar Sesión"
+                                         icon="pi pi-user" iconPos="righ" onclick="PF('login').show()"
+                                         rendered="#{!seguridadBean.autenticado}"/>
+                        <p:commandButton styleClass="ui-button-raised " value="Registrarse"
+                                         icon="pi pi-user-plus" iconPos="righ" style="margin-left: 5px"
+                                         action="#{seguridadBean.registrarNoSocio()}"
+                                         rendered="#{!seguridadBean.autenticado}"/>
+                        <p:commandButton styleClass="ui-button-raised ui-button-warning" value="Cerrar Sesión"
+                                         icon="pi pi-sign-out" iconPos="righ"
+                                         action="#{seguridadBean.cerrarSesion()}"
+                                         rendered="#{seguridadBean.autenticado}"/>
 
-                                <a href="/carritoCompras.xhtml">
-                                    <p:badge value="#{seguridadBean.carrito.size()}" severity="danger">
-                                        <i class="pi pi-shopping-cart p-ml-4"
-                                           style="font-size: 2rem; color: white; margin-left: 5px"
-                                           jsf:rendered="#{seguridadBean.rol != 'administrador'}"/>
-                                    </p:badge>
-                                </a>
-
-                            </h:form>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <p:dialog header="Iniciar sesión" showEffect="fade" widgetVar="login" modal="true" styleClass="ql-color-red"
-                      rendered="#{!seguridadBean.autenticado}">
-                <h:form rendered="#{!seguridadBean.autenticado}">
-                    <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
-                        <p:outputLabel for="email_login" value="Correo electronico:"/>
-                        <p:inputText id="email_login" value="#{seguridadBean.correo}" required="true"/>
-                        <p:message for="email_login"/>
-
-                        <p:outputLabel for="password_login" value="Contraseña:"/>
-                        <p:password id="password_login" value="#{seguridadBean.contrasenia}" required="true"
-                                    redisplay="true"/>
-                        <p:message for="password_login"/>
-
-
-                        <p:growl for="mensaje-sesion" showDetail="true"/>
-                    </h:panelGrid>
-                    <div class="d-flex">
-                        <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
-                                         icon="pi pi-sign-in" iconPos="left"
-                                         update="@form"/>
-                        <p:commandButton value="Recuperar contraseña" action="#{seguridadBean.recuperar}"
-                                         style="margin-left: 30px"
-                                         icon="pi pi-key" iconPos="left"
-                                         update="@form"/>
-                    </div>
+                        <a href="/carritoCompras.xhtml">
+                            <p:badge value="#{seguridadBean.carrito.size()}" severity="danger">
+                            <i class="pi pi-shopping-cart p-ml-4"
+                               style="font-size: 2rem; color: white; margin-left: 5px"
+                               jsf:rendered="#{seguridadBean.rol != 'administrador'}"/>
+                        </p:badge>
+                    </a>
 
                 </h:form>
-            </p:dialog>
-        </ui:insert>
-    </div>
-    <div id="content" class="container mt-4 mb-4">
-        <ui:insert name="content"></ui:insert>
-    </div>
-    <div id="footer" class="footer">
-        <ui:insert name="footer">
-            <div class="py-4 bg-light" align="center">
-                <div class="justify-content-center">
-                    <div class="col-10">
-                        <span>Universidad del Quindío - Ingeniería de software lll - 2022</span>
-                        <p class="float-end"><a href="#">Back to top</a></p>
-                    </div>
-                </div>
             </div>
-        </ui:insert>
+        </div>
     </div>
-</h:body>
-</html>
+</nav>
+<p:dialog header="Iniciar sesión" showEffect="fade" widgetVar="login" modal="true" styleClass="ql-color-red"
+          rendered="#{!seguridadBean.autenticado}">
+    <h:form rendered="#{!seguridadBean.autenticado}">
+        <h:panelGrid columns="3" cellpadding="5" style="margin: auto">
+            <p:outputLabel for="email_login" value="Correo electronico:"/>
+            <p:inputText id="email_login" value="#{seguridadBean.correo}" required="true"/>
+            <p:message for="email_login"/>
+
+            <p:outputLabel for="password_login" value="Contraseña:"/>
+            <p:password id="password_login" value="#{seguridadBean.contrasenia}" required="true"
+                        redisplay="true"/>
+            <p:message for="password_login"/>
+
+
+            <p:growl for="mensaje-sesion" showDetail="true"/>
+        </h:panelGrid>
+        <div class="d-flex">
+            <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}"
+                             icon="pi pi-sign-in" iconPos="left"
+                             update="@form"/>
+            <p:commandButton value="Recuperar contraseña" action="#{seguridadBean.recuperar}"
+                             style="margin-left: 30px"
+                             icon="pi pi-key" iconPos="left"
+                             update="@form"/>
+        </div>
+
+    </h:form>
+</p:dialog>
+</ui:insert>
+        </div>
+<div id="content" class="container mt-4 mb-4">
+<ui:insert name="content"></ui:insert>
+</div>
+<div id="footer" class="footer">
+<ui:insert name="footer">
+    <div class="py-4 bg-light" align="center">
+        <div class="justify-content-center">
+            <div class="col-10">
+                <span>Universidad del Quindío - Ingeniería de software lll - 2022</span>
+                <p class="float-end"><a href="#">Back to top</a></p>
+            </div>
+        </div>
+    </div>
+</ui:insert>
+</div>
+        </h:body>
+        </html>

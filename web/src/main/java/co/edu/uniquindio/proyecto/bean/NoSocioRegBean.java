@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
+import java.time.Clock;
 
 @Component
 @RequestScope
@@ -40,7 +41,7 @@ public class NoSocioRegBean implements Serializable {
 
         FacesMessage msg;
         try {
-            if (contrasenia != null && contrasenia != noSocio.getContrasenia()) {
+            if (contrasenia != null && !contrasenia.equals(noSocio.getContrasenia())) {
                 throw new Exception("Las contraseñas no coinciden");
             }
             noSocioServicio.registrarNoSocio(noSocio);
