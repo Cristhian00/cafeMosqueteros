@@ -88,7 +88,6 @@ public class SeguridadBean implements Serializable {
 
     public void agregarAlCarrito(Producto producto) {
         carrito.add(producto);
-        System.out.println(carrito);
     }
 
     public String iniciarSesion() {
