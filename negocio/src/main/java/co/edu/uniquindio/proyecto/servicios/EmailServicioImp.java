@@ -17,6 +17,7 @@ public class EmailServicioImp implements EmailServicio, Serializable {
     public void SendSimpleMessage(String to, String asunto, String text) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom("software3proyecto@gmail.com");
         msg.setTo(to);
         msg.setSubject(asunto);
         msg.setText(text);
