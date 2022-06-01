@@ -64,9 +64,9 @@ public class Socio extends Persona implements Serializable {
     public String toString() {
         return "Socio{" +
                 "fechaVinculacion=" + fechaVinculacion +
-                ", estado=" + estado +
-                ", padre=" + padre +
-                ", jerarquia=" + jerarquia +
+                ", estado=" + estado.name() +
+                ", padre=" + padre.getCedula() +
+                ", jerarquia=" + jerarquia.getNombre() +
                 '}';
     }
 }

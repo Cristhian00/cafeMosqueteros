@@ -51,4 +51,24 @@ public class Compra implements Serializable {
         this.detalleCompras = new ArrayList<>();
         this.estados = new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        if (socioCompra != null) {
+            return "Compra{" +
+                    "idCompra=" + idCompra +
+                    ", fecha=" + fecha +
+                    ", total=" + total +
+                    ", socioCompra=" + socioCompra.getCedula() +
+                    '}';
+        } else if (noSocioCompra != null) {
+            return "Compra{" +
+                    "idCompra=" + idCompra +
+                    ", fecha=" + fecha +
+                    ", total=" + total +
+                    ", noSocioCompra=" + noSocioCompra.getCedula() +
+                    '}';
+        }
+        return null;
+    }
 }

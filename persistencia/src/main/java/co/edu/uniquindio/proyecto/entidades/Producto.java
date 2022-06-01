@@ -64,4 +64,17 @@ public class Producto implements Serializable {
         this.tipoProducto = tipoProducto;
         this.pedidos = new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "idProducto=" + idProducto +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precioVenta=" + precioVenta +
+                ", precioCompra=" + precioCompra +
+                ", unidadesDisponibles=" + unidadesDisponibles +
+                ", tipoProducto=" + tipoProducto.getDescripcion() +
+                '}';
+    }
 }

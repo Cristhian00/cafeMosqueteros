@@ -132,7 +132,6 @@ public abstract class Persona implements Serializable {
                 ", segundoApellido='" + segundoApellido + '\'' +
                 ", correo='" + correo + '\'' +
                 ", celular='" + celular + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
                 '}';
     }
 }
