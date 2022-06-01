@@ -45,7 +45,7 @@ public class CompraTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra c = new Compra(new Date(), 90000, socio, null);
+        Compra c = new Compra(new Date(), 90000, socio, null, EstadoCompra.PENDIENTE);
         Compra guardada = compraRepo.save(c);
 
         //Comprobamos que si haya quedado
@@ -65,7 +65,7 @@ public class CompraTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra c = new Compra(new Date(), 90000, socio, null);
+        Compra c = new Compra(new Date(), 90000, socio, null, EstadoCompra.PENDIENTE);
         //Primero lo guardamos
         Compra guardada = compraRepo.save(c);
 
@@ -89,7 +89,7 @@ public class CompraTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra c = new Compra(new Date(), 90000, socio, null);
+        Compra c = new Compra(new Date(), 90000, socio, null, EstadoCompra.PENDIENTE);
         //Primero lo guardamos
         Compra guardada = compraRepo.save(c);
 

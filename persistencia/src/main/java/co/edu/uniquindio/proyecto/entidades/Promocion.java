@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class Promocion implements Serializable {
     @Column(name = "decuento")
     private double descuento;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "promocionJerarquia")
     private List<Jerarquia> jerarquias;
 

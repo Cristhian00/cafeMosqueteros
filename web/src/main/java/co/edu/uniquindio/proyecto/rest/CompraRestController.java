@@ -59,8 +59,7 @@ public class CompraRestController {
         try {
             compraServicio.eliminarCompra(id);
             return ResponseEntity.status(200).body(new Mensaje("La compra se elimino correctamente"));
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(new Mensaje(e.getMessage()));
+        } catch (Exception e) {            return ResponseEntity.status(500).body(new Mensaje(e.getMessage()));
         }
     }
 }

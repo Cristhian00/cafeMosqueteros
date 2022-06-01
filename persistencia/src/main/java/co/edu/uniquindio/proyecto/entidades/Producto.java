@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,15 +40,18 @@ public class Producto implements Serializable {
     @Column(name = "unidades_disponibles")
     private int unidadesDisponibles;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "productoInventario")
     private List<Inventario> inventarios;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "productoDetalle")
     private List<DetalleCompra> detalleCompras;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private TipoProducto tipoProducto;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "productoPedido")
     private List<DetallePedido> pedidos;
 

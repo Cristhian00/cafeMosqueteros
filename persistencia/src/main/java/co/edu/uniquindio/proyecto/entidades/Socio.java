@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,21 +28,26 @@ public class Socio extends Persona implements Serializable {
     @ManyToOne
     private Socio padre;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "padre")
     private List<Socio> hijos;
 
     @ManyToOne
     private Jerarquia jerarquia;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "socioInventario")
     private List<Inventario> inventarios;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "socioHistorial")
     private List<HistorialJerarquia> historiales;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "socioGanancia")
     private List<Ganancia> ganancias;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "socioCompra")
     private List<Compra> compras;
 

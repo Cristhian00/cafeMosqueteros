@@ -12,16 +12,14 @@ import java.util.Optional;
 public class DetalleCompraServicioImp implements DetalleCompraServicio {
 
     private final DetalleCompraRepo detalleCompraRepo;
-    private final DetalleEstadoRepo detalleEstadoRepo;
     private final ProductoRepo productoRepo;
     private final CompraRepo compraRepo;
     private final SocioRepo socioRepo;
     private final InventarioRepo inventarioRepo;
 
-    public DetalleCompraServicioImp(DetalleCompraRepo detalleCompraRepo, DetalleEstadoRepo detalleEstadoRepo, ProductoRepo productoRepo,
+    public DetalleCompraServicioImp(DetalleCompraRepo detalleCompraRepo, ProductoRepo productoRepo,
                                     CompraRepo compraRepo, SocioRepo socioRepo, InventarioRepo inventarioRepo) {
         this.detalleCompraRepo = detalleCompraRepo;
-        this.detalleEstadoRepo = detalleEstadoRepo;
         this.productoRepo = productoRepo;
         this.compraRepo = compraRepo;
         this.socioRepo = socioRepo;
@@ -39,13 +37,12 @@ public class DetalleCompraServicioImp implements DetalleCompraServicio {
     }
 
     public boolean estadoCompra(int idCompra) {
-        List<DetalleEstado> list = detalleEstadoRepo.obtenerEstadosCompra(idCompra);
+        Compra compra = compraRepo.obtenerCompra(idCompra);
+        EstadoCompra estado = compra.getEstado();
 
-        for (DetalleEstado d : list) {
-            if (d.getEstadoDetalle().getNombre().equalsIgnoreCase("APROBADA")
-                    || d.getEstadoDetalle().getNombre().equalsIgnoreCase("RECHAZADA")) {
-                return true;
-            }
+        if (estado.name().equalsIgnoreCase("APROBADA") || estado.name().equalsIgnoreCase("RECHAZADA")
+                || estado.name().equalsIgnoreCase("CANCELADA")) {
+            return true;
         }
         return false;
     }

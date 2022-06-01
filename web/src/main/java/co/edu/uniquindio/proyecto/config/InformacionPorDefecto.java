@@ -22,16 +22,10 @@ public class InformacionPorDefecto implements CommandLineRunner {
     private DetalleCompraServicio detalleCompraServicio;
 
     @Autowired
-    private DetalleEstadoServicio detalleEstadoServicio;
-
-    @Autowired
     private DetallePedidoServicio detallePedidoServicio;
 
     @Autowired
     private DistribuidorServicio distribuidorServicio;
-
-    @Autowired
-    private EstadoCompraServicio estadoCompraServicio;
 
     @Autowired
     private GananciaServicio gananciaServicio;
@@ -146,15 +140,6 @@ public class InformacionPorDefecto implements CommandLineRunner {
             productoServicio.registrarProducto(producto4);
         }
 
-        if (estadoCompraServicio.listarEstadoCompra().isEmpty()) {
-            EstadoCompra estado1 = new EstadoCompra("PENDIENTE");
-            EstadoCompra estado2 = new EstadoCompra("APROBADO");
-            EstadoCompra estado3 = new EstadoCompra("RECHAZADO");
-            estadoCompraServicio.registrarEstadoCompra(estado1);
-            estadoCompraServicio.registrarEstadoCompra(estado2);
-            estadoCompraServicio.registrarEstadoCompra(estado3);
-        }
-
         if (compraServicio.listarCompra().isEmpty()) {
             Socio socio1 = socioServicio.obtenerSocio("123456");
             Socio socio2 = socioServicio.obtenerSocio("122334");
@@ -166,12 +151,12 @@ public class InformacionPorDefecto implements CommandLineRunner {
             socioServicio.actualizarSocio(socio2);
             socioServicio.actualizarSocio(socio3);
 
-            Compra c1 = new Compra(new Date(), 0, socio1, null);
-            Compra c2 = new Compra(new Date(), 0, socio2, null);
-            Compra c3 = new Compra(new Date(), 0, socio3, null);
-            Compra c4 = new Compra(new Date(), 0, socio1, null);
-            Compra c5 = new Compra(new Date(), 0, socio1, null);
-            Compra c6 = new Compra(new Date(), 0, socio2, null);
+            Compra c1 = new Compra(new Date(), 0, socio1, null, EstadoCompra.APROBADA);
+            Compra c2 = new Compra(new Date(), 0, socio2, null, EstadoCompra.APROBADA);
+            Compra c3 = new Compra(new Date(), 0, socio3, null, EstadoCompra.APROBADA);
+            Compra c4 = new Compra(new Date(), 0, socio1, null, EstadoCompra.PENDIENTE);
+            Compra c5 = new Compra(new Date(), 0, socio1, null, EstadoCompra.APROBADA);
+            Compra c6 = new Compra(new Date(), 0, socio2, null, EstadoCompra.PENDIENTE);
 
             compraServicio.registrarCompra(c1);
             compraServicio.registrarCompra(c2);
@@ -208,16 +193,6 @@ public class InformacionPorDefecto implements CommandLineRunner {
             detalleCompraServicio.registrarDetalleCompra(detalleCompra4_1);
             detalleCompraServicio.registrarDetalleCompra(detalleCompra4_2);
             detalleCompraServicio.registrarDetalleCompra(detalleCompra4_3);
-
-            EstadoCompra estado = estadoCompraServicio.obtenerEstado("APROBADO");
-            DetalleEstado detalleEstado1 = new DetalleEstado(new Date(), estado, c1);
-            DetalleEstado detalleEstado2 = new DetalleEstado(new Date(), estado, c2);
-            DetalleEstado detalleEstado3 = new DetalleEstado(new Date(), estado, c3);
-            DetalleEstado detalleEstado4 = new DetalleEstado(new Date(), estado, c4);
-            detalleEstadoServicio.registrarDetalleEstado(detalleEstado1);
-            detalleEstadoServicio.registrarDetalleEstado(detalleEstado2);
-            detalleEstadoServicio.registrarDetalleEstado(detalleEstado3);
-            detalleEstadoServicio.registrarDetalleEstado(detalleEstado4);
         }
         if (detalleCompraServicio.listarDetalleCompra().isEmpty()) {
             Compra compra1 = compraServicio.obtenerCompra(1);

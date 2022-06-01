@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,9 +34,11 @@ public class Jerarquia implements Serializable {
     @Column(name = "totalcentas")
     private int totalventas;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "jerarquia")
     private List<Socio> socios;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "jerarquiahistorial")
     private List<HistorialJerarquia> historiales;
 

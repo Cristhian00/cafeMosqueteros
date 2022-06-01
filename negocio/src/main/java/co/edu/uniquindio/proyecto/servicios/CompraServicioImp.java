@@ -1,14 +1,9 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.*;
-import co.edu.uniquindio.proyecto.repositorios.CompraRepo;
-import co.edu.uniquindio.proyecto.repositorios.DetalleEstadoRepo;
-import co.edu.uniquindio.proyecto.repositorios.EstadoCompraRepo;
-import co.edu.uniquindio.proyecto.repositorios.SocioRepo;
+import co.edu.uniquindio.proyecto.repositorios.*;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,14 +12,16 @@ public class CompraServicioImp implements CompraServicio {
 
     private final CompraRepo compraRepo;
     private final SocioRepo socioRepo;
-    private final EstadoCompraRepo estadoCompraRepo;
-    private final DetalleEstadoRepo detalleEstadoRepo;
+    private final DetalleCompraRepo detalleCompraRepo;
+    private final ProductoRepo productoRepo;
+    private final InventarioRepo inventarioRepo;
 
-    public CompraServicioImp(CompraRepo compraRepo, SocioRepo socioRepo, EstadoCompraRepo estadoCompraRepo, DetalleEstadoRepo detalleEstadoRepo) {
+    public CompraServicioImp(CompraRepo compraRepo, SocioRepo socioRepo, DetalleCompraRepo detalleCompraRepo, ProductoRepo productoRepo, InventarioRepo inventarioRepo) {
         this.compraRepo = compraRepo;
         this.socioRepo = socioRepo;
-        this.estadoCompraRepo = estadoCompraRepo;
-        this.detalleEstadoRepo = detalleEstadoRepo;
+        this.detalleCompraRepo = detalleCompraRepo;
+        this.productoRepo = productoRepo;
+        this.inventarioRepo = inventarioRepo;
     }
 
     public boolean idDisponible(int id) {
@@ -67,10 +64,6 @@ public class CompraServicioImp implements CompraServicio {
     public Compra registrarCompra(Compra c) throws Exception {
         validaciones(c);
         compraRepo.save(c);
-        EstadoCompra estado = estadoCompraRepo.obtenerEstadoNombre("PENDIENTE");
-        DetalleEstado detalleEstado = new DetalleEstado(new Date(), estado, c);
-        detalleEstadoRepo.save(detalleEstado);
-
         return c;
     }
 
@@ -80,23 +73,62 @@ public class CompraServicioImp implements CompraServicio {
             throw new Exception("La compra no se encuentra registrada");
         }
         Compra c = compraRepo.obtenerCompra(idCompra);
-        List<DetalleEstado> estados = c.getEstados();
 
-        for (DetalleEstado d : estados) {
-            if (d.getEstadoDetalle().getNombre().equalsIgnoreCase("APROBADO")
-                    || d.getEstadoDetalle().getNombre().equalsIgnoreCase("RECHAZADO")
-                    || d.getEstadoDetalle().getNombre().equalsIgnoreCase("ENVIADO")) {
-                throw new Exception("La compra no se puede eliminar porque su estado ya fue procesado");
-            }
+        if (c.getEstado().name().equalsIgnoreCase("APROBADA")
+                || c.getEstado().name().equalsIgnoreCase("RECHAZADA")
+                || c.getEstado().name().equalsIgnoreCase("CANCELADA")) {
+            throw new Exception("La compra no se puede eliminar porque su estado ya fue procesado");
         }
         compraRepo.delete(c);
         return true;
     }
 
     @Override
-    public Compra obtenerCompra(int id) throws Exception{
+    public Compra actualizarEstadoCompra(int idCompra, EstadoCompra estado) throws Exception {
 
-        if(idDisponible(id)){
+        Producto productoAux;
+        Compra compra = compraRepo.obtenerCompra(idCompra);
+        Socio socio = socioRepo.obtenerUsuarioCedula(compra.getSocioCompra().getCedula());
+
+        if (estado.name().equalsIgnoreCase("RECHAZADA") || estado.name().equalsIgnoreCase("CANCELADA")) {
+            for (DetalleCompra detalle : detalleCompraRepo.obtenerDetallesCompra(compra.getIdCompra())) {
+                productoAux = productoRepo.obtenerProducto(detalle.getProductoDetalle().getIdProducto());
+                productoAux.setUnidadesDisponibles(productoAux.getUnidadesDisponibles() + detalle.getCantidad());
+                productoRepo.save(productoAux);
+            }
+        } else if (estado.name().equalsIgnoreCase("APROBADO")) {
+            for (DetalleCompra detalle : detalleCompraRepo.obtenerDetallesCompra(compra.getIdCompra())) {
+                productoAux = productoRepo.obtenerProducto(detalle.getProductoDetalle().getIdProducto());
+                if (existeInventario(socio.getCedula(), productoAux.getIdProducto())) {
+                    Inventario inventario = inventarioRepo.obtenerSocioInventarioAndProductoInventario(socio, productoAux);
+                    inventario.setCantidad(inventario.getCantidad() + detalle.getCantidad());
+                    inventarioRepo.save(inventario);
+                } else {
+                    Inventario inventario = new Inventario(detalle.getCantidad(), socio, productoAux);
+                    inventarioRepo.save(inventario);
+                }
+            }
+            //AGREGAR EL DTO PARA LAS GANANCIAS
+        }
+        compra.setEstado(estado);
+        compraRepo.save(compra);
+        return compra;
+    }
+
+    public boolean existeInventario(String cedula, int idProducto) {
+        Socio socio = socioRepo.obtenerUsuarioCedula(cedula);
+        for (Inventario inventario : inventarioRepo.obtenerInventariosUsuario(socio.getCedula())) {
+            if (inventario.getProductoInventario().getIdProducto() == idProducto) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Compra obtenerCompra(int id) throws Exception {
+
+        if (idDisponible(id)) {
             throw new Exception("Debe ingresar un id que exista");
         }
         return compraRepo.obtenerCompra(id);

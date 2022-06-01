@@ -21,7 +21,7 @@ public class NoSocioRestController {
         return noSocioServicio.listarNoSocio();
     }
 
-    @GetMapping("/{cedula}")
+    @GetMapping("/id/{cedula}")
     public ResponseEntity<?> obtenerNoSocio(@PathVariable(name = "cedula") String cedula) {
         try {
             return ResponseEntity.status(200).body(noSocioServicio.obtenerNoSocio(cedula));
@@ -40,7 +40,7 @@ public class NoSocioRestController {
         }
     }
 
-    @DeleteMapping("/{cedula}")
+    @DeleteMapping("/eliminar/{cedula}")
     public ResponseEntity<Mensaje> eliminarNoSocio(@PathVariable(name = "cedula") String cedula) {
         try {
             noSocioServicio.eliminarNoSocio(cedula);
@@ -50,7 +50,7 @@ public class NoSocioRestController {
         }
     }
 
-    @PutMapping("/{cedula}")
+    @PutMapping("/actualizar/{cedula}")
     public ResponseEntity<Mensaje> actualizarNoSocio(@RequestBody NoSocio noSocio) {
         try{
             noSocioServicio.actualizarNoSocio(noSocio);

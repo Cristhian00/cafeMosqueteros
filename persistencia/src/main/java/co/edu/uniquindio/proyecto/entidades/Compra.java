@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,29 +38,30 @@ public class Compra implements Serializable {
     @ManyToOne
     private NoSocio noSocioCompra;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "compraDetalle")
     private List<DetalleCompra> detalleCompras;
 
-    @OneToMany(mappedBy = "compraEstado")
-    private List<DetalleEstado> estados;
+    private EstadoCompra estado;
 
-    public Compra(Date fecha, @Positive double total, Socio socioCompra, NoSocio noSocioCompra) {
+    public Compra(Date fecha, @Positive double total, Socio socioCompra, NoSocio noSocioCompra, EstadoCompra estado) {
         this.fecha = fecha;
         this.total = total;
         this.socioCompra = socioCompra;
         this.noSocioCompra = noSocioCompra;
         this.detalleCompras = new ArrayList<>();
-        this.estados = new ArrayList<>();
+        this.estado = estado;
     }
 
     @Override
     public String toString() {
         if (socioCompra != null) {
             return "Compra{" +
-                    "idCompra=" + idCompra +
+                    "ID Compra=" + idCompra +
                     ", fecha=" + fecha +
                     ", total=" + total +
                     ", socioCompra=" + socioCompra.getCedula() +
+                    ", estadoCompra=" + estado.name() +
                     '}';
         } else if (noSocioCompra != null) {
             return "Compra{" +
@@ -67,6 +69,7 @@ public class Compra implements Serializable {
                     ", fecha=" + fecha +
                     ", total=" + total +
                     ", noSocioCompra=" + noSocioCompra.getCedula() +
+                    ", estadoCompra=" + estado.name() +
                     '}';
         }
         return null;

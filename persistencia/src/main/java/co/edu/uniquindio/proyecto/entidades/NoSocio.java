@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class NoSocio extends Persona implements Serializable {
     @Column(name = "fecha")
     private Date fechaVinculacion;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "noSocioCompra")
     private List<Compra> compras;
 
