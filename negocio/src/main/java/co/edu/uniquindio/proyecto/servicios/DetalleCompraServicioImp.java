@@ -108,7 +108,10 @@ public class DetalleCompraServicioImp implements DetalleCompraServicio {
         Producto producto = productoRepo.obtenerProducto(detalleCompra.getProductoDetalle().getIdProducto());
         DetalleCompra detalleOld = detalleCompraRepo.findByProductoDetalleAndCompraDetalle(producto, compra);
 
-        if (detalleOld.getCantidad() < cantidad) {
+        if (cantidad == 0) {
+            eliminarDetalleCompra(detalleCompra);
+            return null;
+        } else if (detalleOld.getCantidad() < cantidad) {
             if (unidadesDisponible(detalleCompra.getProductoDetalle().getIdProducto()) < cantidad) {
                 throw new Exception("No hay suficientes unidades disponibles");
             }

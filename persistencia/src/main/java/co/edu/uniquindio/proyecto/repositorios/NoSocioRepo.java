@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface NoSocioRepo extends JpaRepository<NoSocio, String> {
+
     Optional<NoSocio> findByCorreo(String correo);
     Optional<NoSocio> findByCedula (String cedula);
 

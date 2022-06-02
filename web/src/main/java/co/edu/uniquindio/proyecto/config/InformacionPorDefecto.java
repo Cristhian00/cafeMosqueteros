@@ -151,12 +151,12 @@ public class InformacionPorDefecto implements CommandLineRunner {
             socioServicio.actualizarSocio(socio2);
             socioServicio.actualizarSocio(socio3);
 
-            Compra c1 = new Compra(new Date(), 0, socio1, null, EstadoCompra.APROBADA);
-            Compra c2 = new Compra(new Date(), 0, socio2, null, EstadoCompra.APROBADA);
-            Compra c3 = new Compra(new Date(), 0, socio3, null, EstadoCompra.APROBADA);
-            Compra c4 = new Compra(new Date(), 0, socio1, null, EstadoCompra.PENDIENTE);
-            Compra c5 = new Compra(new Date(), 0, socio1, null, EstadoCompra.APROBADA);
-            Compra c6 = new Compra(new Date(), 0, socio2, null, EstadoCompra.PENDIENTE);
+            Compra c1 = new Compra(socio1, null, EstadoCompra.PENDIENTE);
+            Compra c2 = new Compra(socio2, null, EstadoCompra.PENDIENTE);
+            Compra c3 = new Compra(socio3, null, EstadoCompra.PENDIENTE);
+            Compra c4 = new Compra(socio1, null, EstadoCompra.PENDIENTE);
+            Compra c5 = new Compra(socio1, null, EstadoCompra.PENDIENTE);
+            Compra c6 = new Compra(socio2, null, EstadoCompra.PENDIENTE);
 
             compraServicio.registrarCompra(c1);
             compraServicio.registrarCompra(c2);
@@ -178,9 +178,9 @@ public class InformacionPorDefecto implements CommandLineRunner {
             DetalleCompra detalleCompra2_3 = new DetalleCompra(2, p3.getPrecioVenta(), p3, c2);
             DetalleCompra detalleCompra3_1 = new DetalleCompra(5, p1.getPrecioVenta(), p1, c3);
             DetalleCompra detalleCompra3_2 = new DetalleCompra(10, p4.getPrecioVenta(), p4, c3);
-            DetalleCompra detalleCompra4_1 = new DetalleCompra(8, p4.getPrecioVenta(), p4, c4);
-            DetalleCompra detalleCompra4_2 = new DetalleCompra(6, p2.getPrecioVenta(), p2, c4);
-            DetalleCompra detalleCompra4_3 = new DetalleCompra(10, p3.getPrecioVenta(), p3, c4);
+            DetalleCompra detalleCompra4_1 = new DetalleCompra(8, p4.getPrecioVenta(), p4, c5);
+            DetalleCompra detalleCompra4_2 = new DetalleCompra(6, p2.getPrecioVenta(), p2, c5);
+            DetalleCompra detalleCompra4_3 = new DetalleCompra(10, p3.getPrecioVenta(), p3, c5);
 
             detalleCompraServicio.registrarDetalleCompra(detalleCompra1_1);
             detalleCompraServicio.registrarDetalleCompra(detalleCompra1_2);
@@ -193,7 +193,13 @@ public class InformacionPorDefecto implements CommandLineRunner {
             detalleCompraServicio.registrarDetalleCompra(detalleCompra4_1);
             detalleCompraServicio.registrarDetalleCompra(detalleCompra4_2);
             detalleCompraServicio.registrarDetalleCompra(detalleCompra4_3);
+
+            compraServicio.actualizarEstadoCompra(c1.getIdCompra(), EstadoCompra.APROBADA);
+            compraServicio.actualizarEstadoCompra(c2.getIdCompra(), EstadoCompra.APROBADA);
+            compraServicio.actualizarEstadoCompra(c3.getIdCompra(), EstadoCompra.APROBADA);
+            compraServicio.actualizarEstadoCompra(c5.getIdCompra(), EstadoCompra.APROBADA);
         }
+
         if (detalleCompraServicio.listarDetalleCompra().isEmpty()) {
             Compra compra1 = compraServicio.obtenerCompra(1);
             Compra compra2 = compraServicio.obtenerCompra(2);

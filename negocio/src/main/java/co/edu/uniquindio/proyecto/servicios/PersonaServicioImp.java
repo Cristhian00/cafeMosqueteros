@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
-
 @Transactional
 @Service
 public class PersonaServicioImp implements PersonaServicio {
@@ -21,7 +20,6 @@ public class PersonaServicioImp implements PersonaServicio {
     public PersonaServicioImp(PersonaRepo personaRepo) {
         this.personaRepo = personaRepo;
     }
-
 
     @Override
     public Persona login(String correo, String contrasenia) throws Exception {

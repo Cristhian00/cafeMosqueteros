@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyecto.entidades.*;
 import co.edu.uniquindio.proyecto.repositorios.*;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,6 +64,9 @@ public class CompraServicioImp implements CompraServicio {
     @Override
     public Compra registrarCompra(Compra c) throws Exception {
         validaciones(c);
+        c.setFecha(new Date());
+        c.setTotal(0);
+        c.setEstado(EstadoCompra.PENDIENTE);
         compraRepo.save(c);
         return c;
     }
@@ -90,13 +94,16 @@ public class CompraServicioImp implements CompraServicio {
         Compra compra = compraRepo.obtenerCompra(idCompra);
         Socio socio = socioRepo.obtenerUsuarioCedula(compra.getSocioCompra().getCedula());
 
+        if(!compra.getEstado().name().equals(EstadoCompra.PENDIENTE)){
+            throw new Exception("La compra ya no se puede modificar porque su estado ya no es PENDIENTE");
+        }
         if (estado.name().equalsIgnoreCase("RECHAZADA") || estado.name().equalsIgnoreCase("CANCELADA")) {
             for (DetalleCompra detalle : detalleCompraRepo.obtenerDetallesCompra(compra.getIdCompra())) {
                 productoAux = productoRepo.obtenerProducto(detalle.getProductoDetalle().getIdProducto());
                 productoAux.setUnidadesDisponibles(productoAux.getUnidadesDisponibles() + detalle.getCantidad());
                 productoRepo.save(productoAux);
             }
-        } else if (estado.name().equalsIgnoreCase("APROBADO")) {
+        } else if (estado.name().equalsIgnoreCase("APROBADA")) {
             for (DetalleCompra detalle : detalleCompraRepo.obtenerDetallesCompra(compra.getIdCompra())) {
                 productoAux = productoRepo.obtenerProducto(detalle.getProductoDetalle().getIdProducto());
                 if (existeInventario(socio.getCedula(), productoAux.getIdProducto())) {

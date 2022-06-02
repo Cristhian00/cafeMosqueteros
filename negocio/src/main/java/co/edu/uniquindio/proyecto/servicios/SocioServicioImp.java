@@ -1,7 +1,9 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.EstadoSocio;
+import co.edu.uniquindio.proyecto.entidades.Persona;
 import co.edu.uniquindio.proyecto.entidades.Socio;
+import co.edu.uniquindio.proyecto.repositorios.PersonaRepo;
 import co.edu.uniquindio.proyecto.repositorios.SocioRepo;
 import org.springframework.stereotype.Service;
 
@@ -13,19 +15,26 @@ import java.util.Optional;
 public class SocioServicioImp implements SocioServicio {
 
     private final SocioRepo socioRepo;
+    private final PersonaRepo personaRepo;
 
-    public SocioServicioImp(SocioRepo socioRepo) {
+    public SocioServicioImp(SocioRepo socioRepo, PersonaRepo personaRepo) {
         this.socioRepo = socioRepo;
+        this.personaRepo = personaRepo;
     }
 
     public boolean emailDisponible(String correo) {
-        Optional<Socio> s = socioRepo.findByCorreo(correo);
+        Optional<Persona> s = personaRepo.findByCorreo(correo);
         return s.isEmpty();
     }
 
     public boolean cedulaDisponible(String cedula) {
-        Optional<Socio> s = socioRepo.findByCedula(cedula);
+        Optional<Persona> s = personaRepo.findByCedula(cedula);
         return s.isEmpty();
+    }
+
+    public boolean celularDisponible(String celular) {
+        Optional<Persona> ns = personaRepo.findByCelular(celular);
+        return ns.isEmpty();
     }
 
     @Override
@@ -71,6 +80,9 @@ public class SocioServicioImp implements SocioServicio {
         }
         if (s.getCelular().length() > 10) {
             throw new Exception("El número de celular debe tener máximo 10 numeros");
+        }
+        if (!celularDisponible(s.getCelular())) {
+            throw new Exception("El celular ya se encuentra registrado en otro usuario");
         }
         s.setEstado(EstadoSocio.PENDIENTE);
         s.setFechaVinculacion(new Date());

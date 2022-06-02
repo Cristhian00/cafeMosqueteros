@@ -47,7 +47,7 @@ public class DetalleCompraTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(), 90000, socio, null, EstadoCompra.PENDIENTE);
+        Compra compra = new Compra(socio, null, EstadoCompra.PENDIENTE);
         compraRepo.save(compra);
 
         TipoProducto tipoProducto = new TipoProducto("Envase no retornable", "ml", 360);
@@ -76,7 +76,7 @@ public class DetalleCompraTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(), 90000, socio, null, EstadoCompra.PENDIENTE);
+        Compra compra = new Compra(socio, null, EstadoCompra.PENDIENTE);
         compraRepo.save(compra);
 
         TipoProducto tipoProducto = new TipoProducto("Envase no retornable", "ml", 360);
@@ -110,7 +110,7 @@ public class DetalleCompraTest {
                 "312432", "admin", new Date(), EstadoSocio.ACTIVO, null, jerarquia);
         socioRepo.save(socio);
 
-        Compra compra = new Compra(new Date(), 90000, socio, null, EstadoCompra.PENDIENTE);
+        Compra compra = new Compra(socio, null, EstadoCompra.PENDIENTE);
         compraRepo.save(compra);
 
         TipoProducto tipoProducto = new TipoProducto("Envase no retornable", "ml", 360);

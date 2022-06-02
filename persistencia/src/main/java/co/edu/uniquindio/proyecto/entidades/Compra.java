@@ -44,9 +44,7 @@ public class Compra implements Serializable {
 
     private EstadoCompra estado;
 
-    public Compra(Date fecha, @Positive double total, Socio socioCompra, NoSocio noSocioCompra, EstadoCompra estado) {
-        this.fecha = fecha;
-        this.total = total;
+    public Compra(Socio socioCompra, NoSocio noSocioCompra, EstadoCompra estado) {
         this.socioCompra = socioCompra;
         this.noSocioCompra = noSocioCompra;
         this.detalleCompras = new ArrayList<>();

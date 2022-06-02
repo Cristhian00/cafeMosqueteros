@@ -48,7 +48,7 @@ public class Producto implements Serializable {
     @OneToMany(mappedBy = "productoDetalle")
     private List<DetalleCompra> detalleCompras;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne/*(cascade = CascadeType.ALL)*/
     private TipoProducto tipoProducto;
 
     @JsonIgnore
