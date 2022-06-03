@@ -94,7 +94,7 @@ public class CompraServicioImp implements CompraServicio {
         Compra compra = compraRepo.obtenerCompra(idCompra);
         Socio socio = socioRepo.obtenerUsuarioCedula(compra.getSocioCompra().getCedula());
 
-        if(!compra.getEstado().name().equals(EstadoCompra.PENDIENTE)){
+        if(!(compra.getEstado().name().equalsIgnoreCase("PENDIENTE"))){
             throw new Exception("La compra ya no se puede modificar porque su estado ya no es PENDIENTE");
         }
         if (estado.name().equalsIgnoreCase("RECHAZADA") || estado.name().equalsIgnoreCase("CANCELADA")) {
