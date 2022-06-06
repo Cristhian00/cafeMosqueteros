@@ -1,18 +1,22 @@
-package co.edu.uniquindio.proyecto.rest;
+package co.edu.uniquindio.proyecto.servicios;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SocioRestControllerTest {
+class SocioServicioImpTest {
 
     @BeforeEach
     void setUp() {
     }
 
     @Test
-    void listarSocios() {
+    void registrarSocio() {
+    }
+
+    @Test
+    void actualizarSocio() {
     }
 
     @Test
@@ -20,14 +24,10 @@ class SocioRestControllerTest {
     }
 
     @Test
-    void crearSocio() {
-    }
-
-    @Test
     void eliminarSocio() {
     }
 
     @Test
-    void actualizarSocio() {
+    void listarSocio() {
     }
 }

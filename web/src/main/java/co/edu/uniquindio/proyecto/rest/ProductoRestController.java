@@ -24,7 +24,7 @@ public class ProductoRestController {
     @GetMapping("/id/{id}")
     public ResponseEntity<?> obtenerPorId(@PathVariable(name = "id") Integer id) {
         try {
-            return ResponseEntity.status(201).body(productoServicio.obtenerProducto(id));
+            return ResponseEntity.status(200).body(productoServicio.obtenerProducto(id));
         } catch (Exception e) {
             return ResponseEntity.status(500).body(new Mensaje(e.getMessage()));
         }

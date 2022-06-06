@@ -34,7 +34,7 @@ public class CompraRestController {
     @GetMapping("/id/{id}")
     public ResponseEntity<?> obtenerPorId(@PathVariable(name = "id") Integer id) {
         try {
-            return ResponseEntity.status(201).body(compraServicio.obtenerCompra(id));
+            return ResponseEntity.status(200).body(compraServicio.obtenerCompra(id));
         } catch (Exception e) {
             return ResponseEntity.status(500).body(new Mensaje(e.getMessage()));
         }
@@ -64,7 +64,7 @@ public class CompraRestController {
     public ResponseEntity<Mensaje> agregarDetalle(@RequestBody DetalleCompra detalle){
         try {
             detalleServicio.registrarDetalleCompra(detalle);
-            return ResponseEntity.status(200).body(new Mensaje("Se agrego el producto correctamente"));
+            return ResponseEntity.status(201).body(new Mensaje("Se agrego el producto correctamente"));
         } catch (Exception e) {
             return ResponseEntity.status(500).body(new Mensaje(e.getMessage()));
         }
