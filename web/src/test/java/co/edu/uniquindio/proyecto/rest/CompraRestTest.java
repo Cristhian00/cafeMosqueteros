@@ -76,9 +76,9 @@ public class CompraRestTest {
     @Test
     @Transactional
     public void actualizarEstadoTest() throws Exception {
-        Compra compra = compraServicio.obtenerCompra(4);
+        Compra compra = compraServicio.obtenerCompra(6);
 
-        mockMvc.perform(put("/api/compra/actualizar/4")
+        mockMvc.perform(put("/api/compra/actualizar")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(compra)))
                 .andDo(MockMvcResultHandlers.print())
