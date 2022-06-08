@@ -17,13 +17,13 @@ public class ProductoServicioImp implements ProductoServicio {
     }
 
     private void validaciones(Producto p) throws Exception {
-        if (p.getNombre().isEmpty()) {
+        if (p.getNombre() == null || p.getNombre().isEmpty()) {
             throw new Exception("Debe ingresar un nombre");
         }
         if (p.getNombre().length() > 150) {
             throw new Exception("El nombre del producto no puede tener más de 100 caracteres");
         }
-        if (p.getDescripcion().isEmpty()) {
+        if (p.getDescripcion() == null || p.getDescripcion().isEmpty()) {
             throw new Exception("Debe ingresar una descripción");
         }
         if (p.getDescripcion().length() >= 250) {
@@ -51,7 +51,6 @@ public class ProductoServicioImp implements ProductoServicio {
         if (p.getUnidadesDisponibles() == 0) {
             throw new Exception("Debe ingresar la cantidad de unidades disponibles mayor a 0");
         }
-
         Producto proNew = productoRepo.save(p);
         return proNew;
     }
@@ -80,7 +79,7 @@ public class ProductoServicioImp implements ProductoServicio {
 
     @Override
     public Producto obtenerProducto(int id) throws Exception {
-        if(idDisponible(id)){
+        if (idDisponible(id)) {
             throw new Exception("Debe ingresar una id valida");
         }
         return productoRepo.obtenerProducto(id);
@@ -92,7 +91,7 @@ public class ProductoServicioImp implements ProductoServicio {
     }
 
     @Override
-    public List<Producto> listarProductosActivos(){
+    public List<Producto> listarProductosActivos() {
         return productoRepo.obetenerProductosActivos();
     }
 }

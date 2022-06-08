@@ -26,10 +26,10 @@ public class Compra implements Serializable {
     @EqualsAndHashCode.Include
     private int idCompra;
 
-    @Column(name = "fecha")
+    @Column(name = "fecha", nullable = false)
     private Date fecha;
 
-    @Column(name = "total")
+    @Column(name = "total", nullable = false)
     private double total;
 
     @ManyToOne

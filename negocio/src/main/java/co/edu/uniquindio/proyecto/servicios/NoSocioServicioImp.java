@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NoSocioServicioImp implements NoSocioServicio{
+public class NoSocioServicioImp implements NoSocioServicio {
 
     private final NoSocioRepo noSocioRepo;
     private final PersonaRepo personaRepo;
@@ -23,7 +23,7 @@ public class NoSocioServicioImp implements NoSocioServicio{
 
     public boolean emailDisponible(String correo) {
         Optional<Persona> ns = personaRepo.findByCorreo(correo);
-        return  ns.isEmpty();
+        return ns.isEmpty();
     }
 
     public boolean cedulaDisponible(String cedula) {
@@ -48,43 +48,40 @@ public class NoSocioServicioImp implements NoSocioServicio{
         return noSocioRepo.obtenerNoSocioCedula(cedula);
     }
 
-    @Override
-    public NoSocio registrarNoSocio(NoSocio noSocio) throws Exception {
+    public void validaciones(NoSocio noSocio) throws Exception {
         //Validaciones de la cédula
-        if (noSocio.getCedula() == null) {
+        if (noSocio.getCedula() == null || noSocio.getCedula().isEmpty()) {
             throw new Exception("Debe ingresar un número de cédula");
         }
-        if (!cedulaDisponible(noSocio.getCedula())) {
-            throw new Exception("La cédula ya se encuentra regitrada en otro usuario");
-        }
-        if (noSocio.getCedula().length() > 12) {
-            throw new Exception("El número de la cédula no puede contener más de 12 caracteres");
-        }
         //Validaciones del correo electronico
-        if (noSocio.getCorreo() == null) {
+        if (noSocio.getCorreo() == null || noSocio.getCorreo().isEmpty()) {
             throw new Exception("Debe ingresar un correo electronico");
         }
-        if (!emailDisponible(noSocio.getCorreo())) {
-            throw new Exception("El correo ya se encuentra registrado en otro usuario");
-        }
-        if (noSocio.getCorreo().length() > 60) {
-            throw new Exception("El email puede tener un máximo de 60 caracteres");
-        }
         //Otras validaciones
-        if (noSocio.getContrasenia() == null) {
+        if (noSocio.getContrasenia() == null || noSocio.getContrasenia().isEmpty()) {
             throw new Exception("Debe ingresar una contraseña");
         }
-        if (noSocio.getPrimerNombre() == null) {
+        if (noSocio.getPrimerNombre() == null || noSocio.getContrasenia().isEmpty()) {
             throw new Exception("Debe ingresar un nombre");
         }
         if (noSocio.getPrimerNombre().length() > 100) {
             throw new Exception("El nombre debe tener un máximo de 100 caracteres");
         }
-        if (noSocio.getPrimerApellido() == null) {
+        if (noSocio.getPrimerApellido() == null || noSocio.getPrimerApellido().isEmpty()) {
             throw new Exception("Debe ingresar un apellido");
         }
         if (noSocio.getPrimerApellido().length() > 100) {
             throw new Exception("El apellido debe tener un máximo de 100 caracteres");
+        }
+        if (noSocio.getSegundoNombre() != null && !noSocio.getSegundoNombre().isEmpty()) {
+            if (noSocio.getSegundoNombre().length() > 100) {
+                throw new Exception("El nombre debe tener un máximo de 100 caracteres");
+            }
+        }
+        if (noSocio.getSegundoApellido() != null && !noSocio.getSegundoApellido().isEmpty()) {
+            if (noSocio.getSegundoApellido().length() > 100) {
+                throw new Exception("El apellido debe tener un máximo de 100 caracteres");
+            }
         }
         if (noSocio.getCelular() == null) {
             throw new Exception("Debe ingresar un número de celular");
@@ -95,6 +92,26 @@ public class NoSocioServicioImp implements NoSocioServicio{
         if (!celularDisponible(noSocio.getCelular())) {
             throw new Exception("El celular ya se encuentra registrado en otro usuario");
         }
+    }
+
+    @Override
+    public NoSocio registrarNoSocio(NoSocio noSocio) throws Exception {
+        validaciones(noSocio);
+        if (!cedulaDisponible(noSocio.getCedula())) {
+            throw new Exception("La cédula ya se encuentra regitrada en otro usuario");
+        }
+        if (noSocio.getCedula().length() < 6) {
+            throw new Exception("El número de la cédula no puede contener menos de 6 caracteres");
+        }
+        if (noSocio.getCedula().length() > 12) {
+            throw new Exception("El número de la cédula no puede contener más de 12 caracteres");
+        }
+        if (!emailDisponible(noSocio.getCorreo())) {
+            throw new Exception("El correo ya se encuentra registrado en otro usuario");
+        }
+        if (noSocio.getCorreo().length() > 60) {
+            throw new Exception("El email puede tener un máximo de 60 caracteres");
+        }
         noSocio.setFechaVinculacion(new Date());
         NoSocio NoSocioNew = noSocioRepo.save(noSocio);
         return NoSocioNew;
@@ -102,43 +119,13 @@ public class NoSocioServicioImp implements NoSocioServicio{
 
     @Override
     public NoSocio actualizarNoSocio(NoSocio noSocio) throws Exception {
-        if (noSocio.getCedula() == null) {
-            throw new Exception("Debe ingresar un número de cédula");
-        }
+        validaciones(noSocio);
         if (cedulaDisponible(noSocio.getCedula())) {
             throw new Exception("La cédula no se encuentra registrada a ningún usuario");
-        }
-        if (noSocio.getCorreo() == null) {
-            throw new Exception("Debe ingresar un correo electronico");
         }
         if (!obtenerNoSocio(noSocio.getCedula()).getCorreo().equals(noSocio.getCorreo())) {
             if (!emailDisponible(noSocio.getCorreo())) {
                 throw new Exception("El correo ya se encuentra registrado en otro usuario");
-            }
-        }
-        if (noSocio.getCorreo().length() > 60) {
-            throw new Exception("El correo puede tener un máximo de 60 caracteres");
-        }
-        if (noSocio.getPrimerNombre() == null) {
-            throw new Exception("Debe ingresar un nombre");
-        }
-        if (noSocio.getPrimerNombre().length() > 100) {
-            throw new Exception("El nombre debe tener un máximo de 100 caracteres");
-        }
-        if (noSocio.getSegundoNombre() != null) {
-            if (noSocio.getSegundoNombre().length() > 100) {
-                throw new Exception("El nombre debe tener un máximo de 100 caracteres");
-            }
-        }
-        if (noSocio.getPrimerApellido() == null) {
-            throw new Exception("Debe ingresar un apellido");
-        }
-        if (noSocio.getPrimerApellido().length() > 100) {
-            throw new Exception("El apellido debe tener un máximo de 100 caracteres");
-        }
-        if (noSocio.getSegundoApellido() != null) {
-            if (noSocio.getSegundoApellido().length() > 100) {
-                throw new Exception("El apellido debe tener un máximo de 100 caracteres");
             }
         }
         NoSocio ns = noSocioRepo.save(noSocio);
@@ -160,5 +147,6 @@ public class NoSocioServicioImp implements NoSocioServicio{
 
     @Override
     public List<NoSocio> listarNoSocio() {
-        return noSocioRepo.findAll();  }
+        return noSocioRepo.findAll();
+    }
 }

@@ -25,19 +25,19 @@ public class Producto implements Serializable {
     @EqualsAndHashCode.Include
     private int idProducto;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, unique = true, length = 100)
     private String nombre;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @Column(name = "precio_venta")
+    @Column(name = "precio_venta", nullable = false)
     private double precioVenta;
 
-    @Column(name = "precio_compra")
+    @Column(name = "precio_compra", nullable = false)
     private double precioCompra;
 
-    @Column(name = "unidades_disponibles")
+    @Column(name = "unidades_disponibles", nullable = false)
     private int unidadesDisponibles;
 
     @JsonIgnore

@@ -25,25 +25,25 @@ public abstract class Persona implements Serializable {
     @EqualsAndHashCode.Include
     private String cedula;
 
-    @Column(name = "primer_nombre")
+    @Column(name = "primer_nombre", nullable = false, length = 100)
     private String primerNombre;
 
-    @Column(name = "segundo_nombre")
+    @Column(name = "segundo_nombre", length = 100)
     private String segundoNombre;
 
-    @Column(name = "primer_apellido", nullable = false)
+    @Column(name = "primer_apellido", nullable = false, length = 100)
     private String primerApellido;
 
-    @Column(name = "segundo_apellido")
+    @Column(name = "segundo_apellido", length = 100)
     private String segundoApellido;
 
-    @Column(name = "correo", unique = true)
+    @Column(name = "correo", unique = true, nullable = false)
     private String correo;
 
-    @Column(name = "celular", length = 10, unique = true)
+    @Column(name = "celular", length = 10, unique = true, nullable = false)
     private String celular;
 
-    @Column(name = "contrasenia", nullable = false)
+    @Column(name = "contrasenia", nullable = false, length = 100)
     private String contrasenia;
 
     public Persona(String cedula, String primerNombre, String primerApellido,

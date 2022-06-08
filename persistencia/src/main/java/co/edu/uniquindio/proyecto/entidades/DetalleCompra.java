@@ -17,10 +17,10 @@ import java.io.Serializable;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class DetalleCompra implements Serializable {
 
-    @Column(name = "cantidad")
+    @Column(name = "cantidad", nullable = false)
     private int cantidad;
 
-    @Column(name = "precio_unitario")
+    @Column(name = "precio_unitario", nullable = false)
     private double precioUnitario;
 
     @Id

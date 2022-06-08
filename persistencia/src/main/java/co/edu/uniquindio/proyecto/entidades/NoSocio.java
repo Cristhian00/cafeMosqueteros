@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 public class NoSocio extends Persona implements Serializable {
 
-    @Column(name = "fecha")
+    @Column(name = "fecha", nullable = false)
     private Date fechaVinculacion;
 
     @JsonIgnore
