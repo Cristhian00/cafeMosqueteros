@@ -1,1 +1,2 @@
-web: java -Dserver.port=$PORT -jar target/heroku-demo-1.0-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -jar $PATH_TO_JAR
+co.edu.uniquindio.proyecto.WebApplication

@@ -35,7 +35,7 @@ public class TipoProducto implements Serializable {
     private double medida;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "tipoProducto")
+    @OneToMany(mappedBy = "tipoProducto", cascade = CascadeType.ALL)
     private List<Producto> productos;
 
     public TipoProducto(String descripcion, String unidadMedida, @Positive double medida) {
