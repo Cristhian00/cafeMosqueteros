@@ -116,6 +116,7 @@ public class InformacionPorDefecto implements CommandLineRunner {
             socioServicio.registrarSocio(socio7);
         }
 
+        /*
         if (productoServicio.listarProducto().isEmpty()) {
             TipoProducto tipo1 = new TipoProducto("Enlatado", "ml", 350);
             TipoProducto tipo2 = new TipoProducto("Molido", "gr", 500);
@@ -205,5 +206,7 @@ public class InformacionPorDefecto implements CommandLineRunner {
             Compra compra2 = compraServicio.obtenerCompra(2);
             Compra compra3 = compraServicio.obtenerCompra(3);
         }
+
+         */
     }
 }
