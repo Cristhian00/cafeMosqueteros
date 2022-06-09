@@ -13,9 +13,10 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.5</version>
+        <version>2.3.4.RELEASE</version>
         <relativePath/>
     </parent>
+
     <groupId>co.edu.uniquindio</groupId>
     <artifactId>cafemosqueteros-pf</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -23,9 +24,11 @@
     <description>Proyecto que agrupa todos los módulos correspondientes al
         aplicativo
     </description>
+
     <properties>
         <java.version>11</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -37,17 +40,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>5.3.6</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>2.0.2-beta</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
 </project>
