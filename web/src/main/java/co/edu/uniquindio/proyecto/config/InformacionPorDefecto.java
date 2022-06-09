@@ -66,7 +66,7 @@ public class InformacionPorDefecto implements CommandLineRunner {
             Administrador administrador = new Administrador("admin@gmail.com","admin");
             adminServicio.registrarAdministrador(administrador);
         }
-/*
+
         if (promocionServicio.listarPromocion().isEmpty()) {
             Promocion promocion1 = new Promocion("Viaje a Cocora", 0.15);
             promocionServicio.registrarPromocion(promocion1);
@@ -205,7 +205,5 @@ public class InformacionPorDefecto implements CommandLineRunner {
             Compra compra2 = compraServicio.obtenerCompra(2);
             Compra compra3 = compraServicio.obtenerCompra(3);
         }
-
- */
     }
 }
