@@ -86,6 +86,11 @@ public class CompraRestTest {
                 .andExpect(status().isOk());
     }
 
+
+
+
+
+    
     @Test
     @Transactional
     public void agregarDetalleTets() throws Exception {
