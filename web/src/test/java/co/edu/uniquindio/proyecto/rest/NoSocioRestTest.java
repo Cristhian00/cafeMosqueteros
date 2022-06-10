@@ -37,7 +37,7 @@ public class NoSocioRestTest {
     @Test
     @Transactional
     public void obtenerNoSocioTest() throws Exception {
-        mockMvc.perform(get("/api/noSocio/id/{cedula}", 123456)
+        mockMvc.perform(get("/api/noSocio/id/{cedula}", 111111)
                         .contentType("application/json"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
@@ -57,7 +57,7 @@ public class NoSocioRestTest {
     @Test
     @Transactional
     public void eliminarNoSocioTest() throws Exception {
-        mockMvc.perform(delete("/api/noSocio/eliminar/{cedula}", 444666)
+        mockMvc.perform(delete("/api/noSocio/eliminar/{cedula}", 111111)
                         .contentType("application/json"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
@@ -66,7 +66,7 @@ public class NoSocioRestTest {
     @Test
     @Transactional
     public void actualizarNoSocioTest() throws Exception {
-        NoSocio noSocio = new NoSocio("444666", "Fabricio", "Gomez", "fabri@gmail.com",
+        NoSocio noSocio = new NoSocio("111111", "Fabricio", "Gomez", "fabri@gmail.com",
                 "3109877676", "usuario");
         noSocio.setPrimerNombre("Luisa");
         noSocio.setCelular("3222224323");
