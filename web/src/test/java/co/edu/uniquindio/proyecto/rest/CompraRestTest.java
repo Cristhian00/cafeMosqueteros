@@ -57,7 +57,7 @@ public class CompraRestTest {
     @Test
     @Transactional
     public void obtenerPorIdTest() throws Exception {
-        mockMvc.perform(get("/api/compra/id/{id}", 4)
+        mockMvc.perform(get("/api/compra/id/{id}", 1)
                         .contentType("application/json"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
@@ -77,7 +77,7 @@ public class CompraRestTest {
     @Transactional
     public void actualizarEstadoTest() throws Exception {
         Compra compra = new Compra(socio.obtenerSocio("123456"), null, EstadoCompra.RECHAZADA);
-        compra.setIdCompra(6);
+        compra.setIdCompra(1);
 
         mockMvc.perform(put("/api/compra/actualizar")
                         .contentType("application/json")
@@ -89,9 +89,9 @@ public class CompraRestTest {
     @Test
     @Transactional
     public void agregarDetalleTets() throws Exception {
-        Producto proAux = producto.obtenerProducto(1);
+        Producto proAux = producto.obtenerProducto(2);
         DetalleCompra detalleCompra = new DetalleCompra(10, proAux.getPrecioVenta(),
-                proAux, compraServicio.obtenerCompra(4));
+                proAux, compraServicio.obtenerCompra(1));
 
         mockMvc.perform(post("/api/compra/agregarProducto").contentType("application/json")
                         .content(objectMapper.writeValueAsString(detalleCompra))).andDo(MockMvcResultHandlers.print())
@@ -101,7 +101,7 @@ public class CompraRestTest {
     @Test
     @Transactional
     public void eliminarTest() throws Exception {
-        mockMvc.perform(delete("/api/compra/eliminar/{id}", 4)
+        mockMvc.perform(delete("/api/compra/eliminar/{id}", 1)
                         .contentType("application/json"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
