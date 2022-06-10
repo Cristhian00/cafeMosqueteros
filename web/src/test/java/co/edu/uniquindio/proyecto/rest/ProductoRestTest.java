@@ -44,7 +44,7 @@ public class ProductoRestTest {
     @Test
     @Transactional
     public void obtenerPorIdTest() throws Exception {
-        mockMvc.perform(get("/api/producto/id/{id}", 1)
+        mockMvc.perform(get("/api/producto/id/{id}", 2)
                         .contentType("application/json"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
@@ -64,7 +64,7 @@ public class ProductoRestTest {
     @Test
     @Transactional
     public void actualizarTest() throws Exception {
-        Producto producto = productoServicio.obtenerProducto(1);
+        Producto producto = productoServicio.obtenerProducto(2);
         producto.setNombre("Miel de café");
         producto.setUnidadesDisponibles(200);
 
@@ -78,7 +78,7 @@ public class ProductoRestTest {
     @Test
     @Transactional
     public void eliminarTest() throws Exception {
-        mockMvc.perform(delete("/api/producto/eliminar/{id}", 1)
+        mockMvc.perform(delete("/api/producto/eliminar/{id}", 2)
                         .contentType("application/json"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
